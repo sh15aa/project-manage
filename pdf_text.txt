@@ -1,0 +1,983 @@
+Yes. You want the full master checklist, not the simplified version. This should be the
+checklist engine inside your Founder OS, where each product can have hundreds of
+tasks/subtasks depending on its type.
+
+🚀 MASTER PRODUCT BUILD & LAUNCH CHECKLIST
+0. PRODUCT SETUP
+[ ] Create product
+[ ] Product name
+[ ] Product type
+[ ] Product category
+[ ] Product description
+[ ] Product status
+[ ] Target launch date
+[ ] Owner
+[ ] Team/AI agents
+[ ] Repository
+[ ] Domain
+[ ] Production URL
+[ ] Target platforms
+[ ] Target countries
+[ ] Target audience
+[ ] Product version
+[ ] MVP definition
+[ ] Project goals
+[ ] Project non-goals
+[ ] Constraints
+
+[ ] Budget
+[ ] Timeline
+
+--1. IDEA & DISCOVERY
+[ ] Define problem
+[ ] Define target user
+[ ] Identify pain point
+[ ] Problem severity
+[ ] Problem frequency
+[ ] Existing alternatives
+[ ] Current workaround
+[ ] Why existing solutions fail
+[ ] Define desired outcome
+[ ] Define value proposition
+[ ] Define unique angle
+[ ] Identify assumptions
+[ ] Validate assumptions
+[ ] Identify risks
+[ ] Identify potential misuse
+[ ] Define success criteria
+[ ] Go/no-go decision
+
+---
+
+2. MARKET RESEARCH
+[ ] Market size research
+[ ] Target market research
+[ ] Customer research
+[ ] Competitor discovery
+[ ] Direct competitors
+[ ] Indirect competitors
+[ ] Substitute products
+[ ] Competitor pricing
+[ ] Competitor features
+[ ] Competitor positioning
+[ ] Competitor business models
+[ ] Competitor reviews
+[ ] Competitor weaknesses
+[ ] Competitor strengths
+[ ] Competitor traffic/demand signals
+[ ] App Store research
+[ ] Google Play research
+[ ] Product Hunt research
+[ ] GitHub research
+[ ] Reddit research
+[ ] Community research
+[ ] Search demand research
+[ ] Social media research
+
+[ ] Customer complaint research
+[ ] 1-star review analysis
+[ ] 2-star review analysis
+[ ] 3-star review analysis
+[ ] Feature-gap analysis
+[ ] Opportunity analysis
+[ ] Market validation
+[ ] Research report
+
+--3. CUSTOMER RESEARCH
+[ ] User personas
+[ ] User demographics
+[ ] User goals
+[ ] User frustrations
+[ ] User motivations
+[ ] User objections
+[ ] User buying behavior
+[ ] User willingness to pay
+[ ] User journey
+[ ] Jobs-to-be-done
+[ ] Customer interview questions
+[ ] Customer interviews
+[ ] Survey
+
+[ ] Feedback collection
+[ ] Pain-point ranking
+[ ] Customer validation
+
+--4. BUSINESS MODEL
+[ ] Business model
+[ ] Revenue model
+[ ] Free vs paid strategy
+[ ] Pricing model
+[ ] Pricing tiers
+[ ] Free tier
+[ ] Trial
+[ ] Subscription
+[ ] One-time purchase
+[ ] Usage-based pricing
+[ ] Marketplace model if applicable
+[ ] Revenue assumptions
+[ ] Cost assumptions
+[ ] Unit economics
+[ ] Customer acquisition assumptions
+[ ] Break-even analysis
+[ ] Refund strategy
+[ ] Cancellation strategy
+
+[ ] Revenue tracking
+
+--5. PRD
+[ ] Product overview
+[ ] Product goals
+[ ] Non-goals
+[ ] Target users
+[ ] User stories
+[ ] Functional requirements
+[ ] Non-functional requirements
+[ ] MVP requirements
+[ ] Post-MVP requirements
+[ ] Future requirements
+[ ] Feature priorities
+[ ] Dependencies
+[ ] Constraints
+[ ] Success metrics
+[ ] KPIs
+[ ] Acceptance criteria
+[ ] Definition of Done
+
+--6. FEATURE SPECIFICATION
+
+For every feature:
+[ ] Feature purpose
+[ ] Feature description
+[ ] User story
+[ ] User flow
+[ ] Inputs
+[ ] Outputs
+[ ] UI requirements
+[ ] Backend requirements
+[ ] Database requirements
+[ ] API requirements
+[ ] Permissions
+[ ] Validation
+[ ] Error states
+[ ] Empty states
+[ ] Loading states
+[ ] Success states
+[ ] Edge cases
+[ ] Security implications
+[ ] Privacy implications
+[ ] Analytics events
+[ ] Acceptance criteria
+[ ] Test cases
+[ ] Definition of Done
+
+--7. USER FLOWS
+[ ] First launch
+[ ] Onboarding
+[ ] Registration
+[ ] Login
+[ ] Logout
+[ ] Password reset
+[ ] Account recovery
+[ ] Main user journey
+[ ] Core feature flow
+[ ] Secondary feature flows
+[ ] Search flow
+[ ] Profile flow
+[ ] Settings flow
+[ ] Payment flow
+[ ] Subscription flow
+[ ] Cancellation flow
+[ ] Refund flow
+[ ] Support flow
+[ ] Feedback flow
+[ ] Account deletion
+[ ] Data deletion
+
+[ ] Permission denial
+[ ] Network failure
+[ ] Offline flow
+[ ] Error recovery
+[ ] Exit flow
+
+--8. INFORMATION ARCHITECTURE
+[ ] Sitemap
+[ ] Navigation structure
+[ ] Content hierarchy
+[ ] Screen hierarchy
+[ ] Navigation paths
+[ ] Deep links
+[ ] Back navigation
+[ ] Search architecture
+[ ] Settings architecture
+[ ] Account architecture
+
+--9. SCREEN INVENTORY
+For every screen:
+[ ] Screen name
+[ ] Purpose
+
+[ ] Layout
+[ ] Components
+[ ] Buttons
+[ ] Inputs
+[ ] Navigation
+[ ] API calls
+[ ] Database interactions
+[ ] Validation
+[ ] Loading state
+[ ] Empty state
+[ ] Error state
+[ ] Success state
+[ ] Offline state
+[ ] Permission state
+[ ] Accessibility
+[ ] Analytics
+[ ] Acceptance criteria
+
+--10. UX/UI
+[ ] Design philosophy
+[ ] Brand identity
+[ ] Color system
+[ ] Typography
+
+[ ] Font sizes
+[ ] Spacing system
+[ ] Grid system
+[ ] Icons
+[ ] Buttons
+[ ] Inputs
+[ ] Forms
+[ ] Cards
+[ ] Tables
+[ ] Navigation
+[ ] Tabs
+[ ] Modals
+[ ] Dialogs
+[ ] Bottom sheets
+[ ] Toasts
+[ ] Alerts
+[ ] Tooltips
+[ ] Empty states
+[ ] Error states
+[ ] Loading states
+[ ] Skeleton screens
+[ ] Animations
+[ ] Dark mode
+[ ] Light mode
+
+[ ] Responsive design
+[ ] Mobile design
+[ ] Tablet design
+[ ] Desktop design
+[ ] Accessibility
+[ ] Touch targets
+[ ] Keyboard navigation
+[ ] Screen reader support
+
+--11. TECH STACK
+[ ] Frontend framework
+[ ] Backend framework
+[ ] Programming language
+[ ] Database
+[ ] Authentication
+[ ] File storage
+[ ] API architecture
+[ ] Hosting
+[ ] CDN
+[ ] Caching
+[ ] Search
+[ ] Background jobs
+[ ] Queue
+
+[ ] Email
+[ ] SMS
+[ ] Push notifications
+[ ] Analytics
+[ ] Crash reporting
+[ ] Logging
+[ ] Monitoring
+[ ] Payments
+[ ] AI/LLM
+[ ] Maps/location
+[ ] Third-party APIs
+[ ] Dependency management
+[ ] Version management
+
+For each:
+[ ] Why chosen
+[ ] Alternative
+[ ] Cost
+[ ] Free-tier limits
+[ ] Scaling limits
+[ ] Security
+[ ] Privacy
+[ ] Vendor lock-in
+
+---
+
+12. ARCHITECTURE
+[ ] High-level architecture
+[ ] Client architecture
+[ ] Backend architecture
+[ ] Database architecture
+[ ] API architecture
+[ ] Authentication architecture
+[ ] Authorization architecture
+[ ] Storage architecture
+[ ] Caching architecture
+[ ] Queue architecture
+[ ] Background workers
+[ ] Third-party integrations
+[ ] AI architecture
+[ ] Notification architecture
+[ ] Monitoring architecture
+[ ] Disaster recovery architecture
+[ ] Architecture diagram
+[ ] Data-flow diagram
+
+--13. DATABASE
+[ ] Database selection
+[ ] Tables/collections
+
+[ ] Fields
+[ ] Data types
+[ ] Primary keys
+[ ] Foreign keys
+[ ] Relationships
+[ ] Constraints
+[ ] Validation
+[ ] Indexes
+[ ] Unique constraints
+[ ] Timestamps
+[ ] Soft deletion
+[ ] Audit fields
+[ ] Database permissions
+[ ] Row-level security
+[ ] Migration strategy
+[ ] Backup strategy
+[ ] Restore strategy
+[ ] Data retention
+[ ] Data deletion
+[ ] Data minimization
+
+--14. API
+[ ] API architecture
+
+[ ] Endpoint inventory
+[ ] HTTP methods
+[ ] Authentication
+[ ] Authorization
+[ ] Request schemas
+[ ] Response schemas
+[ ] Validation
+[ ] Error handling
+[ ] HTTP status codes
+[ ] Rate limiting
+[ ] Pagination
+[ ] Filtering
+[ ] Sorting
+[ ] API versioning
+[ ] Idempotency
+[ ] Webhooks
+[ ] API documentation
+[ ] API testing
+
+--15. AUTHENTICATION & ACCOUNTS
+[ ] Registration
+[ ] Login
+[ ] Logout
+
+[ ] Email verification
+[ ] Password reset
+[ ] Password requirements
+[ ] Session management
+[ ] Token management
+[ ] OAuth/social login
+[ ] MFA if required
+[ ] Account recovery
+[ ] Account suspension
+[ ] Account deletion
+[ ] Data deletion
+[ ] Session revocation
+[ ] Device/session management
+
+--16. SECURITY
+[ ] Threat model
+[ ] Security architecture
+[ ] HTTPS
+[ ] Encryption
+[ ] Secrets management
+[ ] Environment variables
+[ ] Authentication security
+[ ] Authorization
+
+[ ] Input validation
+[ ] SQL injection protection
+[ ] NoSQL injection protection
+[ ] XSS protection
+[ ] CSRF protection
+[ ] SSRF protection
+[ ] IDOR protection
+[ ] Brute-force protection
+[ ] Rate limiting
+[ ] API abuse protection
+[ ] File upload security
+[ ] Dependency security
+[ ] Supply-chain security
+[ ] Admin security
+[ ] Logging
+[ ] Security monitoring
+[ ] Backup security
+[ ] Data leakage checks
+[ ] Account takeover protection
+[ ] Security audit
+[ ] Penetration testing where appropriate
+
+--17. PRIVACY
+
+[ ] Data inventory
+[ ] Personal data identification
+[ ] Sensitive data identification
+[ ] Data purpose
+[ ] Data minimization
+[ ] Data storage location
+[ ] Data access
+[ ] Data retention
+[ ] Data deletion
+[ ] Consent requirements
+[ ] Privacy notice
+[ ] User rights
+[ ] Data correction
+[ ] Data access requests
+[ ] Data deletion requests
+[ ] Data portability where applicable
+[ ] Children's data
+[ ] International data transfers
+[ ] Third-party processors
+[ ] AI data processing
+[ ] Privacy audit
+
+--18. COOKIES & TRACKING
+
+[ ] Essential cookies
+[ ] Session cookies
+[ ] Persistent cookies
+[ ] Analytics
+[ ] Advertising
+[ ] Tracking pixels
+[ ] Local storage
+[ ] Device identifiers
+[ ] Advertising IDs
+[ ] Analytics SDKs
+[ ] Crash SDKs
+[ ] Push tokens
+[ ] Consent
+[ ] Cookie banner
+[ ] Opt-out
+[ ] Tracking disclosure
+[ ] Third-party tracking audit
+
+--19. LEGAL
+[ ] Privacy Policy
+[ ] Terms of Service
+[ ] Terms & Conditions
+[ ] Cookie Policy
+
+[ ] Refund Policy
+[ ] Cancellation Policy
+[ ] Subscription Terms
+[ ] Acceptable Use Policy
+[ ] Community Guidelines
+[ ] Disclaimer
+[ ] Copyright policy
+[ ] IP policy
+[ ] AI disclosure
+[ ] Third-party disclosure
+[ ] Age restrictions
+[ ] UGC policy
+[ ] Data Processing Agreement if applicable
+[ ] Legal review
+[ ] Legal links throughout product
+
+--20. THIRD-PARTY SERVICES
+For every service:
+[ ] Purpose
+[ ] Account created
+[ ] API key
+[ ] Data shared
+[ ] Data location
+
+[ ] Privacy implications
+[ ] Security implications
+[ ] Pricing
+[ ] Free tier
+[ ] Usage limits
+[ ] Failure behavior
+[ ] Backup alternative
+[ ] Vendor lock-in
+[ ] Terms reviewed
+[ ] Privacy policy reviewed
+
+--21. PAYMENTS
+If applicable:
+[ ] Payment provider
+[ ] Currency
+[ ] Pricing
+[ ] Checkout
+[ ] Payment confirmation
+[ ] Failed payment
+[ ] Retry
+[ ] Refund
+[ ] Cancellation
+[ ] Subscription
+
+[ ] Upgrade
+[ ] Downgrade
+[ ] Invoices
+[ ] Taxes
+[ ] GST considerations
+[ ] Chargebacks
+[ ] Webhooks
+[ ] Payment security
+[ ] PCI considerations
+[ ] Platform billing requirements
+[ ] Revenue tracking
+
+--22. AI FEATURES
+If AI is involved:
+[ ] AI use case
+[ ] Model selection
+[ ] Model comparison
+[ ] Prompt architecture
+[ ] System prompts
+[ ] Structured outputs
+[ ] Input validation
+[ ] Output validation
+[ ] Hallucination handling
+
+[ ] AI evaluation
+[ ] Evaluation dataset
+[ ] AI safety
+[ ] Prompt injection protection
+[ ] Data privacy
+[ ] AI cost estimation
+[ ] Token limits
+[ ] Rate limits
+[ ] Abuse prevention
+[ ] Model fallback
+[ ] Error handling
+[ ] AI logging
+[ ] AI monitoring
+[ ] Human review where needed
+
+--23. ANALYTICS
+[ ] Analytics platform
+[ ] Event taxonomy
+[ ] User activation
+[ ] Conversion funnel
+[ ] Retention
+[ ] Engagement
+[ ] Revenue
+
+[ ] Churn
+[ ] Feature usage
+[ ] Error events
+[ ] Performance metrics
+[ ] Acquisition
+[ ] Attribution
+[ ] Privacy review
+[ ] Analytics dashboard
+
+--24. TESTING
+[ ] Test strategy
+[ ] Unit tests
+[ ] Integration tests
+[ ] API tests
+[ ] Database tests
+[ ] UI tests
+[ ] End-to-end tests
+[ ] Regression tests
+[ ] Security tests
+[ ] Accessibility tests
+[ ] Performance tests
+[ ] Load tests
+[ ] Stress tests
+
+[ ] Compatibility tests
+[ ] Browser tests
+[ ] Device tests
+[ ] OS-version tests
+[ ] Network tests
+[ ] Offline tests
+
+Edge cases
+[ ] Empty input
+[ ] Invalid input
+[ ] Huge input
+[ ] Duplicate action
+[ ] Slow network
+[ ] No network
+[ ] API failure
+[ ] Database failure
+[ ] Authentication failure
+[ ] Permission denial
+[ ] Payment failure
+[ ] Timeout
+[ ] Concurrent actions
+[ ] Deleted data
+[ ] Expired session
+
+--25. PERFORMANCE
+[ ] Page load performance
+[ ] App startup
+[ ] API latency
+[ ] Database performance
+[ ] Query optimization
+[ ] Image optimization
+[ ] Bundle size
+[ ] Caching
+[ ] CDN
+[ ] Lazy loading
+[ ] Code splitting
+[ ] Memory usage
+[ ] CPU usage
+[ ] Battery usage
+[ ] Network usage
+[ ] Core Web Vitals
+[ ] Performance monitoring
+
+--26. SCALABILITY
+Test/design for:
+[ ] 100 users
+
+[ ] 1,000 users
+[ ] 10,000 users
+[ ] 100,000 users
+[ ] 1,000,000 users
+
+Analyze:
+[ ] Database bottleneck
+[ ] API bottleneck
+[ ] Storage
+[ ] Bandwidth
+[ ] AI costs
+[ ] Third-party limits
+[ ] Rate limits
+[ ] Caching
+[ ] Queues
+[ ] CDN
+[ ] Horizontal scaling
+[ ] Database scaling
+[ ] Backup scaling
+
+--27. WEB
+For web products:
+[ ] Domain
+[ ] DNS
+
+[ ] HTTPS
+[ ] SSL
+[ ] Hosting
+[ ] CDN
+[ ] Favicon
+[ ] Sitemap
+[ ] robots.txt
+[ ] SEO
+[ ] Meta tags
+[ ] Open Graph
+[ ] Twitter/X cards
+[ ] Structured data
+[ ] Responsive design
+[ ] Accessibility
+[ ] Performance
+[ ] Security headers
+[ ] CSP
+[ ] CORS
+[ ] Error pages
+[ ] 404
+[ ] 500
+[ ] Email configuration
+[ ] Domain email
+
+--28. MOBILE APP
+For Android/iOS:
+[ ] App icon
+[ ] Splash screen
+[ ] Permissions
+[ ] Deep links
+[ ] Push notifications
+[ ] Background behavior
+[ ] Offline behavior
+[ ] Device compatibility
+[ ] Screen-size compatibility
+[ ] OS compatibility
+[ ] Battery optimization
+[ ] App signing
+[ ] Release build
+[ ] Crash reporting
+[ ] App analytics
+[ ] Store screenshots
+[ ] Store description
+[ ] App category
+[ ] Age rating
+[ ] Privacy information
+[ ] Data safety information
+
+[ ] Account deletion
+[ ] Store policies
+[ ] Store submission
+[ ] Review
+[ ] Production release
+
+--29. DEVOPS
+[ ] Git repository
+[ ] Branch strategy
+[ ] Development environment
+[ ] Staging environment
+[ ] Production environment
+[ ] Environment variables
+[ ] Secrets
+[ ] CI/CD
+[ ] Automated builds
+[ ] Automated tests
+[ ] Deployment pipeline
+[ ] Database migrations
+[ ] Backups
+[ ] Monitoring
+[ ] Logging
+[ ] Alerts
+
+[ ] Rollbacks
+[ ] Disaster recovery
+[ ] Incident response
+
+--30. DOCUMENTATION
+[ ] README
+[ ] Setup guide
+[ ] Architecture documentation
+[ ] Database documentation
+[ ] API documentation
+[ ] Environment variables documentation
+[ ] Deployment documentation
+[ ] Troubleshooting
+[ ] Security documentation
+[ ] Privacy documentation
+[ ] User documentation
+[ ] FAQ
+[ ] Developer documentation
+[ ] Changelog
+[ ] Release notes
+
+--31. SUPPORT
+
+[ ] Contact method
+[ ] Support email
+[ ] Help center
+[ ] FAQ
+[ ] Bug reporting
+[ ] Feature requests
+[ ] Feedback
+[ ] Refund support
+[ ] Account support
+[ ] Abuse reporting
+[ ] Response process
+[ ] Support analytics
+
+--32. MARKETING
+[ ] Product positioning
+[ ] Brand name
+[ ] Tagline
+[ ] Landing page
+[ ] Product screenshots
+[ ] Demo video
+[ ] Product video
+[ ] Founder story
+[ ] Launch announcement
+
+[ ] Email list
+[ ] Social profiles
+[ ] Content strategy
+[ ] SEO strategy
+[ ] Community strategy
+[ ] Reddit strategy
+[ ] Product Hunt strategy
+[ ] Launch campaign
+[ ] Referral strategy
+[ ] Affiliate strategy
+[ ] Testimonials
+[ ] Reviews
+[ ] Case studies
+
+--33. PRE-LAUNCH
+[ ] MVP complete
+[ ] Critical bugs fixed
+[ ] Security audit complete
+[ ] Privacy audit complete
+[ ] Legal documents complete
+[ ] Analytics working
+[ ] Monitoring working
+[ ] Backup working
+
+[ ] Payments tested
+[ ] Email tested
+[ ] Production environment tested
+[ ] Domain working
+[ ] SSL working
+[ ] App builds working
+[ ] Store listing ready
+[ ] Landing page ready
+[ ] Support ready
+[ ] Launch content ready
+[ ] Beta testers
+[ ] Beta feedback
+[ ] Final QA
+[ ] Launch approval
+
+--34. LAUNCH
+[ ] Production deployment
+[ ] Database migration
+[ ] DNS
+[ ] SSL
+[ ] App submission
+[ ] Website live
+[ ] Payments live
+
+[ ] Analytics live
+[ ] Monitoring live
+[ ] Email live
+[ ] Launch announcement
+[ ] Social posts
+[ ] Community posts
+[ ] Product Hunt
+[ ] Reddit where appropriate
+[ ] Founder announcement
+[ ] Collect first users
+[ ] Monitor errors
+[ ] Monitor performance
+[ ] Monitor costs
+[ ] Monitor feedback
+
+--35. POST-LAUNCH
+[ ] First 10 users
+[ ] First 100 users
+[ ] First paying customer
+[ ] First ₹1
+[ ] First ₹10,000
+[ ] User feedback
+[ ] Bug fixes
+
+[ ] Feature requests
+[ ] Churn analysis
+[ ] Retention analysis
+[ ] Conversion analysis
+[ ] Revenue analysis
+[ ] Cost analysis
+[ ] Support analysis
+[ ] Security monitoring
+[ ] Performance monitoring
+[ ] Product improvements
+[ ] A/B tests where appropriate
+[ ] Pricing experiments
+[ ] Growth experiments
+[ ] Roadmap update
+
+--36. AI AGENT REVIEW
+[ ] AI reviews PRD
+[ ] AI reviews architecture
+[ ] AI reviews database
+[ ] AI reviews APIs
+[ ] AI reviews code
+[ ] AI reviews security
+[ ] AI reviews privacy
+
+[ ] AI reviews UX
+[ ] AI reviews tests
+[ ] AI reviews performance
+[ ] AI reviews deployment
+[ ] AI reviews launch readiness
+
+--37. FINAL "WHAT DID WE FORGET?" AUDIT
+[ ] Forgotten feature audit
+[ ] Forgotten screen audit
+[ ] Forgotten user-flow audit
+[ ] Forgotten edge-case audit
+[ ] Forgotten security audit
+[ ] Forgotten privacy audit
+[ ] Forgotten legal audit
+[ ] Forgotten cookie/tracking audit
+[ ] Forgotten permission audit
+[ ] Forgotten payment audit
+[ ] Forgotten app-store audit
+[ ] Forgotten Play Store audit
+[ ] Forgotten SEO audit
+[ ] Forgotten accessibility audit
+[ ] Forgotten analytics audit
+[ ] Forgotten monitoring audit
+
+[ ] Forgotten backup audit
+[ ] Forgotten disaster-recovery audit
+[ ] Forgotten scalability audit
+[ ] Forgotten third-party-service audit
+[ ] Forgotten cost audit
+[ ] Forgotten support audit
+[ ] Forgotten documentation audit
+[ ] Forgotten launch audit
+
+--38. FINAL SHIP GATE
+
+🚀
+
+The product cannot be marked LAUNCHED until:
+[ ] Product requirements complete
+[ ] MVP complete
+[ ] Core functionality complete
+[ ] UX/UI complete
+[ ] Architecture complete
+[ ] Database complete
+[ ] APIs complete
+[ ] Authentication complete
+[ ] Security complete
+[ ] Privacy complete
+[ ] Legal complete
+[ ] Analytics complete
+
+[ ] Testing complete
+[ ] Performance acceptable
+[ ] Monitoring complete
+[ ] Backup complete
+[ ] Documentation complete
+[ ] Support complete
+[ ] Payments complete if applicable
+[ ] Web deployment complete if applicable
+[ ] Mobile deployment complete if applicable
+[ ] Store requirements complete if applicable
+[ ] Final AI audit complete
+[ ] Human review complete
+[]
+
+🚀 SHIPPED
+
+--And this is how your Founder OS should handle it
+You should NOT see all 300+ tasks every time.
+The system should have:
+Master Checklist → Product Type → AI-generated relevant checklist → Tasks → Subtasks
+→ AI verification
+So when you create:
+> New Mobile AI SaaS
+
+the AI might generate 250 tasks.
+
+For:
+> Simple Chrome Extension
+
+maybe 100 tasks.
+For:
+> Landing-page-only product
+
+maybe 50 tasks.
+And every task has:
+Not Started → In Progress → Blocked → AI Review → Human Review → Done
+with a percentage automatically calculated from subtasks.
+That is the level of checklist I would use as the foundation of your Product OS.
+
+
