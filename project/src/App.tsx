@@ -8,7 +8,8 @@ import {
   X,
   Table as TableIcon,
   Kanban as KanbanIcon,
-  UploadCloud,
+  LogOut,
+  User,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -28,13 +29,16 @@ import { ProductTable } from '@/components/ProductTable';
 import { ProductKanban } from '@/components/ProductKanban';
 import { ProductDrawer } from '@/components/ProductDrawer';
 import { AddProductModal } from '@/components/AddProductModal';
-import { ImportProjectsModal } from '@/components/ImportProjectsModal';
 import { BulkActionBar } from '@/components/BulkActionBar';
+import { LoginGate } from '@/components/LoginGate';
 
 type NavView = 'dashboard' | 'products';
 type DisplayMode = 'grid' | 'table' | 'kanban';
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('producthub_auth') === 'true';
+  });
   const [products, setProducts] = useState<ProductWithTasks[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +46,6 @@ export default function App() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('grid');
   const [selectedProduct, setSelectedProduct] = useState<ProductWithTasks | null>(null);
   const [showAdd, setShowAdd] = useState(false);
-  const [showImport, setShowImport] = useState(false);
   const [search, setSearch] = useState('');
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [activeStatuses, setActiveStatuses] = useState<string[]>([]);
@@ -64,8 +67,14 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    loadData();
-  }, [loadData]);
+    if (isAuthenticated) {
+      loadData();
+    }
+  }, [isAuthenticated, loadData]);
+
+  if (!isAuthenticated) {
+    return <LoginGate onSuccess={() => setIsAuthenticated(true)} />;
+  }
 
   // Quick manual status change for a single project
   const handleStatusChange = useCallback(async (productId: string, newStatus: string) => {
@@ -163,10 +172,6 @@ export default function App() {
     setShowAdd(false);
   }
 
-  function handleProductsImported(newProducts: ProductWithTasks[]) {
-    setProducts((prev) => [...prev, ...newProducts]);
-  }
-
   const hasFilters = activeTags.length > 0 || activeStatuses.length > 0 || search.length > 0;
 
   // Status counters for quick chips
@@ -250,15 +255,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mt-auto space-y-2">
-          <button
-            onClick={() => setShowImport(true)}
-            className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800/70 px-3 py-2 text-xs font-medium text-slate-200 transition-colors hover:border-slate-600 hover:bg-slate-800"
-          >
-            <UploadCloud className="h-4 w-4 text-cyan-400" />
-            Import 96 Projects
-          </button>
-
+        <div className="mt-auto space-y-2.5">
           <button
             onClick={() => setShowAdd(true)}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-600 px-3 py-2.5 text-sm font-medium text-white shadow-md shadow-cyan-600/20 transition-all hover:bg-cyan-500 active:scale-[0.98]"
@@ -266,6 +263,31 @@ export default function App() {
             <Plus className="h-4 w-4" />
             Add Project
           </button>
+
+          {/* User Session & Logout */}
+          <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-950/60 px-3 py-2">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-400">
+                <User className="h-3.5 w-3.5" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-semibold text-slate-200">sh15a</p>
+                <p className="text-[10px] text-cyan-400">Authenticated</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                sessionStorage.removeItem('producthub_auth');
+                sessionStorage.removeItem('producthub_user');
+                setIsAuthenticated(false);
+              }}
+              title="Lock Workspace / Log Out"
+              className="rounded-lg p-1.5 text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -279,17 +301,23 @@ export default function App() {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setShowImport(true)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-300"
-            title="Import"
-          >
-            <UploadCloud className="h-4 w-4" />
-          </button>
-          <button
             onClick={() => setShowAdd(true)}
             className="rounded-lg bg-cyan-600 px-3 py-1.5 text-xs font-medium text-white"
+            title="Add Project"
           >
             <Plus className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              sessionStorage.removeItem('producthub_auth');
+              sessionStorage.removeItem('producthub_user');
+              setIsAuthenticated(false);
+            }}
+            title="Lock Workspace / Log Out"
+            className="rounded-lg border border-slate-700/80 bg-slate-800/80 p-1.5 text-slate-400 hover:text-red-400 transition-colors"
+          >
+            <LogOut className="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -402,14 +430,6 @@ export default function App() {
                       <span className="hidden sm:inline">Kanban</span>
                     </button>
                   </div>
-
-                  <button
-                    onClick={() => setShowImport(true)}
-                    className="flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs font-medium text-slate-200 hover:border-slate-600 hover:bg-slate-800"
-                  >
-                    <UploadCloud className="h-3.5 w-3.5 text-cyan-400" />
-                    <span className="hidden sm:inline">Import</span>
-                  </button>
                 </div>
               </div>
 
@@ -541,26 +561,16 @@ export default function App() {
                 <div className="flex h-64 flex-col items-center justify-center text-center rounded-2xl border border-dashed border-slate-800 p-8">
                   <Boxes className="mb-3 h-10 w-10 text-slate-600" />
                   <p className="text-sm text-slate-400">
-                    {products.length === 0
-                      ? 'No projects added yet. Import your 96 projects or add one.'
-                      : 'No projects match your filters.'}
+                    No projects match your filters.
                   </p>
-                  {products.length === 0 ? (
-                    <button
-                      onClick={() => setShowImport(true)}
-                      className="mt-4 flex items-center gap-2 rounded-xl bg-cyan-600 px-4 py-2 text-xs font-semibold text-white hover:bg-cyan-500"
-                    >
-                      <UploadCloud className="h-4 w-4" />
-                      Import 96 Projects Now
-                    </button>
-                  ) : hasFilters ? (
+                  {hasFilters && (
                     <button
                       onClick={clearFilters}
                       className="mt-3 text-sm text-cyan-400 hover:text-cyan-300"
                     >
                       Clear filters
                     </button>
-                  ) : null}
+                  )}
                 </div>
               ) : displayMode === 'table' ? (
                 <ProductTable
@@ -619,14 +629,6 @@ export default function App() {
         <AddProductModal
           onClose={() => setShowAdd(false)}
           onCreated={handleProductCreated}
-        />
-      )}
-
-      {/* Import modal */}
-      {showImport && (
-        <ImportProjectsModal
-          onClose={() => setShowImport(false)}
-          onImported={handleProductsImported}
         />
       )}
     </div>

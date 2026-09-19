@@ -1,5 +1,6 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { MASTER_CHECKLIST } from './masterChecklist';
+import { DEFAULT_96_PROJECTS } from './defaultProjects';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
@@ -314,13 +315,29 @@ export async function fetchAllData(): Promise<ProductWithTasks[]> {
     const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
     if (cached) {
       const parsed: ProductWithTasks[] = JSON.parse(cached);
-      return parsed.map((p) => ensureProductTasks(p));
+      if (parsed && parsed.length > 0) {
+        return parsed.map((p) => ensureProductTasks(p));
+      }
     }
   } catch (e) {
     console.error('Failed to read from localStorage', e);
   }
 
-  return [];
+  // Auto-seed with DEFAULT_96_PROJECTS so all 96 projects are immediately available!
+  const defaultProducts: ProductWithTasks[] = DEFAULT_96_PROJECTS.map((p) =>
+    ensureProductTasks({
+      ...p,
+      tasks: [],
+    })
+  );
+
+  try {
+    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(defaultProducts));
+  } catch (e) {
+    console.error('Failed to auto-seed to localStorage', e);
+  }
+
+  return defaultProducts;
 }
 
 export async function updateProductStatus(productId: string, status: string): Promise<boolean> {
