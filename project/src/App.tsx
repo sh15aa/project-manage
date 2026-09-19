@@ -10,6 +10,7 @@ import {
   Kanban as KanbanIcon,
   LogOut,
   User,
+  Sparkles,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -22,6 +23,7 @@ import {
   fetchAllData,
   updateProductStatus,
   bulkUpdateProductStatus,
+  getInitialProducts,
 } from '@/lib/supabase';
 import { Dashboard } from '@/components/Dashboard';
 import { ProductCard } from '@/components/ProductCard';
@@ -31,6 +33,7 @@ import { ProductDrawer } from '@/components/ProductDrawer';
 import { AddProductModal } from '@/components/AddProductModal';
 import { BulkActionBar } from '@/components/BulkActionBar';
 import { LoginGate } from '@/components/LoginGate';
+import { MasterPromptModal } from '@/components/MasterPromptModal';
 
 type NavView = 'dashboard' | 'products';
 type DisplayMode = 'grid' | 'table' | 'kanban';
@@ -39,13 +42,15 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     return sessionStorage.getItem('producthub_auth') === 'true';
   });
-  const [products, setProducts] = useState<ProductWithTasks[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Synchronous initialization guarantees all 96 projects are rendered immediately with zero delay
+  const [products, setProducts] = useState<ProductWithTasks[]>(() => getInitialProducts());
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<NavView>('products');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('grid');
   const [selectedProduct, setSelectedProduct] = useState<ProductWithTasks | null>(null);
   const [showAdd, setShowAdd] = useState(false);
+  const [showMasterPrompt, setShowMasterPrompt] = useState(false);
   const [search, setSearch] = useState('');
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [activeStatuses, setActiveStatuses] = useState<string[]>([]);
@@ -53,16 +58,15 @@ export default function App() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const loadData = useCallback(async () => {
-    setLoading(true);
     setError(null);
     try {
       const data = await fetchAllData();
-      setProducts(data);
+      if (data && data.length > 0) {
+        setProducts(data);
+      }
     } catch (err: any) {
       console.error('Failed to fetch data:', err);
       setError(err?.message || 'Failed to load projects');
-    } finally {
-      setLoading(false);
     }
   }, []);
 
@@ -221,6 +225,17 @@ export default function App() {
             <LayoutGrid className="h-4 w-4" />
             Dashboard
           </button>
+
+          <button
+            onClick={() => setShowMasterPrompt(true)}
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition-colors"
+          >
+            <Sparkles className="h-4 w-4 text-cyan-400" />
+            Master Prompt
+            <span className="ml-auto rounded-md bg-cyan-500/20 px-1.5 py-0.5 text-[10px] font-bold text-cyan-300">
+              PDF
+            </span>
+          </button>
         </nav>
 
         {/* Quick Status Stats in Sidebar */}
@@ -300,6 +315,13 @@ export default function App() {
           <span className="text-sm font-bold text-white">Product Hub</span>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowMasterPrompt(true)}
+            className="rounded-lg border border-slate-700 bg-slate-800/80 p-1.5 text-cyan-400 hover:text-white"
+            title="Master Prompt (PDF)"
+          >
+            <Sparkles className="h-4 w-4" />
+          </button>
           <button
             onClick={() => setShowAdd(true)}
             className="rounded-lg bg-cyan-600 px-3 py-1.5 text-xs font-medium text-white"
@@ -631,6 +653,13 @@ export default function App() {
           onCreated={handleProductCreated}
         />
       )}
+
+      {/* Master Prompt Modal */}
+      <MasterPromptModal
+        isOpen={showMasterPrompt}
+        onClose={() => setShowMasterPrompt(false)}
+        products={products}
+      />
     </div>
   );
 }

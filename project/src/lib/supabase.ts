@@ -256,6 +256,56 @@ export function ensureProductTasks(product: ProductWithTasks): ProductWithTasks 
   };
 }
 
+export function saveProductsToLocalStorage(products: (Product | ProductWithTasks)[]): void {
+  try {
+    // Strip tasks so we only save product metadata (~15KB vs 10.2MB), avoiding QuotaExceededError
+    const stripped = products.map((p) => ({
+      id: p.id,
+      name: p.name,
+      description: p.description,
+      url: p.url,
+      tag: p.tag,
+      status: p.status,
+      sort_order: p.sort_order,
+      created_at: p.created_at,
+      updated_at: p.updated_at,
+    }));
+    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(stripped));
+  } catch (e) {
+    console.warn('Failed to save products to localStorage:', e);
+  }
+}
+
+export function getInitialProducts(): ProductWithTasks[] {
+  // 1. Try reading from localStorage
+  try {
+    const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((p: any) =>
+          ensureProductTasks({
+            ...p,
+            tasks: p.tasks || [],
+          })
+        );
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to read from localStorage:', e);
+  }
+
+  // 2. Fallback to DEFAULT_96_PROJECTS immediately
+  const defaultList = DEFAULT_96_PROJECTS.map((p) =>
+    ensureProductTasks({
+      ...p,
+      tasks: [],
+    })
+  );
+  saveProductsToLocalStorage(defaultList);
+  return defaultList;
+}
+
 export async function fetchAllData(): Promise<ProductWithTasks[]> {
   let productsWithTasks: ProductWithTasks[] = [];
 
@@ -268,76 +318,45 @@ export async function fetchAllData(): Promise<ProductWithTasks[]> {
 
       if (pError) throw pError;
 
-      const { data: taskData, error: tError } = await supabase
-        .from('tasks')
-        .select('*')
-        .order('created_at', { ascending: true });
+      // Only use Supabase if it actually returned products!
+      if (productData && productData.length > 0) {
+        const { data: taskData } = await supabase
+          .from('tasks')
+          .select('*')
+          .order('created_at', { ascending: true });
 
-      if (tError) throw tError;
+        const taskList = taskData ?? [];
+        productsWithTasks = productData.map((p: Product) => {
+          const tasksForProduct: Task[] = taskList
+            .filter((t: any) => t.product_id === p.id)
+            .map((t: any) => ({
+              id: t.id,
+              product_id: t.product_id,
+              title: t.title,
+              section: t.section || 'General',
+              section_id: t.section_id ?? 0,
+              status: (t.status as TaskStatus) || (t.done ? 'done' : 'not_started'),
+              done: t.done ?? (t.status === 'done'),
+              sort_order: t.sort_order ?? 0,
+              created_at: t.created_at,
+            }));
 
-      const taskList = taskData ?? [];
-      productsWithTasks = (productData ?? []).map((p: Product) => {
-        const tasksForProduct: Task[] = taskList
-          .filter((t: any) => t.product_id === p.id)
-          .map((t: any) => ({
-            id: t.id,
-            product_id: t.product_id,
-            title: t.title,
-            section: t.section || 'General',
-            section_id: t.section_id ?? 0,
-            status: (t.status as TaskStatus) || (t.done ? 'done' : 'not_started'),
-            done: t.done ?? (t.status === 'done'),
-            sort_order: t.sort_order ?? 0,
-            created_at: t.created_at,
-          }));
-
-        return ensureProductTasks({
-          ...p,
-          tasks: tasksForProduct,
+          return ensureProductTasks({
+            ...p,
+            tasks: tasksForProduct,
+          });
         });
-      });
 
-      // Cache to localStorage
-      try {
-        localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(productsWithTasks));
-      } catch (e) {
-        console.warn('Failed to cache to localStorage', e);
+        saveProductsToLocalStorage(productsWithTasks);
+        return productsWithTasks;
       }
-
-      return productsWithTasks;
     } catch (err) {
-      console.warn('Supabase fetch failed, falling back to localStorage:', err);
+      console.warn('Supabase fetch failed or empty, falling back to local 96 projects:', err);
     }
   }
 
-  // Fallback to localStorage
-  try {
-    const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    if (cached) {
-      const parsed: ProductWithTasks[] = JSON.parse(cached);
-      if (parsed && parsed.length > 0) {
-        return parsed.map((p) => ensureProductTasks(p));
-      }
-    }
-  } catch (e) {
-    console.error('Failed to read from localStorage', e);
-  }
-
-  // Auto-seed with DEFAULT_96_PROJECTS so all 96 projects are immediately available!
-  const defaultProducts: ProductWithTasks[] = DEFAULT_96_PROJECTS.map((p) =>
-    ensureProductTasks({
-      ...p,
-      tasks: [],
-    })
-  );
-
-  try {
-    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(defaultProducts));
-  } catch (e) {
-    console.error('Failed to auto-seed to localStorage', e);
-  }
-
-  return defaultProducts;
+  // Fallback: If Supabase returned 0 projects, errored, or is not configured, always return the 96 projects!
+  return getInitialProducts();
 }
 
 export async function updateProductStatus(productId: string, status: string): Promise<boolean> {
@@ -355,13 +374,11 @@ export async function updateProductStatus(productId: string, status: string): Pr
   // Update in localStorage
   try {
     const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    if (cached) {
-      const products: ProductWithTasks[] = JSON.parse(cached);
-      const updated = products.map((p) =>
-        p.id === productId ? { ...p, status, updated_at: new Date().toISOString() } : p
-      );
-      localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(updated));
-    }
+    const products: Product[] = cached ? JSON.parse(cached) : DEFAULT_96_PROJECTS;
+    const updated = products.map((p) =>
+      p.id === productId ? { ...p, status, updated_at: new Date().toISOString() } : p
+    );
+    saveProductsToLocalStorage(updated);
   } catch (e) {
     console.error('Failed to update localStorage', e);
   }
@@ -386,14 +403,12 @@ export async function bulkUpdateProductStatus(productIds: string[], status: stri
   // Update in localStorage
   try {
     const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    if (cached) {
-      const products: ProductWithTasks[] = JSON.parse(cached);
-      const idSet = new Set(productIds);
-      const updated = products.map((p) =>
-        idSet.has(p.id) ? { ...p, status, updated_at: new Date().toISOString() } : p
-      );
-      localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(updated));
-    }
+    const products: Product[] = cached ? JSON.parse(cached) : DEFAULT_96_PROJECTS;
+    const idSet = new Set(productIds);
+    const updated = products.map((p) =>
+      idSet.has(p.id) ? { ...p, status, updated_at: new Date().toISOString() } : p
+    );
+    saveProductsToLocalStorage(updated);
   } catch (e) {
     console.error('Failed to update localStorage', e);
   }
@@ -439,16 +454,16 @@ export async function saveProduct(product: Partial<Product> & { id?: string }): 
   // Save to localStorage
   try {
     const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    const products: ProductWithTasks[] = cached ? JSON.parse(cached) : [];
+    const products: Product[] = cached ? JSON.parse(cached) : [...DEFAULT_96_PROJECTS];
     const index = products.findIndex((p) => p.id === id);
     if (index >= 0) {
       products[index] = { ...products[index], ...productRecord };
     } else {
-      products.push(fullProduct);
+      products.push(productRecord);
     }
-    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products));
+    saveProductsToLocalStorage(products);
   } catch (e) {
-    console.error('Failed to update localStorage', e);
+    console.error('Failed to save to localStorage', e);
   }
 
   return fullProduct;

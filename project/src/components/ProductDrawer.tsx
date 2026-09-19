@@ -39,6 +39,7 @@ import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
 import { TaskStatusBadge } from './TaskStatusBadge';
 import { ProgressBar } from './ProgressBar';
+import { MasterPromptModal } from './MasterPromptModal';
 
 interface ProductDrawerProps {
   product: ProductWithTasks | null;
@@ -65,6 +66,7 @@ export function ProductDrawer({
   const [editTag, setEditTag] = useState(guaranteedProduct.tag);
   const [editStatus, setEditStatus] = useState(guaranteedProduct.status);
   const [saving, setSaving] = useState(false);
+  const [showMasterPrompt, setShowMasterPrompt] = useState(false);
 
   // Task filtering & searching state
   const [taskSearch, setTaskSearch] = useState('');
@@ -295,6 +297,15 @@ export function ProductDrawer({
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowMasterPrompt(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
+              title="View & Copy Master Launch Prompt for this project"
+            >
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+              <span>Master Prompt</span>
+            </button>
+
             {guaranteedProduct.url && (
               <a
                 href={guaranteedProduct.url}
@@ -771,6 +782,14 @@ export function ProductDrawer({
           </div>
         </div>
       </div>
+
+      {/* Master Prompt Modal for this specific project */}
+      <MasterPromptModal
+        isOpen={showMasterPrompt}
+        onClose={() => setShowMasterPrompt(false)}
+        products={[guaranteedProduct]}
+        initialProductId={guaranteedProduct.id}
+      />
     </div>
   );
 }
