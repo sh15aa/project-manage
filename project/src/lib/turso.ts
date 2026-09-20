@@ -5,7 +5,7 @@ import { DEFAULT_96_PROJECTS } from './defaultProjects';
 // Storage keys for Turso configuration & local caching
 const STORAGE_KEY_TURSO_URL = 'turso_db_url';
 const STORAGE_KEY_TURSO_TOKEN = 'turso_auth_token';
-const STORAGE_KEY_PRODUCTS = 'producthub_products_v2';
+const STORAGE_KEY_PRODUCTS = 'producthub_products_v3';
 const STORAGE_KEY_TASK_OVERRIDES = 'producthub_task_overrides_v1';
 
 // Default Turso Database credentials (libSQL)

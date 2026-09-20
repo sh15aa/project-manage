@@ -1,4 +1,4 @@
-// 85 Verified Projects from projectslist.pdf (No reusable code fillers)
+// 95 Verified Projects (projectslist.pdf + games)
 export interface PreloadedProject {
   id: string;
   name: string;
@@ -944,6 +944,116 @@ export const DEFAULT_96_PROJECTS: PreloadedProject[] = [
     "tag": "tool",
     "status": "idea",
     "sort_order": 84,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-086",
+    "name": "Color Code Breaker",
+    "description": "Mastermind-style logic game where players crack a secret color sequence through deductive reasoning",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 85,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-087",
+    "name": "Word Ladder Race",
+    "description": "Real-time multiplayer word ladder game \u2014 change one letter at a time to climb from one word to another",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 86,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-088",
+    "name": "Reflex Grid",
+    "description": "Tap the lit cells before they fade \u2014 a fast-paced reaction game with escalating speed",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 87,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-089",
+    "name": "Emoji Charades",
+    "description": "Guess the movie, song, or phrase from a sequence of emojis before time runs out",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 88,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-090",
+    "name": "Pattern Memory Matrix",
+    "description": "Watch a grid of cells light up in sequence, then repeat it back \u2014 grows longer each round",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 89,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-091",
+    "name": "Typing Typhoon",
+    "description": "Type falling words before they hit the ground \u2014 speed and accuracy game with weather themes",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 90,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-092",
+    "name": "Tile Flip Puzzle",
+    "description": "Flip a grid of tiles to match a target pattern \u2014 each flip also flips adjacent tiles",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 91,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-093",
+    "name": "Sound Sequence Samurai",
+    "description": "Listen to a rhythm pattern of drum beats and tap it back \u2014 builds longer sequences each round",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 92,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-094",
+    "name": "Number Cross",
+    "description": "A cross between sudoku and crossword \u2014 fill a grid with numbers using math clues instead of words",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 93,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "updated_at": "2026-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "proj-095",
+    "name": "Shadow Shape Match",
+    "description": "Match rotating 3D objects to their 2D shadow silhouettes before the timer runs out",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 94,
     "created_at": "2026-09-20T00:00:00.000Z",
     "updated_at": "2026-09-20T00:00:00.000Z"
   }

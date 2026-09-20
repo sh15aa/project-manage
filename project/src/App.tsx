@@ -206,7 +206,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-sm font-bold text-white tracking-wide">Product Hub</h1>
-            <p className="text-[11px] text-slate-400">85 Projects Manager</p>
+            <p className="text-[11px] text-slate-400">95 Projects Manager</p>
           </div>
         </div>
 
@@ -495,7 +495,7 @@ export default function App() {
                           ? 'bg-cyan-500/20 text-cyan-300 shadow-sm'
                           : 'text-slate-400 hover:text-slate-200'
                       }`}
-                      title="Table View (compact list for 85 projects)"
+                      title="Table View (compact list)"
                     >
                       <TableIcon className="h-3.5 w-3.5" />
                       <span className="hidden sm:inline">Table</span>
@@ -567,7 +567,7 @@ export default function App() {
                     <input
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      placeholder="Search 85 projects by name or description..."
+                      placeholder="Search projects by name or description..."
                       className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2.5 pl-10 pr-9 text-base sm:text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 transition-colors"
                     />
                     {search && (
