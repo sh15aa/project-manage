@@ -11,6 +11,7 @@ import {
   LogOut,
   User,
   Sparkles,
+  Database,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -24,7 +25,9 @@ import {
   updateProductStatus,
   bulkUpdateProductStatus,
   getInitialProducts,
-} from '@/lib/supabase';
+  getTursoConfig,
+} from '@/lib/turso';
+import { TursoConfigModal } from '@/components/TursoConfigModal';
 import { Dashboard } from '@/components/Dashboard';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductTable } from '@/components/ProductTable';
@@ -51,6 +54,8 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<ProductWithTasks | null>(null);
   const [showAdd, setShowAdd] = useState(false);
   const [showMasterPrompt, setShowMasterPrompt] = useState(false);
+  const [showTursoModal, setShowTursoModal] = useState(false);
+  const [tursoConfig, setTursoConfig] = useState(() => getTursoConfig());
   const [search, setSearch] = useState('');
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [activeStatuses, setActiveStatuses] = useState<string[]>([]);
@@ -271,6 +276,31 @@ export default function App() {
         </div>
 
         <div className="mt-auto space-y-2.5">
+          {/* Turso DB Status Button */}
+          <button
+            type="button"
+            onClick={() => setShowTursoModal(true)}
+            className="flex w-full items-center justify-between rounded-xl border border-slate-800/80 bg-slate-950/60 px-3 py-2 text-xs hover:border-slate-700 transition-colors group"
+            title="Configure Turso Database & Sync"
+          >
+            <div className="flex items-center gap-2">
+              <Database className="h-3.5 w-3.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+              <span className="text-slate-300 font-medium">Turso DB</span>
+            </div>
+            <span
+              className={`inline-flex items-center gap-1.5 text-[11px] font-medium ${
+                tursoConfig.url ? 'text-emerald-400' : 'text-amber-400'
+              }`}
+            >
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${
+                  tursoConfig.url ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+                }`}
+              />
+              {tursoConfig.url ? 'Connected' : 'Configure'}
+            </span>
+          </button>
+
           <button
             onClick={() => setShowAdd(true)}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-600 px-3 py-2.5 text-sm font-medium text-white shadow-md shadow-cyan-600/20 transition-all hover:bg-cyan-500 active:scale-[0.98]"
@@ -315,6 +345,13 @@ export default function App() {
           <span className="text-sm font-bold text-white">Product Hub</span>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowTursoModal(true)}
+            className="rounded-lg border border-slate-700 bg-slate-800/80 p-1.5 text-cyan-400 hover:text-white"
+            title="Turso Database Settings"
+          >
+            <Database className="h-4 w-4" />
+          </button>
           <button
             onClick={() => setShowMasterPrompt(true)}
             className="rounded-lg border border-slate-700 bg-slate-800/80 p-1.5 text-cyan-400 hover:text-white"
@@ -411,6 +448,21 @@ export default function App() {
 
                 {/* View switcher & Quick Action */}
                 <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowTursoModal(true)}
+                    className="flex items-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-cyan-500/50 hover:text-white transition-colors"
+                    title="Turso Database Settings & Sync"
+                  >
+                    <Database className="h-3.5 w-3.5 text-cyan-400" />
+                    <span className="hidden sm:inline">Turso DB</span>
+                    <span
+                      className={`h-2 w-2 rounded-full ${
+                        tursoConfig.url ? 'bg-emerald-400' : 'bg-amber-400'
+                      }`}
+                    />
+                  </button>
+
                   <div className="flex items-center rounded-xl border border-slate-700/80 bg-slate-900/60 p-1">
                     <button
                       type="button"
@@ -659,6 +711,16 @@ export default function App() {
         isOpen={showMasterPrompt}
         onClose={() => setShowMasterPrompt(false)}
         products={products}
+      />
+
+      {/* Turso Database Config Modal */}
+      <TursoConfigModal
+        isOpen={showTursoModal}
+        onClose={() => setShowTursoModal(false)}
+        onConfigSaved={() => {
+          setTursoConfig(getTursoConfig());
+          loadData();
+        }}
       />
     </div>
   );

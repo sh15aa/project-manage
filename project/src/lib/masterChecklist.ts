@@ -7,6 +7,7 @@ export interface MasterTaskDefinition {
   section_id: number;
   title: string;
   sort_order: number;
+  status?: string;
 }
 
 export const MASTER_CHECKLIST: MasterTaskDefinition[] = [

@@ -18,7 +18,6 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import {
-  supabase,
   type ProductWithTasks,
   type Task,
   type TaskStatus,
@@ -33,7 +32,10 @@ import {
   updateTaskStatus,
   bulkUpdateSectionTasksStatus,
   ensureProductTasks,
-} from '@/lib/supabase';
+  addCustomTask as addCustomTaskToTurso,
+  deleteTask as deleteTursoTask,
+  saveProduct,
+} from '@/lib/turso';
 import { CHECKLIST_SECTIONS } from '@/lib/masterChecklist';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
@@ -184,42 +186,31 @@ export function ProductDrawer({
     setNewTask('');
     onUpdate({ ...guaranteedProduct, tasks: updated });
 
-    if (supabase) {
-      await supabase.from('tasks').insert({
-        id: newTaskObj.id,
-        product_id: guaranteedProduct.id,
-        title: taskTitle,
-        section: 'Custom Tasks',
-        status: 'not_started',
-        done: false,
-      });
-    }
+    await addCustomTaskToTurso(guaranteedProduct.id, {
+      id: newTaskObj.id,
+      title: taskTitle,
+      section: 'Custom Tasks',
+      status: 'not_started',
+    });
   }
 
   async function deleteTask(taskId: string) {
     const updated = tasks.filter((t) => t.id !== taskId);
     setTasks(updated);
     onUpdate({ ...guaranteedProduct, tasks: updated });
-    if (supabase) {
-      await supabase.from('tasks').delete().eq('id', taskId);
-    }
+    await deleteTursoTask(taskId);
   }
 
   async function saveProductEdits() {
     setSaving(true);
-    if (supabase) {
-      await supabase
-        .from('products')
-        .update({
-          name: editName,
-          description: editDesc || null,
-          url: editUrl || null,
-          tag: editTag,
-          status: editStatus,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', guaranteedProduct.id);
-    }
+    await saveProduct({
+      id: guaranteedProduct.id,
+      name: editName,
+      description: editDesc || null,
+      url: editUrl || null,
+      tag: editTag,
+      status: editStatus,
+    });
     setSaving(false);
     const updated = {
       ...guaranteedProduct,
