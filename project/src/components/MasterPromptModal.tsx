@@ -83,39 +83,39 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4 md:p-6 backdrop-blur-md">
-      <div className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-0 sm:p-4 md:p-6 backdrop-blur-md">
+      <div className="relative flex h-full w-full sm:max-h-[92vh] sm:max-w-6xl flex-col rounded-none sm:rounded-2xl border-0 sm:border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/20">
+        <div className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-4 py-3 sm:px-5 sm:py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/20">
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base sm:text-lg font-bold text-white">
+                <h2 className="text-sm sm:text-lg font-bold text-white">
                   Master Launch Prompt
                 </h2>
-                <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-semibold text-cyan-300">
-                  27 Blueprint Phases
+                <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-1.5 sm:px-2 py-0.5 text-[10px] font-semibold text-cyan-300">
+                  27 Phases
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-[11px] text-slate-400">
                 Extracted from <code className="text-cyan-300">Master prompt.pdf</code> &bull; Complete IDEA → PRODUCTION OS
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {/* Download PDF button */}
             <a
               href="/Master-prompt.pdf"
               download="Master prompt.pdf"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
               title="Download original Master prompt.pdf"
             >
               <Download className="h-3.5 w-3.5 text-cyan-400" />
-              <span>Download PDF</span>
+              <span className="hidden xs:inline">Download PDF</span>
             </a>
 
             {/* View PDF tab */}
@@ -123,7 +123,7 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
               href="/Master-prompt.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
               title="Open PDF in new tab"
             >
               <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
@@ -142,12 +142,12 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
               {copiedAll ? (
                 <>
                   <Check className="h-3.5 w-3.5" />
-                  <span>Copied 27 Phases!</span>
+                  <span>Copied!</span>
                 </>
               ) : (
                 <>
                   <Copy className="h-3.5 w-3.5" />
-                  <span>Copy Full Prompt</span>
+                  <span>Copy Prompt</span>
                 </>
               )}
             </button>
@@ -155,7 +155,7 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
             {/* Close */}
             <button
               onClick={onClose}
-              className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors"
+              className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors ml-auto"
             >
               <X className="h-5 w-5" />
             </button>
@@ -163,13 +163,13 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
         </div>
 
         {/* Customization Bar */}
-        <div className="flex flex-col gap-3 border-b border-slate-800/80 bg-slate-900/90 px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2.5 border-b border-slate-800/80 bg-slate-900/90 px-4 py-2.5 sm:px-5 sm:py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-slate-400">Customize for:</span>
+            <span className="text-xs font-semibold text-slate-400 shrink-0">Customize for:</span>
             <select
               value={selectedProductId}
               onChange={(e) => setSelectedProductId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1 text-xs font-medium text-white outline-none focus:border-cyan-500"
+              className="w-full sm:w-auto rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-base sm:text-xs font-medium text-white outline-none focus:border-cyan-500"
             >
               <option value="">Generic / Template Prompt</option>
               {products.map((p) => (
@@ -192,15 +192,46 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search 27 phases..."
-              className="w-full rounded-lg border border-slate-700/80 bg-slate-950/80 pl-8 pr-3 py-1 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
+              className="w-full rounded-lg border border-slate-700/80 bg-slate-950/80 pl-8 pr-3 py-1 text-base sm:text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
             />
           </div>
         </div>
 
+        {/* Mobile Phase Selector Bar (visible on < md) */}
+        <div className="md:hidden flex items-center justify-between gap-2 border-b border-slate-800 bg-slate-950 px-4 py-2">
+          <button
+            type="button"
+            disabled={selectedSectionId <= 0}
+            onClick={() => setSelectedSectionId((prev) => Math.max(0, prev - 1))}
+            className="rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-300 disabled:opacity-30"
+          >
+            &larr; Prev
+          </button>
+          <select
+            value={selectedSectionId}
+            onChange={(e) => setSelectedSectionId(Number(e.target.value))}
+            className="flex-1 rounded-lg border border-slate-800 bg-slate-900 px-2 py-1 text-xs text-slate-200 truncate"
+          >
+            {filteredSections.map((sec) => (
+              <option key={sec.id} value={sec.id}>
+                {sec.id}. {sec.title}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            disabled={selectedSectionId >= MASTER_PROMPT_SECTIONS.length - 1}
+            onClick={() => setSelectedSectionId((prev) => Math.min(MASTER_PROMPT_SECTIONS.length - 1, prev + 1))}
+            className="rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-300 disabled:opacity-30"
+          >
+            Next &rarr;
+          </button>
+        </div>
+
         {/* Content Body: Left sidebar (TOC) + Right viewer */}
         <div className="flex flex-1 overflow-hidden">
-          {/* Left TOC */}
-          <aside className="w-64 sm:w-72 shrink-0 border-r border-slate-800 bg-slate-950/50 overflow-y-auto p-2 space-y-1">
+          {/* Left TOC - hidden on mobile */}
+          <aside className="hidden md:block w-64 sm:w-72 shrink-0 border-r border-slate-800 bg-slate-950/50 overflow-y-auto p-2 space-y-1">
             <p className="px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
               Phases ({filteredSections.length})
             </p>

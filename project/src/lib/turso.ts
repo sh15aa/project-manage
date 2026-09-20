@@ -5,8 +5,12 @@ import { DEFAULT_96_PROJECTS } from './defaultProjects';
 // Storage keys for Turso configuration & local caching
 const STORAGE_KEY_TURSO_URL = 'turso_db_url';
 const STORAGE_KEY_TURSO_TOKEN = 'turso_auth_token';
-const STORAGE_KEY_PRODUCTS = 'producthub_products_v1';
+const STORAGE_KEY_PRODUCTS = 'producthub_products_v2';
 const STORAGE_KEY_TASK_OVERRIDES = 'producthub_task_overrides_v1';
+
+// Default Turso Database credentials (libSQL)
+const DEFAULT_TURSO_URL = 'libsql://projectmanage-sh15a.aws-ap-south-1.turso.io';
+const DEFAULT_TURSO_TOKEN = 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODk4ODMxMTUsImlkIjoiMDFhMGJkNTItY2YwMS03MDNhLTgwNTEtYTZhZTVkNGM2NjY3Iiwia2lkIjoiUEJVVXJDMUljTkFQVmc5WEwyNWlsa1Z1amVTUlFNM0Nqb202b0VvSHpNbyIsInJpZCI6IjY4MTg1NGY0LTZmOTktNDQzNS1hZGI5LTcwNDgyMDJjYjVlYSJ9.A1O5Bwuj3A_T7SvZvaYNv-Iem-iWq0v-GT7R49Rbldqvj0ID1qubk0wsAl1Yho_XI_BqbhuEOjUDZNl9SEdNDQ';
 
 // Read config from environment variables or localStorage
 export function getTursoConfig(): { url: string; authToken: string } {
@@ -16,8 +20,8 @@ export function getTursoConfig(): { url: string; authToken: string } {
   const localUrl = localStorage.getItem(STORAGE_KEY_TURSO_URL) || '';
   const localToken = localStorage.getItem(STORAGE_KEY_TURSO_TOKEN) || '';
 
-  const url = (localUrl || envUrl || '').trim();
-  const authToken = (localToken || envToken || '').trim();
+  const url = (localUrl || envUrl || DEFAULT_TURSO_URL).trim();
+  const authToken = (localToken || envToken || DEFAULT_TURSO_TOKEN).trim();
 
   return { url, authToken };
 }
@@ -391,7 +395,11 @@ export function getInitialProducts(): ProductWithTasks[] {
     const cached = localStorage.getItem(STORAGE_KEY_PRODUCTS);
     if (cached) {
       const parsed = JSON.parse(cached);
-      if (Array.isArray(parsed) && parsed.length > 0) {
+      // Invalidate if old format or contains old mock projects like 'Deep Zone' or 'Reusable '
+      const hasOldMocks = parsed.some(
+        (p: any) => p.name === 'Deep Zone' || (p.name && p.name.startsWith('Reusable '))
+      );
+      if (!hasOldMocks && Array.isArray(parsed) && parsed.length > 0) {
         return parsed.map((p: any) =>
           ensureProductTasks({
             ...p,

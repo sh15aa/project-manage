@@ -29,9 +29,9 @@ export function BulkActionBar({
   if (selectedCount === 0) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2 animate-in fade-in slide-in-from-bottom-5 duration-200">
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-cyan-500/30 bg-slate-900/95 px-5 py-3 shadow-2xl shadow-black/60 backdrop-blur-md">
-        <div className="flex items-center gap-2 border-r border-slate-700/80 pr-4">
+    <div className="fixed bottom-20 md:bottom-6 left-1/2 z-40 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
+      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5 rounded-2xl border border-cyan-500/30 bg-slate-900/95 p-2.5 sm:px-5 sm:py-3 shadow-2xl shadow-black/60 backdrop-blur-md overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 border-r border-slate-700/80 pr-3 sm:pr-4 shrink-0">
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500/20 text-xs font-bold text-cyan-300">
             {selectedCount}
           </div>

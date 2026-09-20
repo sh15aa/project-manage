@@ -62,23 +62,50 @@ export function ProductKanban({
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 pb-6 overflow-x-auto">
-      {KANBAN_COLUMNS.map((col) => {
-        const colProducts = grouped[col.key] ?? [];
-        if (col.key === 'other' && colProducts.length === 0) {
-          return null; // hide other column if empty
-        }
+    <div className="space-y-3">
+      {/* Mobile Column Jumper Pills */}
+      <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+        {KANBAN_COLUMNS.map((col) => {
+          const count = grouped[col.key]?.length ?? 0;
+          const dot = col.key === 'other' ? 'bg-slate-400' : STATUS_DOT_COLORS[col.key] ?? 'bg-slate-400';
+          return (
+            <button
+              key={col.key}
+              type="button"
+              onClick={() => {
+                const el = document.getElementById(`kanban-col-${col.key}`);
+                if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              }}
+              className="flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-900/80 px-2.5 py-1 text-xs text-slate-300 shrink-0 active:bg-slate-800"
+            >
+              <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+              <span>{col.label}</span>
+              <span className="rounded bg-slate-800 px-1 py-0.2 text-[10px] tabular-nums font-semibold text-slate-400">
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
 
-        const dotClass =
-          col.key === 'other'
-            ? 'bg-slate-400'
-            : STATUS_DOT_COLORS[col.key] ?? 'bg-slate-400';
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 no-scrollbar touch-scroll md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:snap-none">
+        {KANBAN_COLUMNS.map((col) => {
+          const colProducts = grouped[col.key] ?? [];
+          if (col.key === 'other' && colProducts.length === 0) {
+            return null; // hide other column if empty
+          }
 
-        return (
-          <div
-            key={col.key}
-            className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 min-h-[500px]"
-          >
+          const dotClass =
+            col.key === 'other'
+              ? 'bg-slate-400'
+              : STATUS_DOT_COLORS[col.key] ?? 'bg-slate-400';
+
+          return (
+            <div
+              key={col.key}
+              id={`kanban-col-${col.key}`}
+              className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 min-h-[480px] w-[85vw] max-w-[340px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink"
+            >
             {/* Column Header */}
             <div className="flex items-center justify-between border-b border-slate-800/80 px-4 py-3 bg-slate-800/20">
               <div className="flex items-center gap-2">
@@ -191,6 +218,8 @@ export function ProductKanban({
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
+

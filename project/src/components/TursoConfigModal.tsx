@@ -113,8 +113,8 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-      <div className="relative w-full max-w-xl rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-3 sm:p-4 backdrop-blur-sm">
+      <div className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               <Database className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Turso Database Connection</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">Turso Database Connection</h2>
               <p className="text-xs text-slate-400">Store and manage all 96 products & states in Turso (libSQL)</p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="e.g. libsql://project-manage-yourname.turso.io"
-              className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono text-xs"
+              className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3.5 py-2.5 text-base sm:text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono"
             />
           </div>
 
@@ -192,14 +192,14 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               value={authToken}
               onChange={(e) => setAuthToken(e.target.value)}
               placeholder="eyJhbGciOiJFZERTQ..."
-              className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono text-xs"
+              className="w-full rounded-xl border border-slate-700/80 bg-slate-950/80 px-3.5 py-2.5 text-base sm:text-xs text-white placeholder-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono"
             />
           </div>
 
           {/* Test & Seed Feedback */}
           {testResult && (
             <div
-              className={`flex items-start gap-2.5 rounded-xl border p-3 text-xs ${
+              className={`flex items-start gap-2.5 rounded-xl border p-3.5 text-xs ${
                 testResult.success
                   ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
                   : 'border-red-500/30 bg-red-500/10 text-red-300'
@@ -210,13 +210,16 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               ) : (
                 <AlertCircle className="h-4 w-4 shrink-0 text-red-400 mt-0.5" />
               )}
-              <span>{testResult.message}</span>
+              <div className="flex-1">
+                <p className="font-semibold">{testResult.success ? 'Success' : 'Connection Failed'}</p>
+                <p className="mt-0.5 opacity-90">{testResult.message}</p>
+              </div>
             </div>
           )}
 
           {seedResult && (
             <div
-              className={`flex items-start gap-2.5 rounded-xl border p-3 text-xs ${
+              className={`flex items-start gap-2.5 rounded-xl border p-3.5 text-xs ${
                 seedResult.success
                   ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
                   : 'border-red-500/30 bg-red-500/10 text-red-300'
@@ -227,14 +230,17 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               ) : (
                 <AlertCircle className="h-4 w-4 shrink-0 text-red-400 mt-0.5" />
               )}
-              <span>{seedResult.message}</span>
+              <div className="flex-1">
+                <p className="font-semibold">{seedResult.success ? 'Data Seeded' : 'Seed Failed'}</p>
+                <p className="mt-0.5 opacity-90">{seedResult.message}</p>
+              </div>
             </div>
           )}
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
-          <div className="flex items-center gap-2">
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t border-slate-800 pt-4">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={handleTest}
@@ -260,11 +266,11 @@ export const TursoConfigModal: React.FC<TursoConfigModalProps> = ({
               ) : (
                 <UploadCloud className="h-3.5 w-3.5 text-cyan-400" />
               )}
-              <span>Seed 96 Products to Turso</span>
+              <span>Seed 96 Products</span>
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2">
             {url && (
               <button
                 type="button"

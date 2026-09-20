@@ -1,0 +1,941 @@
+1. Resume Matching https://id-preview--ca1bc8a2-f666-4ba9-abf2-84f99004747c.lovable.app/
+Pending task:
+Add a cover letter rewrite that matches the same job posting and uses the tailored resume
+content,
+Create a downloadable match report that includes match score, missing keywords, and the
+what-changed list.
+Show missing keywords in my original resume with inline highlights and suggested
+replacements.
+Implement resume rewrite history so I can revisit previous tailored versions anytime.
+Add an option to export my tailored resume as a PDF.
+Users can choose the template among 30+ award winning templates
+Users Login, Registration and Payment gateway
+------------------------------------------------------2. Domain/Website Trust Checker — WHOIS + SSL check to confirm if a shopping site is
+newly-registered or suspicious before entering card details. Free + ads, genuinely protects
+people from scams. https://id-preview--069373d2-f667-4412-9b48-e851ffdeef63.lovable.app/?__lovable_sha=45
+d07fce
+Pending task
+Add a saved history panel so users can revisit sites they checked and compare verdict
+changes over time.
+Implement a one-click PDF or HTML report export for each check with WHOIS/RDAP, SSL,
+and certificate transparency evidence.
+Create a lightweight browser extension flow that sends the current tab URL to the checker
+and shows a verdict badge before users type card details.
+Enhance error messaging and fallback logic so RDAP timeouts, missing CT data, or invalid
+SSL chains produce clear “couldn't verify” explanations.
+Add an “If it’s suspicious” action checklist with steps to contact payment providers, report the
+domain, and preserve evidence.
+------------------------------------------------------3. Screenshot Annotator/Beautifier — Like Shots.so, devs/creators. $5/month.
+https://id-preview--5132b8ab-2f05-4188-b60e-a3c40fe9beb8.lovable.app/
+
+Pending task
+Add reusable annotation templates (e.g., callout styles, brand colors, and preset
+padding/frame sizes) I can apply in one click.
+Implement shareable, read-only links so I can send annotated screenshots for viewing
+without granting edit access.
+Add export options for PNG and SVG overlays (and an option to export the annotated result
+at higher resolution).
+Add a saved “Projects” library so I can revisit previous annotated screenshots and
+edit/export them again.
+Add support for pasting screenshots via clipboard and drag-and-drop multiple images in the
+editor.
+------------------------------------------------------4. Photo/PDF Watermark Adder — Freelance photographers/sellers bulk photo wartmark
+adder upto 100 images
+Pending task
+Add opacity and rotation controls for both text and logo watermarks with live preview.
+Implement saving and loading watermark presets (text/logo/position/tile settings) for quick
+reuse across batches.
+Enable exporting processed PDFs in addition to ZIP downloads, and let me choose “ZIP” or
+“individual files” at export time.
+Show a per-file progress indicator during batch export so I can see which images/PDFs are
+being watermarked.
+
+------------------------------------------------------5. Consumer Complaint Drafter — Input the issue, get a formatted complaint for Consumer
+Forum/NCH. One-time ₹99 or subscription for repeat filers (resellers, service businesses).
+Pending task:
+Implement a complaint intake page where I can enter the incident details and required fields
+for Consumer Forum/NCH.
+Create a complaint generator that outputs a properly formatted complaint ready to
+copy/download for Consumer Forum/NCH.
+Save each generated complaint to my dashboard so I can review, edit, and re-download past
+drafts.
+Add a one-click option to export the generated complaint as a downloadable PDF.
+
+Integrate Stripe subscription limits so paid users can generate more complaints while free
+users get a small quota.
+
+-------------------------------------------------------
+
+6. Rent Agreement Generator — State-specific stamp paper + clause templates, e-sign
+integration. Landlords/tenants pay ₹199–499 per doc vs ₹1,500+ for a lawyer. Build this
+SASS product for me
+Pending task
+Implement user authentication and dashboard so users can save and reopen drafts.
+Integrate Razorpay checkout for the ₹199–₹499 plans and store payment status per
+agreement.
+Wire Digio (or another provider) e-sign with Aadhaar OTP and redirect users to complete
+signatures.
+Add Razorpay webhooks to automatically update agreement state after successful or failed
+payments.
+
+------------------------------------------------------7. Government Accountability,
+in plain sight. App + Web
+
+-------------------------------------------------------
+
+8. Gratitude Journal App + Web
+
+------------------------------------------------------9. Life Left and Day Progress, App + Web
+
+------------------------------------------------------10. 100 days streak
+
+------------------------------------------------------11. Brain Dump App + Web
+
+------------------------------------------------------12. One Focus Link
+
+------------------------------------------------------13. Pose Perfect Studio
+
+------------------------------------------------------14. Nutri Score Calculator, App + Web
+Add my AdSense publisher ID and your two slot IDs to switch reserved ad areas to live units.
+Add a nutrition facts breakdown (calories, sugar, salt, fat per 100g) alongside the health
+score.
+Add a share button that generates a link to the scanned product score page.
+Add an option to export the scan result as a PDF report with reasons and key nutrition
+values.
+-------------------------------------------------------
+
+15. Verified GST
+Add public API documentation with example requests and response payloads for single and
+bulk GST verification.
+Implement API key auth for the public GST API so free and ₹99/month plans have separate
+rate limits and usage tracking.
+Enhance the bulk verifier to accept a CSV template upload, show row-level validation errors,
+and allow retrying failed GSTINs.
+Add filters to the verification history page and enable exporting the filtered results to CSV
+and JSON.
+Add caching for verified GSTIN results to reduce repeated lookups and speed up bulk
+verification.
+
+------------------------------------------------------16. Fake Data Generator
+Implement authentication and API key support for the $5/month plan so paid users can
+access higher limits.
+Add per-user rate limiting and request quotas to the public and paid generate API endpoints.
+Add support for exporting generated data as JSON, CSV, and SQL insert statements from
+the generator UI.
+Create a feature to save generator presets (selected fields, row counts, formats) and reload
+them later.
+Add robust input validation and detailed error responses for /api/public/generate when users
+submit invalid parameters.
+-------------------------------------------------------
+
+17. Cron Expression Builder — Dev utility, ad-supported.
+
+Add strict cron expression validation with clear inline error messages for invalid fields and
+ranges.
+Add a configurable preview that lists the next 10 scheduled run times and updates as I
+change the expression.
+Add a timezone selector so the next-run preview is calculated in the timezone I choose.
+Add shareable links that encode my cron expression and selected mode (5-field or 6-field)
+so I can send it to others.
+
+-------------------------------------------------------
+
+18. Event Count Down Countdown/Event Page Generator (shareable link) — Weddings,
+launches. Free + ₹99 custom brandings
+Things to do : Implement Stripe checkout for the ₹99 custom branding and unlock it after
+payment succeeds.
+
+Add logo and color upload controls to the branding editor and apply them to the public event
+page theme.
+Add view and share analytics for each public /e/$slug page and show trends in the
+dashboard.
+Create an RSVP feature for event pages and send guest confirmation emails after
+submission.
+Add an ICS/Google Calendar download button so visitors can add the event date to their
+calendar.
+------------------------------------------------------19. Coaching Business All-in-One — Scheduling + invoicing + client notes for solo
+coaches/therapists.
+Need to implement
+Add a frictionless sign-up and onboarding flow so visitors can start a free trial and set up
+their first client.
+Implement an interactive live product demo that lets me try scheduling, generate an invoice,
+and save a client note in one guided walkthrough.
+Add a premium pricing section with monthly/annual toggle and connect Stripe checkout for
+subscriptions.
+Add testimonials and coach case studies with a swipeable carousel to build trust and
+improve conversion.
+Integrate analytics event tracking to measure landing interactions and optimize
+micro-interactions for higher conversions.
+
+-------------------------------------------------------
+
+20. Micro-Cohort Course Platform — Lite Maven for solo experts running 2-week cohorts.
+5% of revenue or $29/month -> Make a modern, premium asthetic and cool UI for this app
+backed by human psychology making users to stayn on the website for longer and make
+sure the website has micro tiny tiny multiple interactions that customers love.
+Pending task:
+Implement Stripe checkout for both $29/month and 5% revenue plans with the pricing toggle
+reflecting the correct product.
+Add a premium email waitlist signup form with frictionless validation and subtle success/error
+micro-interactions.
+
+Build a course preview page that shows a 2-week cohort outline with interactive tabs and
+scroll-based animations.
+Add a testimonials section with an auto-advancing carousel, drag support, and micro-hover
+interactions that feel noir-premium.
+
+------------------------------------------------------21. Scheme Savy
+Implement the real eligibility rules so the 10-question quiz correctly matches state + central
+schemes for my user profile.
+Integrate Stripe checkout for the ₹299 application assistance upsell and unlock the full
+results after payment success.
+Add user accounts so I can save my quiz progress and see unlocked scheme results on
+future visits.
+Add a state selector so I can generate scheme matches specific to both state and central
+schemes.
+
+-------------------------------------------------------
+
+21. Loan Rejection Explainer — Upload CIBIL report, get plain-English reasons + fix-it
+roadmap. ₹149 one-time; huge search volume, near-zero good tools exist ->Create a
+Modern asthetic premium UI that has micro interactions and keeps the users hooked based
+off consumer psychology and psychological trigger must be there for users to pay and use
+this platform.
+
+Add a CIBIL report upload flow that validates the file and sends it for decoding.
+Integrate the ₹149 one-time checkout so users can pay and then unlock report results.
+Build a results page that shows plain-English rejection reasons with confidence scoring and
+highlights the key factors.
+Generate a personalized fix-it roadmap with prioritized actions, timelines, and a progress
+checklist.
+Implement a dashboard that stores past uploads and lets users revisit previous explanations.
+
+------------------------------------------------------22. Consumer Complaint Drafter — Input the issue, get a formatted complaint for Consumer
+Forum/NCH. One-time ₹99 or subscription for repeat filers (resellers, service businesses) ->
+Create a Modern asthetic premium UI that has micro interactions and keeps the users
+hooked based off consumer psychology and psychological trigger must be there for users to
+pay and use this platform.
+
+------------------------------------------------------23. Debate Arena — AI-moderated structured debate with scoring on argument quality, not
+just who talks loudest.
+Create src/routes/verdict.$debateId.tsx with the final scorecard, winner banner, per-criterion
+totals, and rematch/share actions.
+Implement src/routes/history.tsx to show a list of saved debates with the ability to delete
+entries.
+Update src/routes/__root.tsx to include the Oswald + Inter link tags and mount the
+@/components/ui/sonner <Toaster /> so debate-page toasts render.
+
+-------------------------------------------------------
+
+24. Crypto Tax Calculator (India's 30% + 1% TDS rules) — Import trades from exchanges,
+auto-calculate tax owed under India's specific crypto tax law. Massive, underserved,
+recurring seasonal demand, integration of ads
+Implement real Google AdSense loading and consent handling for my AdSlot placeholders.
+Add a one-click PDF export for my filing report and tax summary cards.
+Improve my CSV import by adding format detection, column mapping, and validation for
+popular India exchanges.
+Show an itemized explanation of every tax number in my dashboard so users can audit the
+calculation details.
+
+-------------------------------------------------------
+
+25. Rubik's Cube Blind-Solve Trainer — Step-by-step algorithm trainer with a built-in timer
+and streak tracker.
+
+Add a sign-up and login flow with a first-time training setup wizard.
+Add a weak-pair heatmap that ranks OP/M2/3-style steps by accuracy and time.
+Implement custom recall drill sessions where I choose target cases, step length, and drill
+duration.
+Add an export button to download my training history and streak stats as a CSV or PDF
+report.
+
+-------------------------------------------------------
+
+26. All in one Calculator App + WEB
+
+-------------------------------------------------------
+
+27. Markdown to PDF and word
+Add configurable page size, margins, and font options to my PDF and Word exports.
+Implement drag-and-drop Markdown file upload so I can convert .md files without manually
+pasting text.
+Save my recent exports and provide a quick download list with timestamps.
+Implement the ₹29 checkout flow to unlock no-watermark exports and remove ads after
+payment using Stripe.
+
+-------------------------------------------------------
+
+28. Email/PDF Signature Generator — Ads supported
+
+Add an in-app settings page to enter my ca-pub ID and ad slot IDs so ads work without
+editing code.
+
+Implement a GDPR/CCPA consent banner that lets me control ad loading based on user
+consent.
+Add analytics events for ad impressions and clicks so I can measure performance in my
+dashboard.
+Add an option to export my signature as PNG or SVG in addition to generating the signed
+PDF.
+
+-------------------------------------------------------
+
+29. Client Onboarding Portal Builder — Freelancers/agencies send one link instead of 6
+emails. $12/month
+
+Add a signup and login flow to my app so clients and freelancers can access their portals.
+Implement Stripe checkout for the $12/month plan and connect it to user access.
+Create the client onboarding portal dashboard where my clients can view steps and their
+progress.
+Build a multi-step onboarding form that clients complete via the shared link, saving progress
+automatically.
+
+------------------------------------------------------30. INTERVIEW AI COACHING
+Mock Interview Simulator (voice-based) — SASS till that helps to prepare for face to face
+interview Whisper API + GPT scoring on communication rounds. ₹299/session
+Pending task:
+Add a Stripe checkout flow for ₹299 per session and redirect back after payment.
+Implement the “Start Mock Interview” flow with role selection, session timer, and voice
+capture controls.
+Connect Whisper for speech-to-text and use GPT scoring to generate per-round
+communication feedback and a final score.
+Add a results dashboard where I can review past sessions, see round-by-round scores, and
+download a summary report.
+
+-------------------------------------------------------
+
+31. ATS Resume Score + Fix Tool — Upload resume + JD, get match score and rewrite
+suggestions ₹199/report or ₹499/month unlimited. -> Create a Modern asthetic premium UI
+that has micro interactions and keeps the users hooked based off consumer psychology and
+psychological trigger must be there for users to pay and use this platform.
+Add a resume and job-description upload flow that generates my ATS match score and
+feedback instantly.
+Implement the ATS keyword matching and scoring logic so my report shows keyword
+matches, gaps, and an accuracy explanation.
+Integrate Stripe checkout for the ₹199 single report and ₹499 unlimited plan with a
+risk-reversal guarantee message.
+Create a dashboard where I can view my past reports, compare scores over time, and
+access rewrite suggestions.
+Add a one-click PDF export so I can download my ATS report and rewrite preview.
+
+-------------------------------------------------------
+
+32. Digital Will & Nominee Tracker — Middle-class families avoiding lawyers. ₹499 one-time,
+hugeemotional WTP once you nail the trust signals.
+
+Add a step-by-step digital will setup wizard with autosave and progress micro-interactions.
+Build a nominee tracker dashboard that shows beneficiaries, allocation percentages, and
+review status with visual alerts.
+Implement a ₹499 one-time checkout flow with a paywall that unlocks the will builder after
+payment.
+Create a trust-and-security section with expandable proof points, encryption messaging, and
+timeline guarantees to boost conversion.
+Add email reminders for updating nominees and reviewing the will every 6–12 months,
+including a re-open link.
+
+------------------------------------------------------33. Simply Invoice GST/Invoice Generator for Micro-Sellers - Meesho/Instagram sellers who
+aren't GST-registered still need clean invoices. ₹99/month Pending
+Add a Stripe checkout flow so I can subscribe to ₹99/month and manage my plan from the
+app.
+Implement email login and a dashboard where I can generate invoices and access my saved
+invoices after subscribing.
+Create an invoice/Bill of Supply generator with product lines, GST fields (non-GST),
+seller/buyer details, and a live preview that matches the landing page style.
+Enable one-click PDF export for each generated invoice and download it in one step.
+Add an invoice history page with search, edit, duplicate, and quick download to keep me
+returning to the app.
+
+------------------------------------------------------34. One Punch man workout - App + Web app
+
+------------------------------------------------------35. Memory Sprint- app + Web
+
+Card Memorization Speed Game — Daily shuffled-deck memorization challenge, beat your
+own record,
+Pending
+Add daily streak tracking to my runs so I can see how consistently I’m improving.
+Implement export and import for my locally stored records so I can back them up or move
+devices.
+Add practice mode options that let me choose deck size and difficulty for targeted training.
+Add sound and haptic feedback for key timer events so the game feels more responsive.
+Improve the stats page with charts and per-deck best-time breakdowns so I can analyze my
+progress.
+
+------------------------------------------------------36. Salary + Tax Calculator (current tax slabs) — Auto-updates for the latest budget's tax
+rules. Huge seasonal search spike every Feb–July. Free + ads.
+Add my AdSense publisher ID and the three Ad slot IDs so the real ad scripts load instead of
+placeholders.
+Implement a cookie consent banner that meets GDPR/consent requirements before loading
+ads or tracking scripts.
+Enable sharing by generating a URL that preserves my calculator inputs and tax results.
+Add structured data (FAQPage/HowTo/Article) to the relevant pages to improve search
+visibility for tax queries.
+Integrate analytics events for calculator usage (inputs, regime selected, CTA clicks) to
+measure and optimize the Feb–July traffic spike.
+
+-------------------------------------------------------
+
+37. Real Estate Price-Per-Sq-Ft Tracker — Aggregates locality price trends so
+buyers/renters know if they're being overcharged. Free + ₹199 detailed locality report.
+Implement Stripe checkout and webhooks so I can unlock the ₹199 detailed locality report
+after successful payment.
+Add a feature to let me save searches and locality pages to view updates when new price
+trends are published.
+Add a confidence score and data freshness indicator to each buy/rent range and 6-month
+trend so I can trust the estimates.
+Add a compare page where I can select two localities and see side-by-side per-sq-ft trends
+and buy/rent ranges.
+Add the ability to generate and download a formatted PDF of the detailed locality report after
+I unlock it.
+
+------------------------------------------------------38. Currency/Unit Converter (offline-cached) — Ad-supported, evergreen traffic
+
+Add my AdSense publisher ID and the three slot IDs into src/lib/ads.ts.
+Paste my publisher line into public/ads.txt so AdSense can verify site ownership.
+Implement a production-only debug panel that confirms ads are loading and the offline
+service worker is active.
+Add a manual “Refresh rates” button with a “Last updated” timestamp for ECB rates.
+------------------------------------------------------39. Clinic/Doctor Appointment + Patient Records — Lite Practo for solo practitioners who
+don't want enterprise pricing. ₹799/month.
+Add a smooth “Request a Demo” flow with a short form that opens a confirmation modal and
+collects name, clinic name, specialty, and email.
+Implement a premium pricing section with ₹799/month, feature bullets, and an interactive
+monthly-vs-yearly toggle that updates the total instantly.
+Add a sticky bottom booking widget that expands into available time slots and shows a
+realistic confirmation state after selection.
+Create an interactive “Patient Records” preview with sample data cards, search-as-you-type,
+and a soft highlight animation on hover.
+Implement a trust section with badges, privacy/security copy, and a micro-interaction
+checklist that animates as users scroll.
+
+------------------------------------------------------40. LinkedIn Cold Outreach Personalizer — Chrome extension, scrapes profile, drafts a
+personalized connect note. ₹299/month, dev/sales/recruiter market.
+Add a first-run onboarding flow that explains how to scrape a profile and generate a connect
+note.
+Implement a premium connect note editor with tone controls, character count, and
+copy-to-clipboard with feedback animations.
+Add a live preview panel that shows what profile fields were extracted before drafting the
+connect message.
+Create a notes history and performance tracker so users can see which drafted messages
+they sent and when.
+-------------------------------------------------------
+
+41. Text/Code Diff Checker — Devs, ad-supported.
+Add shareable links so users can revisit the same diff results later.
+Prepare the app for production by setting up build configuration, environment variables, and
+a deployment target.
+Add an option to generate and download a PDF report of the diff results.
+Enhance the ad experience with responsive placement and non-intrusive loading while
+keeping the page usable.
+------------------------------------------------------42. Restaurant QR Ordering + Inventory Dashboard — Ties into MenuSnap; small cafes
+need ordering + stock in one place. ₹999/month. -> App + Web
+Implement the QR ordering experience with menu browsing, cart, and order submission for
+the restaurant site.
+Create the inventory dashboard with product list, stock updates, low-stock alerts, and quick
+edit controls.
+Connect my app to MenuSnap so menus and items sync automatically into the ordering and
+inventory screens.
+Add login/signup and restaurant owner roles so each cafe sees only its own orders and
+stock.
+Set up Stripe checkout for a ₹999/month plan and gate the dashboard behind an active
+subscription.
+
+------------------------------------------------------43. Job Application Auto-Tracker — Gmail-parses application emails, shows a Kanban of
+where you stand. Freemium, ₹149/month pro
+Pending
+Add a quick onboarding walkthrough that explains Gmail connection, Kanban flow, and key
+micro-interactions.
+Implement a premium paywall experience for ₹149/month with clear feature gating and
+upgrade prompts inside the Kanban.
+Add micro-delight effects like confetti, toast confirmations, and an undo button whenever I
+move an application between Kanban columns.
+
+Add inbox preview filtering and search so I can quickly find applications by company, role, or
+status.
+Improve accessibility and UX with keyboard shortcuts, reduced-motion mode, and better
+empty/loading states across the UI.
+
+-------------------------------------------------------
+
+44. General invoicing tools — Most aren't GST-native by default, requiring manual
+correction. → A genuinely GST-first invoicing tool for solo Indian freelancers.
+
+Pending:
+
+Add the BusinessForm component with GSTIN, business address, bank details, and invoice
+metadata wiring to the GST engine state.
+Implement the ClientForm component with client type (registered/unregistered), GSTIN,
+billing address, and automatic place-of-supply selection.
+Build the LineItems component to manage rows, item/service descriptions, HSN/SAC,
+quantities, taxable values, GST rates, and automatic totals per line.
+Create the InvoicePreview paper document with GST tax-rate summary tables, declarations,
+signature block, and export-to-PDF/print readiness.
+Rewrite src/routes/index.tsx into the two-panel app layout and add the preview verification
+pass plus font link in __root.tsx.
+
+------------------------------------------------------45. A tool that turns you talking about your day into a written journal entry — with your mood
+tagged automatically.
+App + Web
+Add a /journal route (and authenticated layout) so AppShell links compile and protected
+pages render correctly.
+Implement the journal capture page with mic recording, transcript review, mood selection,
+editable generated entry, and save to Supabase.
+Create the journal list page with search, mood filter, and a 30-day mood strip.
+
+Build the entry detail page to view and edit a saved journal entry, including mood and
+highlights.
+
+-------------------------------------------------------
+
+46. Blindfold Chess Trainer — Gamifies the actual skill you practice; progressively harder
+positions, streak-based ranking.
+App + Web
+Add a training history page where I can review past sessions, my drill scores, and how my
+streak changed over time.
+Implement performance charts on my dashboard (e.g., accuracy by drill type and difficulty
+progression) using the stats we already compute.
+Resolve the hydration warnings on protected routes so signed-in redirects don’t cause any
+console noise.
+Create an achievements/medals system with milestone rewards (streaks, rank jumps, best
+drill scores) that shows up on the dashboard.
+------------------------------------------------------47. Generic vs Branded Medicine Price Comparison
+App + Web
+— Compare a prescribed brand against its generic/Jan Aushadhi equivalent. Genuinely
+saves families real money every month. Free + affiliate to pharmacy delivery.
+Add price alert emails so users can get notified when a brand or generic equivalent price
+drops in their area.
+Enable user profiles to save favorite medicines and past brand-vs-generic comparisons for
+quick access.
+Add a prescription review step that highlights extracted medicine names/dosages and asks
+the user to confirm before generating the comparison.
+Add a partner pharmacy delivery page that shows available delivery options by PIN code
+along with affiliate links.
+Add bilingual (English + Hindi) search and display for medicine names so users can find
+generics by commonly used spellings.
+-------------------------------------------------------
+
+48. Currency Converter With Real Fee Disclosure — ExchangeRate API, but shows the
+actual cost after your card's forex markup, not just the mid-market rate. Saves travelers real
+money. Free + ads.
+
+------------------------------------------------------49. Meta Tag / OG Image Previewer — Devs checking link previews before shipping. Free +
+$3/month.
+Implement real Pro authentication and subscription gating so $3/month users get their
+premium features instead of the placeholder.
+Add a saved history panel so I can revisit previously checked URLs and compare changes
+over time.
+Add bulk URL submission so I can paste multiple links at once and generate a preview
+report for each.
+Add configurable crawler settings (like user-agent and follow redirects) so previews match
+how each platform fetches my links.
+
+------------------------------------------------------50. Voice Recorder → Transcript + Summary — Interviews/lectures.
+Add inline editing for transcripts and structured summaries so I can refine them after
+transcription.
+Implement full-text search and topic filtering across my library transcripts and summaries.
+Add an export button to generate a downloadable PDF (and Markdown) of the transcript and
+summary for each recording.
+Implement a share feature that creates secure links with access controls for a recording’s
+transcript and summary.
+------------------------------------------------------51. Screenshot-to-Component Tool — Upload UI screenshot, get Tailwind/React code.
+$10/month, huge demand post-v0/Cursor era. Verify that the production build and dev server run successfully after the styles fix.
+Add a screenshot upload step that sends the image to the backend and starts code
+generation.
+
+Implement a results page with a code preview/editor and loading streaming output while the
+Tailwind/React code is generated.
+Add a generation history panel so users can revisit past screenshots and generated outputs.
+
+------------------------------------------------------52. Browser-Based API Request Tester (Postman-lite) — Free + $4/month for saved
+collections ->
+Implement Stripe checkout for the $4/month Pro plan and gate “saved collections” behind an
+authenticated subscription.
+Add create/edit/delete saved collections and persist them to the backend so users can reuse
+requests across sessions.
+Save request history to the user account and load it on return visits instead of only keeping it
+in the current session.
+Add collection import/export (JSON) so users can move requests between accounts and
+share them easily.
+------------------------------------------------------53. Gym/Studio Membership + Class Booking — Local gyms still run on WhatsApp groups.
+₹99/month. App + Web
+Add membership plan cards for ₹99/month and any tiers, with a clear compare table and a
+one-tap checkout CTA.
+Implement a step-by-step class booking flow with date/time selection, trainer selection, seat
+availability, and a final confirmation screen.
+Add a post-booking prompt that encourages users to share or message on WhatsApp with a
+prefilled booking summary.
+Add a 30-second onboarding quiz that personalizes recommended classes and membership
+benefits immediately on the homepage.
+Add a bookings streaks history page showing past bookings, streak count, and rewards
+badges earned after consecutive visits.
+-------------------------------------------------------
+
+54. LLM API Cost Monitor — Tracks spend across OpenAI/Anthropic/Gemini keys in one
+dashboard. $15/month, devs hate surprise bills.
+Verify the app builds successfully after the landing page edits and metadata changes.
+Add a Stripe checkout flow for the $15/month plan from the landing page CTA.
+Implement an onboarding screen that asks for my OpenAI/Anthropic/Gemini API keys and
+starts tracking usage.
+Connect the dashboard charts and ticker to real spend data and make it auto-refresh.
+Add configurable spend threshold alerts that notify me when my monthly usage is
+approaching a limit.
+------------------------------------------------------55. Multi-Platform Post Repurposer — One script in, auto-formatted for IG/X/YouTube Shorts
+captions. You're building this for yourself anyway —package it. $15/month
+
+Add Stripe checkout so I can offer a $15/month plan for Reprint.
+Implement caption customization controls so I can choose tone, length, hashtags, and
+platform styles before generating.
+Create a generation history panel so I can revisit, copy again, and download past results.
+Add export options so I can download formatted captions as a text or CSV file.
+------------------------------------------------------56. BIG TIMER
+
+------------------------------------------------------57. Agri Price Hub App + Web
+Mandi Price Checker — Real-time crop prices at nearby markets via data.gov.in's Agmarknet
+dataset. Farmers currently rely on middlemen for this info. Free + ₹49/month SMS price
+alerts, every place in India needs to be converd every state, district, everything
+Implement SMS alert subscriptions for the ₹49/month plan with double opt-in and delivery
+status tracking.
+Add a “My Markets” dashboard where I can save locations and crops and manage my alert
+preferences.
+Create an admin panel to manage the waitlist, export leads, and update account status.
+
+Add interactive price history charts for each mandi and crop over time.
+Offer notification channel options (SMS and WhatsApp) so I can choose how I receive alerts.
+------------------------------------------------------58. Favicon Generator from Logo — ad supported
+
+------------------------------------------------------59. Word Counter + Readability Score — Writers/students, ad-supported.
+Add an export button that generates a PDF report of my word count, readability scores, and
+keyword insights.
+Implement a draft history so I can save my texts locally and revisit past word counts and
+readability scores.
+Add a target grade-level feature that recommends specific rewriting tips to improve my
+readability score.
+Include a help modal that explains each readability formula and how to interpret the scores.
+
+------------------------------------------------------60. Template-Based ID Card Generator — Local shops/small institutes. Ads supported
+
+Add a template editor so I can customize card layout, fonts, and fields without code changes.
+Implement a logo upload option so I can include each shop or institute’s branding on
+generated cards and exports.
+Enable bulk export as a downloadable ZIP containing all generated PNGs for my CSV
+upload.
+Add an ads settings panel so I can choose where ads appear on the bulk, templates, and
+guide pages.
+------------------------------------------------------61. Personal CRM for Warm Intros — Remembers who you met, when, what they care about
+— useful for your own job search + networking. $8/month.
+App + Web
+Implement Stripe checkout for the $8/month subscription.
+
+Add webhook handling to activate and deactivate CRM access based on Stripe subscription
+status.
+Create a billing page where I can view my plan and manage my Stripe subscription.
+
+------------------------------------------------------62. I want to build an app to quit my smoking addiction, or any kind of addiction
+Add a daily check-in page where I can log cravings, whether I resisted, and any notes.
+Implement push or email reminders so I can get scheduled nudges to do my check-ins and
+stay on track.
+Create a dashboard analytics section with charts for streak length, cravings frequency, and
+milestone progress over time.
+Add an onboarding step where I set my quit date, main triggers, and preferred intensity so
+the app tailors my recovery plan.
+
+------------------------------------------------------63. I want to build an app in which users can swipe left and right the most useful websites,
+there will be about 1000 websites that are use full and of different 5 categories portfolio
+websites, Coding Websites, AI websites, in general and all mixed
+Add a tap-to-open detail modal for each website with the full description, category, and
+external link.
+Improve the saves drawer into a polished “My Favorites” page with sorting, category filters,
+and quick open.
+Implement a search and category filter that updates the swipe deck in real time without
+breaking the swipe animations.
+Persist my saved websites in local storage so my favorites remain after refresh and across
+devices when possible.
+
+------------------------------------------------------64. Aadhaar-Format Masking Tool — Redact sensitive numbers from scanned docs before
+sharing. Free + ads (privacy-first tools always get shared)
+
+Add a short interactive onboarding walkthrough that shows users how to upload a scan,
+auto-detect Aadhaar numbers, drag redaction boxes, and download the masked PNG.
+Implement a detection confidence overlay that highlights each detected 12-digit Aadhaar
+number and lets users quickly accept or remove each box.
+Add a before-and-after comparison slider so users can instantly see what was masked
+versus the original scan.
+Add export options that let users download the masked result as both PNG and JPG.
+Add a clear privacy-first data handling notice on the landing page and inside the tool
+confirming everything stays in-browser and nothing is uploaded.
+
+------------------------------------------------------65. Personal CRM for Warm Intros — Remembers who you met, when, what they care about
+— useful for your own job search + networking. $8/month
+Implement a quick signup-to-dashboard onboarding flow where I create my first contact and
+see a personalized welcome checklist.
+Create a CRM dashboard that lets me add, edit, and search contacts with expanding profile
+cards and micro-interaction previews.
+Add scheduled follow-up reminders so I get gentle notifications for when to reach out again
+to each person.
+Integrate Stripe checkout for the $8/month plan with a clean pricing section and an in-app
+upgrade flow.
+
+------------------------------------------------------66. Client Contract + Escrow-Lite for Freelancers — Simple milestone-based payment
+holding for Indian gig workers (Upwork alternative for direct clients). 2% fee per transaction.
+
+Implement a full pricing section with the live 2% fee calculator walkthrough from project size
+to escrow total.
+Add a freelancer signup flow with a profile step for skills, location, and preferred currency for
+escrow.
+Implement a client dashboard flow to create a milestone contract, add deliverables, and
+send an invite to the freelancer.
+
+Create an escrow dashboard that shows milestone status, allows releasing funds per
+milestone, and provides downloadable agreement details.
+Add a security and trust section with micro-animations for fraud prevention, dispute handling,
+and transparent fee breakdown.
+------------------------------------------------------67. A Practo clone — Booking friction, unreliable real-time doctor availability. → A
+real-time-availability booking tool for one specific medical specialty.
+Add email confirmations for booking holds and confirmed appointments.
+Implement appointment cancellation with real-time slot release back into availability.
+Build a console feature to create and manage doctor working hours and specialties.
+Add SMS or email reminders for upcoming appointments before the scheduled time.
+Create an audit log in the clinic console for all booking and slot state changes.
+
+------------------------------------------------------68. Cross-Platform Saved Content & "Digital Hoarding" Synthesizer
+App + Web app
+Add a browser extension so I can clip links from any page into my vault with one click.
+Implement smarter duplicate detection so I don’t end up with repeated items when the same
+link is saved multiple times.
+Add smart collections that automatically group items by topic, source, or AI-generated tags.
+Add an export feature so I can download my saved items, notes, tags, and digests as
+JSON/CSV.
+Allow me to schedule daily or weekly AI digests and get them via email.
+
+------------------------------------------------------69. Scientific Brain Games
+Implement the remaining 8 brain game modules (dual n-back, SMART logic, Stroop,
+task-switching, 3D mental rotation, matrix patterns, backward sequence span, and
+Go/No-Go) with full state logic, scoring, and timers.
+
+Create the complete `docs/expo/` specification for building, configuring, and running the app
+on iOS/Android with the offline-first storage and state setup.
+Add an offline-first app shell with the offline service worker so the app stays usable without
+network access, including asset caching and routing.
+Connect each game’s results flow to the local analytics dashboard with consistent
+skill-metric updates and score progression over time.
+Add local storage versioning and migration logic for profile/streak/xp/rewards data so
+existing users keep their progress across schema updates.
+
+------------------------------------------------------70. A tool that turns "here's my trip, budget, and interests" into a full day-by-day travel plan.
+Add an interactive editor so I can tweak the generated day-by-day plan and immediately
+re-sync the budget and packing list.
+Implement shareable URLs that let me view a generated itinerary on another device without
+regenerating it.
+Integrate a map view for each day so I can see suggested stops and routes for hour-by-hour
+segments.
+Add support for multiple travelers with per-person budgets and separate packing lists based
+on my group details.
+
+------------------------------------------------------71. UPI Split — Split bills/rent among roommates with UPI deep-links to request money
+directly, ada integrated.
+Add an expense ledger page that shows all past splits, settlements, and group activity for
+each roommate.
+Implement recurring expenses so I can schedule monthly rent or utilities and automatically
+split them on a chosen date.
+Add email and in-app notifications to remind roommates to settle balances when a split is
+created or overdue.
+Add a way for me to record non-equal adjustments (tips, partial payments, or
+reimbursements) and recalculate balances automatically.
+
+Generate a downloadable PDF or CSV report of the group’s balances and UPI settle-up
+requests for a selected date range.
+
+------------------------------------------------------72. PDF Merger/Splitter/Compressor — Evergreen search volume, monetize with ads or
+₹49/bulk export, Not only this much Image to Pdf, pdf to image and everything that you can
+imagine of people want to do with PDFs, just like I love pdf, even for features and
+functionality than that like edit pdf, etcz etc.
+Add a download and processing history panel so I can revisit and re-download my recent
+PDFs.
+Implement a clear job queue with real-time progress indicators for large PDF
+merge/split/compress jobs.
+Add reusable presets for common workflows (e.g., split into N pages, compress to target
+size) so I can run them in one click.
+Improve accessibility with keyboard navigation, focus states, and ARIA labels across the tool
+UI.
+
+------------------------------------------------------73. Regex Tester + Plain-English Explainer — Devs hate regex; AI explains it. Ads
+Implement a saved history so I can revisit my recent patterns, flags, and test inputs.
+Add shareable links that preserve my pattern, flags, and test text so I can send examples to
+others.
+Detect risky patterns and show plain-English warnings about catastrophic backtracking and
+how to mitigate them.
+Enable exporting my test results and AI plain-English explanation as a downloadable PDF or
+JSON file.
+
+------------------------------------------------------74. JSON/CSV Formatter & Converter — Dev utility, ad-supported,
+Add a conversion history panel so I can revisit my last JSON/CSV inputs and outputs.
+
+Implement one-click download buttons to save the formatted or converted JSON/CSV result
+as a file.
+Add CSV configuration options like delimiter, quote character, and header row detection for
+more reliable parsing.
+Add optional JSON Schema validation so I can enforce structure before converting or
+displaying data.
+Add inline table editing with re-validation and instant conversion back to JSON and CSV.
+
+-------------------------------------------------------
+
+75. Automated Subscription Auto-Cancellation & Free Trial Shielding
+Search Patterns / High-Volume Queries: "how to stop unexpected recurring charges", "auto
+cancel free trial app", "track hidden subscriptions app".
+Fix the TypeScript strict-null build errors in src/lib/recurring.ts so the project compiles cleanly.
+Implement the landing page and the /auth sign-in/sign-up flow with a protected app shell.
+Create the dashboard UI that shows my risk-sorted subscriptions, money at risk, and a
+danger zone summary.
+Add a subscription onboarding flow that lets me create subscriptions via manual entry,
+receipt paste, or statement import.
+Implement the AI receipt parsing server function and a cron-callable alert dispatch route that
+fills my in-app alert inbox.
+
+-------------------------------------------------------
+
+76. SaaS MVP Boilerplate (React + Express + Supabase) — Your exact working stack from
+the NAV/SIP tracker, cleaned up as a ready-to-deploy starter. $29–49.
+
+Add the Pricing, FAQ, and footer sections and wire them into the home page so it no longer
+shows the placeholder.
+Create the /auth page with email/password and enable Google sign-in.
+Implement the protected /app layout with a sidebar and an authenticated dashboard shell.
+
+Enable items CRUD in the /app using the existing server functions and display them in the
+UI.
+
+------------------------------------------------------77. AI Customer Support Widget for Small Shopify Stores
+
+Verify the widget script embed flow in a real Shopify theme and document the exact install
+steps.
+Add configuration options so merchants can customize widget color, button text, and chat
+launcher position.
+Implement Shopify webhooks to sync customer and order info into each chat thread for
+better support.
+Add an agent/admin assignment workflow so threads can be claimed, transferred, and
+resolved.
+Enable exporting resolved chat transcripts as PDF or CSV for each store.
+
+-------------------------------------------------------
+
+78. PG Rent Tracker — For hostel/PG owners to manage people who paid the rent and who
+has not and send reminders, etc and all other features
+Implement scheduled recurring reminders for unpaid rent and configurable reminder
+timelines per tenant.
+Add CSV and PDF export for monthly registers, tenant ledgers, and yearly income reports.
+Generate downloadable payment receipts for each marked-paid transaction and email them
+to tenants.
+Add a bulk import flow to add tenants and rooms from a CSV file with validation and error
+feedback.
+Create an audit activity log so owners can track changes like mark-paid updates, edits, and
+settings modifications.
+
+-------------------------------------------------------
+
+79. Blood Bank/Donor Finder [API note: needs eRaktKosh aggregator or manual
+partnership] — Genuinely lifesaving utility for emergencies. Free, monetize later via hospital
+partnerships.
+
+Add email and SMS notifications when an emergency request matches a nearby eligible
+donor.
+Implement live eRaktKosh stock syncing using the ERAKTKOSH_API_URL secret with
+caching and an admin view for sync status.
+Add an admin panel to onboard hospitals, manage partnership status, and approve
+donor-requester access rules.
+Add geolocation and radius-based donor search so “Find blood now” returns the closest
+eligible blood banks and donors.
+
+------------------------------------------------------80. Court Case Status Tracker [API note: needs eCourts aggregator] — Lets people track
+their own hearing dates without paying a middleman. High value for underserved legal-aid
+population.
+
+Integrate the eCourts aggregator so my court-refresh pulls authoritative hearing updates for
+each case.
+Add an SMS option for hearing reminders alongside email, including per-user opt-in and
+delivery status.
+Add a feature to upload and store supporting documents (PDF/images) for each case and
+show them on the case detail page.
+Add a one-click export to ICS or Google Calendar so users can add upcoming hearings to
+their personal calendar.
+
+------------------------------------------------------81. Bio Link Page (Linktree alt, India payments) — Free tier + ₹99/month for custom
+domain/analytics.
+
+Implement a ₹99/month subscription so users can upgrade from the free tier.
+
+Add a custom domain setup flow with domain verification and enforcement for paid users.
+Validate link click tracking end-to-end and show real-time analytics in the dashboard.
+Test the full flow by signing up, creating links, publishing a public bio, and confirming
+analytics updates.
+
+------------------------------------------------------82. Dynamic QR Code Generator — Editable destination after printing
+Add a set of one-click QR style templates (colors, frames, and logo) for my dynamic QR
+codes.
+Implement a bulk import flow to create many QR codes at once from a CSV and assign
+destinations.
+Add an option to export per-code analytics and scan history to CSV or PDF.
+Implement destination targeting rules so scans can route to different URLs based on time
+window or geolocation.
+Enable users to upload a logo/image to embed in the QR code with a live preview and safe
+sizing.
+
+------------------------------------------------------83. No-Login Invoice PDF Generator — Instant, no signup friction. Ad-supported + ₹49 for
+logo/branding
+
+Implement a ₹49 branding upgrade that lets me upload a logo and applies it to every
+generated invoice PDF.
+Add invoice presets so I can quickly reuse my company details and typical line items without
+retyping every field.
+Add selectable page size (A4/Letter) and automatic pagination for long invoices so the PDF
+never cuts off content.
+Add a shareable URL workflow that lets me reopen a specific invoice draft and regenerate
+the PDF without signup.
+
+-------------------------------------------------------
+
+84. Color Palette Extractor from Image — Designers/devs, free + affiliate to design tools.
+Add a history panel so I can revisit my recent extracted palettes and re-open their images
+quickly.
+Implement a WCAG contrast checker for my selected swatches and show pass/fail for
+common text sizes.
+Add an option to download a high-resolution palette PNG with labels and the HEX values
+rendered on the image.
+Implement affiliate click tracking so I can measure conversions from each recommended
+tool.
+Add shareable links that encode the palette (colors + mode) so I can send results to others.
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+

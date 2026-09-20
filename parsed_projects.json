@@ -1,0 +1,852 @@
+[
+  {
+    "id": "proj-001",
+    "number": 1,
+    "name": "Resume Matching",
+    "description": null,
+    "url": "https://id-preview--ca1bc8a2-f666-4ba9-abf2-84f99004747c.lovable.app/",
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 0
+  },
+  {
+    "id": "proj-002",
+    "number": 2,
+    "name": "Domain/Website Trust Checker",
+    "description": "WHOIS + SSL check to confirm if a shopping site is newly-registered or suspicious before entering card details. Free + ads, genuinely protects people from scams.  d07fce",
+    "url": "https://id-preview--069373d2-f667-4412-9b48-e851ffdeef63.lovable.app/?__lovable_sha=45",
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 1
+  },
+  {
+    "id": "proj-003",
+    "number": 3,
+    "name": "Screenshot Annotator/Beautifier",
+    "description": "Like Shots.so, devs/creators. $5/month.",
+    "url": "https://id-preview--5132b8ab-2f05-4188-b60e-a3c40fe9beb8.lovable.app/",
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 2
+  },
+  {
+    "id": "proj-004",
+    "number": 4,
+    "name": "Photo/PDF Watermark Adder",
+    "description": "Freelance photographers/sellers bulk photo wartmark adder upto 100 images",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 3
+  },
+  {
+    "id": "proj-005",
+    "number": 5,
+    "name": "Consumer Complaint Drafter",
+    "description": "Input the issue, get a formatted complaint for Consumer Forum/NCH. One-time \u20b999 or subscription for repeat filers (resellers, service businesses).",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 4
+  },
+  {
+    "id": "proj-006",
+    "number": 6,
+    "name": "Rent Agreement Generator",
+    "description": "State-specific stamp paper + clause templates, e-sign integration. Landlords/tenants pay \u20b9199\u2013499 per doc vs \u20b91,500+ for a lawyer. Build this SASS product for me",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 5
+  },
+  {
+    "id": "proj-007",
+    "number": 7,
+    "name": "Government Accountability",
+    "description": "in plain sight. App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 6
+  },
+  {
+    "id": "proj-008",
+    "number": 8,
+    "name": "Gratitude Journal App + Web",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 7
+  },
+  {
+    "id": "proj-009",
+    "number": 9,
+    "name": "Life Left and Day Progress, App + Web",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 8
+  },
+  {
+    "id": "proj-010",
+    "number": 10,
+    "name": "100 days streak",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 9
+  },
+  {
+    "id": "proj-011",
+    "number": 11,
+    "name": "Brain Dump App + Web",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 10
+  },
+  {
+    "id": "proj-012",
+    "number": 12,
+    "name": "One Focus Link",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 11
+  },
+  {
+    "id": "proj-013",
+    "number": 13,
+    "name": "Pose Perfect Studio",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 12
+  },
+  {
+    "id": "proj-014",
+    "number": 14,
+    "name": "Nutri Score Calculator, App + Web",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 13
+  },
+  {
+    "id": "proj-015",
+    "number": 15,
+    "name": "Verified GST",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 14
+  },
+  {
+    "id": "proj-016",
+    "number": 16,
+    "name": "Fake Data Generator",
+    "description": null,
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 15
+  },
+  {
+    "id": "proj-017",
+    "number": 17,
+    "name": "Cron Expression Builder",
+    "description": "Dev utility, ad-supported.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 16
+  },
+  {
+    "id": "proj-018",
+    "number": 18,
+    "name": "Event Count Down Countdown/Event Page Generator (shareable link)",
+    "description": "Weddings, launches. Free + \u20b999 custom brandings Things to do : Implement Stripe checkout for the \u20b999 custom branding and unlock it after payment succeeds.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 17
+  },
+  {
+    "id": "proj-019",
+    "number": 19,
+    "name": "Coaching Business All-in-One",
+    "description": "Scheduling + invoicing + client notes for solo coaches/therapists. Need to implement",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 18
+  },
+  {
+    "id": "proj-020",
+    "number": 20,
+    "name": "Micro-Cohort Course Platform",
+    "description": "Lite Maven for solo experts running 2-week cohorts. 5% of revenue or $29/month -> Make a modern, premium asthetic and cool UI for this app backed by human psychology making users to stayn on the website for longer and make sure the website has micro tiny tiny multiple interactions that customers love.",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 19
+  },
+  {
+    "id": "proj-021",
+    "number": 21,
+    "name": "Scheme Savy",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 20
+  },
+  {
+    "id": "proj-021b",
+    "number": 21,
+    "name": "Loan Rejection Explainer",
+    "description": "Upload CIBIL report, get plain-English reasons + fix-it roadmap. \u20b9149 one-time; huge search volume, near-zero good tools exist ->Create a Modern asthetic premium UI that has micro interactions and keeps the users hooked based off consumer psychology and psychological trigger must be there for users to pay and use this platform.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 21
+  },
+  {
+    "id": "proj-022",
+    "number": 22,
+    "name": "Consumer Complaint Drafter",
+    "description": "Input the issue, get a formatted complaint for Consumer Forum/NCH. One-time \u20b999 or subscription for repeat filers (resellers, service businesses) ->",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 22
+  },
+  {
+    "id": "proj-023",
+    "number": 23,
+    "name": "Debate Arena",
+    "description": "AI-moderated structured debate with scoring on argument quality, not just who talks loudest.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 23
+  },
+  {
+    "id": "proj-024",
+    "number": 24,
+    "name": "Crypto Tax Calculator (India's 30% + 1% TDS rules)",
+    "description": "Import trades from exchanges, auto-calculate tax owed under India's specific crypto tax law. Massive, underserved, recurring seasonal demand, integration of ads",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 24
+  },
+  {
+    "id": "proj-025",
+    "number": 25,
+    "name": "Rubik's Cube Blind-Solve Trainer",
+    "description": "Step-by-step algorithm trainer with a built-in timer and streak tracker.",
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 25
+  },
+  {
+    "id": "proj-026",
+    "number": 26,
+    "name": "All in one Calculator App + WEB",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 26
+  },
+  {
+    "id": "proj-027",
+    "number": 27,
+    "name": "Markdown to PDF and word",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 27
+  },
+  {
+    "id": "proj-028",
+    "number": 28,
+    "name": "Email/PDF Signature Generator",
+    "description": "Ads supported",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 28
+  },
+  {
+    "id": "proj-029",
+    "number": 29,
+    "name": "Client Onboarding Portal Builder",
+    "description": "Freelancers/agencies send one link instead of 6 emails. $12/month",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 29
+  },
+  {
+    "id": "proj-030",
+    "number": 30,
+    "name": "INTERVIEW AI COACHING Mock Interview Simulator (voice-based)",
+    "description": "SASS till that helps to prepare for face to face interview Whisper API + GPT scoring on communication rounds. \u20b9299/session",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 30
+  },
+  {
+    "id": "proj-031",
+    "number": 31,
+    "name": "ATS Resume Score + Fix Tool",
+    "description": "Upload resume + JD, get match score and rewrite suggestions \u20b9199/report or \u20b9499/month unlimited. -> Create a Modern asthetic premium UI that has micro interactions and keeps the users hooked based off consumer psychology and psychological trigger must be there for users to pay and use this platform.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 31
+  },
+  {
+    "id": "proj-032",
+    "number": 32,
+    "name": "Digital Will & Nominee Tracker",
+    "description": "Middle-class families avoiding lawyers. \u20b9499 one-time, hugeemotional WTP once you nail the trust signals.",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 32
+  },
+  {
+    "id": "proj-033",
+    "number": 33,
+    "name": "Simply Invoice GST/Invoice Generator for Micro-Sellers",
+    "description": "Meesho/Instagram sellers who aren't GST-registered still need clean invoices. \u20b999/month Pending",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 33
+  },
+  {
+    "id": "proj-034",
+    "number": 34,
+    "name": "One Punch man workout",
+    "description": "App + Web app",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 34
+  },
+  {
+    "id": "proj-035",
+    "number": 35,
+    "name": "Memory Sprint- app + Web Card Memorization Speed Game",
+    "description": "Daily shuffled-deck memorization challenge, beat your own record,",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 35
+  },
+  {
+    "id": "proj-036",
+    "number": 36,
+    "name": "Salary + Tax Calculator (current tax slabs)",
+    "description": "Auto-updates for the latest budget's tax rules. Huge seasonal search spike every Feb\u2013July. Free + ads.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 36
+  },
+  {
+    "id": "proj-037",
+    "number": 37,
+    "name": "Real Estate Price-Per-Sq-Ft Tracker",
+    "description": "Aggregates locality price trends so buyers/renters know if they're being overcharged. Free + \u20b9199 detailed locality report.",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 37
+  },
+  {
+    "id": "proj-038",
+    "number": 38,
+    "name": "Currency/Unit Converter (offline-cached)",
+    "description": "Ad-supported, evergreen traffic",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 38
+  },
+  {
+    "id": "proj-039",
+    "number": 39,
+    "name": "Clinic/Doctor Appointment + Patient Records",
+    "description": "Lite Practo for solo practitioners who don't want enterprise pricing. \u20b9799/month.",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 39
+  },
+  {
+    "id": "proj-040",
+    "number": 40,
+    "name": "LinkedIn Cold Outreach Personalizer",
+    "description": "Chrome extension, scrapes profile, drafts a personalized connect note. \u20b9299/month, dev/sales/recruiter market.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 40
+  },
+  {
+    "id": "proj-041",
+    "number": 41,
+    "name": "Text/Code Diff Checker",
+    "description": "Devs, ad-supported.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 41
+  },
+  {
+    "id": "proj-042",
+    "number": 42,
+    "name": "Restaurant QR Ordering + Inventory Dashboard",
+    "description": "Ties into MenuSnap; small cafes need ordering + stock in one place. \u20b9999/month. -> App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 42
+  },
+  {
+    "id": "proj-043",
+    "number": 43,
+    "name": "Job Application Auto-Tracker",
+    "description": "Gmail-parses application emails, shows a Kanban of where you stand. Freemium, \u20b9149/month pro",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 43
+  },
+  {
+    "id": "proj-044",
+    "number": 44,
+    "name": "General invoicing tools",
+    "description": "Most aren't GST-native by default, requiring manual correction. \u2192 A genuinely GST-first invoicing tool for solo Indian freelancers.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 44
+  },
+  {
+    "id": "proj-045",
+    "number": 45,
+    "name": "A tool that turns you talking about your day into a written journal entry",
+    "description": "with your mood tagged automatically. App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 45
+  },
+  {
+    "id": "proj-046",
+    "number": 46,
+    "name": "Blindfold Chess Trainer",
+    "description": "Gamifies the actual skill you practice; progressively harder positions, streak-based ranking. App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 46
+  },
+  {
+    "id": "proj-047",
+    "number": 47,
+    "name": "Generic vs Branded Medicine Price Comparison App + Web",
+    "description": "Compare a prescribed brand against its generic/Jan Aushadhi equivalent. Genuinely saves families real money every month. Free + affiliate to pharmacy delivery.",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 47
+  },
+  {
+    "id": "proj-048",
+    "number": 48,
+    "name": "Currency Converter With Real Fee Disclosure",
+    "description": "ExchangeRate API, but shows the actual cost after your card's forex markup, not just the mid-market rate. Saves travelers real money. Free + ads.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 48
+  },
+  {
+    "id": "proj-049",
+    "number": 49,
+    "name": "Meta Tag / OG Image Previewer",
+    "description": "Devs checking link previews before shipping. Free + $3/month.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 49
+  },
+  {
+    "id": "proj-050",
+    "number": 50,
+    "name": "Voice Recorder \u2192 Transcript + Summary",
+    "description": "Interviews/lectures.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 50
+  },
+  {
+    "id": "proj-051",
+    "number": 51,
+    "name": "Screenshot-to-Component Tool",
+    "description": "Upload UI screenshot, get Tailwind/React code. $10/month, huge demand post-v0/Cursor era. Verify that the production build and dev server run successfully after the styles fix.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 51
+  },
+  {
+    "id": "proj-052",
+    "number": 52,
+    "name": "Browser-Based API Request Tester (Postman-lite)",
+    "description": "Free + $4/month for saved collections ->",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 52
+  },
+  {
+    "id": "proj-053",
+    "number": 53,
+    "name": "Gym/Studio Membership + Class Booking",
+    "description": "Local gyms still run on WhatsApp groups. \u20b999/month. App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 53
+  },
+  {
+    "id": "proj-054",
+    "number": 54,
+    "name": "LLM API Cost Monitor",
+    "description": "Tracks spend across OpenAI/Anthropic/Gemini keys in one dashboard. $15/month, devs hate surprise bills.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 54
+  },
+  {
+    "id": "proj-055",
+    "number": 55,
+    "name": "Multi-Platform Post Repurposer",
+    "description": "One script in, auto-formatted for IG/X/YouTube Shorts captions. You're building this for yourself anyway \u2014package it. $15/month",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 55
+  },
+  {
+    "id": "proj-056",
+    "number": 56,
+    "name": "BIG TIMER",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 56
+  },
+  {
+    "id": "proj-057",
+    "number": 57,
+    "name": "Agri Price Hub App + Web Mandi Price Checker",
+    "description": "Real-time crop prices at nearby markets via data.gov.in's Agmarknet dataset. Farmers currently rely on middlemen for this info. Free + \u20b949/month SMS price alerts, every place in India needs to be converd every state, district, everything",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 57
+  },
+  {
+    "id": "proj-058",
+    "number": 58,
+    "name": "Favicon Generator from Logo",
+    "description": "ad supported",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 58
+  },
+  {
+    "id": "proj-059",
+    "number": 59,
+    "name": "Word Counter + Readability Score",
+    "description": "Writers/students, ad-supported.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 59
+  },
+  {
+    "id": "proj-060",
+    "number": 60,
+    "name": "Template-Based ID Card Generator",
+    "description": "Local shops/small institutes. Ads supported",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 60
+  },
+  {
+    "id": "proj-061",
+    "number": 61,
+    "name": "Personal CRM for Warm Intros",
+    "description": "Remembers who you met, when, what they care about \u2014 useful for your own job search + networking. $8/month. App + Web",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 61
+  },
+  {
+    "id": "proj-062",
+    "number": 62,
+    "name": "I want to build an app to quit my smoking addiction, or any kind of addiction",
+    "description": null,
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 62
+  },
+  {
+    "id": "proj-063",
+    "number": 63,
+    "name": "I want to build an app in which users can swipe left and right the most useful websites",
+    "description": "there will be about 1000 websites that are use full and of different 5 categories portfolio websites, Coding Websites, AI websites, in general and all mixed",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 63
+  },
+  {
+    "id": "proj-064",
+    "number": 64,
+    "name": "Aadhaar-Format Masking Tool",
+    "description": "Redact sensitive numbers from scanned docs before sharing. Free + ads (privacy-first tools always get shared)",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 64
+  },
+  {
+    "id": "proj-065",
+    "number": 65,
+    "name": "Personal CRM for Warm Intros",
+    "description": "Remembers who you met, when, what they care about \u2014 useful for your own job search + networking. $8/month",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 65
+  },
+  {
+    "id": "proj-066",
+    "number": 66,
+    "name": "Client Contract + Escrow-Lite for Freelancers",
+    "description": "Simple milestone-based payment holding for Indian gig workers (Upwork alternative for direct clients). 2% fee per transaction.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 66
+  },
+  {
+    "id": "proj-067",
+    "number": 67,
+    "name": "A Practo clone",
+    "description": "Booking friction, unreliable real-time doctor availability. \u2192 A real-time-availability booking tool for one specific medical specialty.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 67
+  },
+  {
+    "id": "proj-068",
+    "number": 68,
+    "name": "Cross-Platform Saved Content & \"Digital Hoarding\" Synthesizer",
+    "description": "App + Web app",
+    "url": null,
+    "tag": "app",
+    "status": "idea",
+    "sort_order": 68
+  },
+  {
+    "id": "proj-069",
+    "number": 69,
+    "name": "Scientific Brain Games",
+    "description": null,
+    "url": null,
+    "tag": "games",
+    "status": "idea",
+    "sort_order": 69
+  },
+  {
+    "id": "proj-070",
+    "number": 70,
+    "name": "A tool that turns \"here's my trip, budget, and interests\" into a full day-by-day travel plan.",
+    "description": null,
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 70
+  },
+  {
+    "id": "proj-071",
+    "number": 71,
+    "name": "UPI Split",
+    "description": "Split bills/rent among roommates with UPI deep-links to request money directly, ada integrated.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 71
+  },
+  {
+    "id": "proj-072",
+    "number": 72,
+    "name": "PDF Merger/Splitter/Compressor",
+    "description": "Evergreen search volume, monetize with ads or \u20b949/bulk export, Not only this much Image to Pdf, pdf to image and everything that you can imagine of people want to do with PDFs, just like I love pdf, even for features and functionality than that like edit pdf, etcz etc.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 72
+  },
+  {
+    "id": "proj-073",
+    "number": 73,
+    "name": "Regex Tester + Plain-English Explainer",
+    "description": "Devs hate regex; AI explains it. Ads",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 73
+  },
+  {
+    "id": "proj-074",
+    "number": 74,
+    "name": "JSON/CSV Formatter & Converter",
+    "description": "Dev utility, ad-supported,",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 74
+  },
+  {
+    "id": "proj-075",
+    "number": 75,
+    "name": "Automated Subscription Auto-Cancellation & Free Trial Shielding",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 75
+  },
+  {
+    "id": "proj-076",
+    "number": 76,
+    "name": "SaaS MVP Boilerplate (React + Express + Supabase)",
+    "description": "Your exact working stack from the NAV/SIP tracker, cleaned up as a ready-to-deploy starter. $29\u201349.",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 76
+  },
+  {
+    "id": "proj-077",
+    "number": 77,
+    "name": "AI Customer Support Widget for Small Shopify Stores",
+    "description": null,
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 77
+  },
+  {
+    "id": "proj-078",
+    "number": 78,
+    "name": "PG Rent Tracker",
+    "description": "For hostel/PG owners to manage people who paid the rent and who has not and send reminders, etc and all other features",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 78
+  },
+  {
+    "id": "proj-079",
+    "number": 79,
+    "name": "Blood Bank/Donor Finder [API note: needs eRaktKosh aggregator or manual partnership]",
+    "description": "Genuinely lifesaving utility for emergencies. Free, monetize later via hospital partnerships.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 79
+  },
+  {
+    "id": "proj-080",
+    "number": 80,
+    "name": "Court Case Status Tracker [API note: needs eCourts aggregator]",
+    "description": "Lets people track their own hearing dates without paying a middleman. High value for underserved legal-aid population.",
+    "url": null,
+    "tag": "saas",
+    "status": "idea",
+    "sort_order": 80
+  },
+  {
+    "id": "proj-081",
+    "number": 81,
+    "name": "Bio Link Page (Linktree alt, India payments)",
+    "description": "Free tier + \u20b999/month for custom domain/analytics.",
+    "url": null,
+    "tag": "web-app",
+    "status": "idea",
+    "sort_order": 81
+  },
+  {
+    "id": "proj-082",
+    "number": 82,
+    "name": "Dynamic QR Code Generator",
+    "description": "Editable destination after printing",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 82
+  },
+  {
+    "id": "proj-083",
+    "number": 83,
+    "name": "No-Login Invoice PDF Generator",
+    "description": "Instant, no signup friction. Ad-supported + \u20b949 for logo/branding",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 83
+  },
+  {
+    "id": "proj-084",
+    "number": 84,
+    "name": "Color Palette Extractor from Image",
+    "description": "Designers/devs, free + affiliate to design tools.",
+    "url": null,
+    "tag": "tool",
+    "status": "idea",
+    "sort_order": 84
+  }
+]

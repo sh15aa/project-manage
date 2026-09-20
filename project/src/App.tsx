@@ -88,9 +88,23 @@ export default function App() {
     }
   }, [isAuthenticated, loadData]);
 
-  if (!isAuthenticated) {
-    return <LoginGate onSuccess={() => setIsAuthenticated(true)} />;
-  }
+  // Filter products (defined before callbacks that depend on it)
+  const filtered = products.filter((p) => {
+    if (
+      search &&
+      !p.name.toLowerCase().includes(search.toLowerCase()) &&
+      !(p.description ?? '').toLowerCase().includes(search.toLowerCase())
+    ) {
+      return false;
+    }
+    if (activeTags.length > 0 && !activeTags.includes(p.tag)) {
+      return false;
+    }
+    if (activeStatuses.length > 0 && !activeStatuses.includes(p.status)) {
+      return false;
+    }
+    return true;
+  });
 
   // Quick manual status change for a single project
   const handleStatusChange = useCallback(async (productId: string, newStatus: string) => {
@@ -131,33 +145,19 @@ export default function App() {
     } else {
       setSelectedIds(new Set(filtered.map((p) => p.id)));
     }
-  }, [selectedIds, products]);
+  }, [selectedIds, filtered]);
 
   const handleSelectAll = useCallback(() => {
     setSelectedIds(new Set(filtered.map((p) => p.id)));
-  }, [products]);
+  }, [filtered]);
 
   const handleClearSelection = useCallback(() => {
     setSelectedIds(new Set());
   }, []);
 
-  // Filter products
-  const filtered = products.filter((p) => {
-    if (
-      search &&
-      !p.name.toLowerCase().includes(search.toLowerCase()) &&
-      !(p.description ?? '').toLowerCase().includes(search.toLowerCase())
-    ) {
-      return false;
-    }
-    if (activeTags.length > 0 && !activeTags.includes(p.tag)) {
-      return false;
-    }
-    if (activeStatuses.length > 0 && !activeStatuses.includes(p.status)) {
-      return false;
-    }
-    return true;
-  });
+  if (!isAuthenticated) {
+    return <LoginGate onSuccess={() => setIsAuthenticated(true)} />;
+  }
 
   function toggleTag(tag: string) {
     setActiveTags((prev) =>
@@ -206,7 +206,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-sm font-bold text-white tracking-wide">Product Hub</h1>
-            <p className="text-[11px] text-slate-400">96+ Projects Manager</p>
+            <p className="text-[11px] text-slate-400">85 Projects Manager</p>
           </div>
         </div>
 
@@ -363,35 +363,38 @@ export default function App() {
       </aside>
 
       {/* Mobile top bar */}
-      <div className="fixed left-0 right-0 top-0 z-30 flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-4 py-3 backdrop-blur-md md:hidden">
+      <div className="fixed left-0 right-0 top-0 z-30 flex h-14 items-center justify-between border-b border-slate-800 bg-slate-900/95 px-3.5 backdrop-blur-md md:hidden">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 shadow-sm shadow-cyan-500/20">
             <Boxes className="h-4 w-4 text-white" />
           </div>
-          <span className="text-sm font-bold text-white">Product Hub</span>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm font-bold text-white tracking-tight">Product Hub</span>
+              <span className="rounded-md bg-cyan-500/20 px-1.5 py-0.2 text-[10px] font-bold text-cyan-300 tabular-nums">
+                {products.length}
+              </span>
+            </div>
+            <p className="text-[10px] text-slate-400">Launch OS</p>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
+
+        <div className="flex items-center gap-1.5">
           <button
+            type="button"
             onClick={() => setShowTursoModal(true)}
-            className="rounded-lg border border-slate-700 bg-slate-800/80 p-1.5 text-cyan-400 hover:text-white"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-800/80 px-2.5 py-1.5 text-xs text-slate-300 hover:border-cyan-500/50 transition-colors"
             title="Turso Database Settings"
           >
-            <Database className="h-4 w-4" />
+            <Database className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="text-[11px] font-medium hidden xs:inline">DB</span>
+            <span
+              className={`h-2 w-2 rounded-full ${
+                tursoConfig.url ? 'bg-emerald-400' : 'bg-amber-400'
+              }`}
+            />
           </button>
-          <button
-            onClick={() => setShowMasterPrompt(true)}
-            className="rounded-lg border border-slate-700 bg-slate-800/80 p-1.5 text-cyan-400 hover:text-white"
-            title="Master Prompt (PDF)"
-          >
-            <Sparkles className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => setShowAdd(true)}
-            className="rounded-lg bg-cyan-600 px-3 py-1.5 text-xs font-medium text-white"
-            title="Add Project"
-          >
-            <Plus className="h-4 w-4" />
-          </button>
+
           <button
             type="button"
             onClick={() => {
@@ -400,40 +403,16 @@ export default function App() {
               setIsAuthenticated(false);
             }}
             title="Lock Workspace / Log Out"
-            className="rounded-lg border border-slate-700/80 bg-slate-800/80 p-1.5 text-slate-400 hover:text-red-400 transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-800/80 text-slate-400 hover:text-red-400 transition-colors"
           >
-            <LogOut className="h-4 w-4" />
+            <LogOut className="h-3.5 w-3.5" />
           </button>
         </div>
       </div>
 
-      {/* Mobile nav tabs */}
-      <div className="fixed left-0 right-0 top-[57px] z-20 flex border-b border-slate-800 bg-slate-900/90 backdrop-blur-md md:hidden">
-        <button
-          onClick={() => setView('products')}
-          className={`flex-1 py-2.5 text-xs font-medium transition-colors ${
-            view === 'products'
-              ? 'border-b-2 border-cyan-500 text-cyan-300'
-              : 'text-slate-400'
-          }`}
-        >
-          Projects ({products.length})
-        </button>
-        <button
-          onClick={() => setView('dashboard')}
-          className={`flex-1 py-2.5 text-xs font-medium transition-colors ${
-            view === 'dashboard'
-              ? 'border-b-2 border-cyan-500 text-cyan-300'
-              : 'text-slate-400'
-          }`}
-        >
-          Dashboard
-        </button>
-      </div>
-
       {/* Main content */}
       <main className="md:pl-64">
-        <div className="mx-auto max-w-7xl px-4 pb-28 pt-24 md:px-8 md:pt-8">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-8 pt-16 pb-28 md:pt-8 md:pb-12">
           {loading ? (
             <div className="flex h-96 items-center justify-center">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-500" />
@@ -464,20 +443,25 @@ export default function App() {
           ) : (
             <>
               {/* Header & View Mode Switcher */}
-              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">All Projects</h2>
-                  <p className="mt-1 text-sm text-slate-400">
-                    Showing {filtered.length} of {products.length} projects &bull; Click any status badge to change manually
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">All Projects</h2>
+                    <span className="rounded-md bg-cyan-500/20 px-2 py-0.5 text-xs font-bold text-cyan-300 tabular-nums">
+                      {filtered.length}
+                    </span>
+                  </div>
+                  <p className="mt-0.5 text-xs sm:text-sm text-slate-400">
+                    Showing {filtered.length} of {products.length} projects &bull; Click any status badge to update
                   </p>
                 </div>
 
                 {/* View switcher & Quick Action */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 self-end sm:self-auto">
                   <button
                     type="button"
                     onClick={() => setShowTursoModal(true)}
-                    className="flex items-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-300 hover:border-cyan-500/50 hover:text-white transition-colors"
+                    className="flex items-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-900/60 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:border-cyan-500/50 hover:text-white transition-colors"
                     title="Turso Database Settings & Sync"
                   >
                     <Database className="h-3.5 w-3.5 text-cyan-400" />
@@ -511,7 +495,7 @@ export default function App() {
                           ? 'bg-cyan-500/20 text-cyan-300 shadow-sm'
                           : 'text-slate-400 hover:text-slate-200'
                       }`}
-                      title="Table View (compact list for 96 projects)"
+                      title="Table View (compact list for 85 projects)"
                     >
                       <TableIcon className="h-3.5 w-3.5" />
                       <span className="hidden sm:inline">Table</span>
@@ -534,8 +518,8 @@ export default function App() {
               </div>
 
               {/* Status Quick Filter Chips */}
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-medium text-slate-400 mr-1">Status:</span>
+              <div className="mb-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap touch-pan-x">
+                <span className="text-xs font-medium text-slate-400 mr-1 shrink-0">Status:</span>
                 {[
                   { key: 'idea', label: 'Idea' },
                   { key: 'working', label: 'Working' },
@@ -550,7 +534,7 @@ export default function App() {
                     <button
                       key={s.key}
                       onClick={() => toggleStatus(s.key)}
-                      className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all ${
+                      className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium shrink-0 transition-all ${
                         isActive
                           ? 'border-cyan-500 bg-cyan-500/20 text-cyan-200 shadow-sm'
                           : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
@@ -568,7 +552,7 @@ export default function App() {
                 {activeStatuses.length > 0 && (
                   <button
                     onClick={() => setActiveStatuses([])}
-                    className="ml-1 text-xs text-slate-400 hover:text-cyan-300"
+                    className="ml-1 text-xs text-slate-400 hover:text-cyan-300 shrink-0"
                   >
                     Reset
                   </button>
@@ -583,9 +567,19 @@ export default function App() {
                     <input
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      placeholder="Search projects by name or description..."
-                      className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="Search 85 projects by name or description..."
+                      className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2.5 pl-10 pr-9 text-base sm:text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 transition-colors"
                     />
+                    {search && (
+                      <button
+                        type="button"
+                        onClick={() => setSearch('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-200 transition-colors"
+                        title="Clear search"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
                   </div>
                   <button
                     onClick={() => setShowFilters((v) => !v)}
@@ -707,6 +701,73 @@ export default function App() {
           )}
         </div>
       </main>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-slate-800 bg-slate-950/95 px-2 py-1.5 backdrop-blur-lg md:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+        <button
+          type="button"
+          onClick={() => {
+            setView('products');
+            if (displayMode === 'kanban') setDisplayMode('grid');
+          }}
+          className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
+            view === 'products' && displayMode !== 'kanban'
+              ? 'text-cyan-400'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <Boxes className="h-5 w-5" />
+          <span className="text-[10px]">Projects</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setView('products');
+            setDisplayMode('kanban');
+          }}
+          className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
+            view === 'products' && displayMode === 'kanban'
+              ? 'text-cyan-400'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <KanbanIcon className="h-5 w-5" />
+          <span className="text-[10px]">Kanban</span>
+        </button>
+
+        {/* Center Floating Add Button */}
+        <button
+          type="button"
+          onClick={() => setShowAdd(true)}
+          className="flex h-11 w-11 -mt-4 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border-4 border-slate-950 active:scale-95 transition-transform"
+          title="Add New Project"
+        >
+          <Plus className="h-5 w-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setView('dashboard')}
+          className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
+            view === 'dashboard'
+              ? 'text-cyan-400'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <LayoutGrid className="h-5 w-5" />
+          <span className="text-[10px]">Dashboard</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setShowMasterPrompt(true)}
+          className="flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium text-slate-400 hover:text-cyan-300 transition-colors"
+        >
+          <Sparkles className="h-5 w-5 text-cyan-400" />
+          <span className="text-[10px]">Prompt</span>
+        </button>
+      </nav>
 
       {/* Floating Bulk Action Bar */}
       <BulkActionBar

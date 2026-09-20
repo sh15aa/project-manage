@@ -78,6 +78,7 @@ export function ProductDrawer({
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     () => new Set(CHECKLIST_SECTIONS.slice(0, 5))
   );
+  const [openBatchSec, setOpenBatchSec] = useState<string | null>(null);
 
   // Sync state whenever selected product changes
   useEffect(() => {
@@ -249,7 +250,7 @@ export function ProductDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 animate-in fade-in duration-150">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
@@ -257,16 +258,16 @@ export function ProductDrawer({
       />
 
       {/* Main Dialog / Modal Container */}
-      <div className="relative z-10 flex h-full max-h-[92vh] w-full max-w-5xl flex-col rounded-2xl border border-slate-700/80 bg-slate-900 shadow-2xl overflow-hidden">
+      <div className="relative z-10 flex h-full w-full sm:max-h-[92vh] sm:max-w-5xl flex-col rounded-none sm:rounded-2xl border-0 sm:border border-slate-700/80 bg-slate-900 shadow-2xl overflow-hidden">
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/95 px-5 py-4 backdrop-blur-md">
-          <div className="flex items-center gap-3 flex-1 min-w-0 pr-4">
+        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/95 px-3.5 py-3 sm:px-5 sm:py-4 backdrop-blur-md">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 pr-2 sm:pr-4">
             <button
               onClick={onClose}
-              className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+              className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors shrink-0"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
-              <span>Back</span>
+              <span className="hidden xs:inline">Back</span>
             </button>
 
             <div className="flex-1 min-w-0">
@@ -274,10 +275,10 @@ export function ProductDrawer({
                 <input
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-1.5 text-base font-bold text-white outline-none focus:border-cyan-500"
+                  className="w-full rounded-lg border border-slate-600 bg-slate-800 px-2.5 py-1 text-base font-bold text-white outline-none focus:border-cyan-500"
                 />
               ) : (
-                <h2 className="text-lg font-bold text-white tracking-tight truncate">
+                <h2 className="text-sm sm:text-lg font-bold text-white tracking-tight truncate">
                   {guaranteedProduct.name}
                 </h2>
               )}
@@ -293,14 +294,15 @@ export function ProductDrawer({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={() => setShowMasterPrompt(true)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
+              className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
               title="View & Copy Master Launch Prompt for this project"
             >
               <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-              <span>Master Prompt</span>
+              <span className="hidden sm:inline">Master Prompt</span>
+              <span className="sm:hidden">Prompt</span>
             </button>
 
             {guaranteedProduct.url && (
@@ -308,10 +310,11 @@ export function ProductDrawer({
                 href={guaranteedProduct.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-cyan-400 hover:bg-slate-800 hover:text-cyan-300 transition-colors"
+                className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/60 px-2.5 py-1.5 text-xs font-medium text-cyan-400 hover:bg-slate-800 hover:text-cyan-300 transition-colors"
+                title="Open Live Preview"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
-                Live Link
+                <span className="hidden xs:inline">Live Link</span>
               </a>
             )}
             <button
@@ -453,50 +456,50 @@ export function ProductDrawer({
             />
 
             {/* 7 Task States Grid */}
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 text-xs pt-1">
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+            <div className="flex overflow-x-auto no-scrollbar gap-2 pb-1 sm:grid sm:grid-cols-4 lg:grid-cols-7 text-xs pt-1 touch-scroll">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.done}`} />
                   Done
                 </span>
                 <span className="font-bold text-white tabular-nums">{doneTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.in_progress}`} />
                   In Progress
                 </span>
                 <span className="font-bold text-white tabular-nums">{inProgressTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.blocked}`} />
                   Blocked
                 </span>
                 <span className="font-bold text-white tabular-nums">{blockedTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.ai_review}`} />
                   AI Review
                 </span>
                 <span className="font-bold text-white tabular-nums">{aiReviewTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.human_review}`} />
                   Human Review
                 </span>
                 <span className="font-bold text-white tabular-nums">{humanReviewTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.not_required}`} />
                   Not Required
                 </span>
                 <span className="font-bold text-white tabular-nums">{notRequiredTasks}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
+              <div className="shrink-0 min-w-[110px] sm:min-w-0 flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 p-2.5">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <span className={`h-2 w-2 rounded-full ${TASK_STATUS_DOT_COLORS.not_started}`} />
                   Not Started
@@ -541,7 +544,7 @@ export function ProductDrawer({
                 onChange={(e) => setNewTask(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addCustomTask()}
                 placeholder="Add a new custom task..."
-                className="flex-1 rounded-xl border border-slate-700 bg-slate-800/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
+                className="flex-1 rounded-xl border border-slate-700 bg-slate-800/60 px-3.5 py-2 text-base sm:text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
               />
               <button
                 onClick={addCustomTask}
@@ -561,7 +564,7 @@ export function ProductDrawer({
                   value={taskSearch}
                   onChange={(e) => setTaskSearch(e.target.value)}
                   placeholder="Search among all 817 tasks (e.g. database, security, payment, SEO, auth)..."
-                  className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
+                  className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2 pl-9 pr-3 text-base sm:text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500"
                 />
               </div>
 
@@ -656,58 +659,79 @@ export function ProductDrawer({
                           </span>
 
                           {/* Quick Section Actions */}
-                          <div className="relative group">
+                          <div className="relative">
                             <button
                               type="button"
+                              onClick={() => setOpenBatchSec(openBatchSec === secName ? null : secName)}
                               className="rounded-lg border border-slate-700 bg-slate-800 px-2 py-1 text-[11px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
                               title="Section batch actions"
                             >
                               Batch &hellip;
                             </button>
-                            <div className="absolute right-0 z-50 mt-1 hidden group-hover:block w-40 rounded-xl border border-slate-700 bg-slate-900/98 p-1 shadow-2xl backdrop-blur-md">
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'done')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-emerald-300 hover:bg-slate-800"
-                              >
-                                <Check className="h-3 w-3" /> Mark all Done
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'not_required')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-zinc-400 hover:bg-slate-800"
-                              >
-                                <Ban className="h-3 w-3" /> Mark Not Required
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'in_progress')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-blue-300 hover:bg-slate-800"
-                              >
-                                <Clock className="h-3 w-3" /> Mark In Progress
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'ai_review')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-purple-300 hover:bg-slate-800"
-                              >
-                                <Sparkles className="h-3 w-3" /> Mark AI Review
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'human_review')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-amber-300 hover:bg-slate-800"
-                              >
-                                <UserCheck className="h-3 w-3" /> Mark Human Review
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleSectionBatchStatus(secName, 'not_started')}
-                                className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-slate-400 hover:bg-slate-800 border-t border-slate-800 mt-0.5 pt-1"
-                              >
-                                <RotateCcw className="h-3 w-3" /> Reset Section
-                              </button>
-                            </div>
+                            {openBatchSec === secName && (
+                              <div className="absolute right-0 z-50 mt-1 w-44 rounded-xl border border-slate-700 bg-slate-900/98 p-1.5 shadow-2xl backdrop-blur-md">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'done');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-emerald-300 hover:bg-slate-800"
+                                >
+                                  <Check className="h-3.5 w-3.5" /> Mark all Done
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'not_required');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-zinc-400 hover:bg-slate-800"
+                                >
+                                  <Ban className="h-3.5 w-3.5" /> Mark Not Required
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'in_progress');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-blue-300 hover:bg-slate-800"
+                                >
+                                  <Clock className="h-3.5 w-3.5" /> Mark In Progress
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'ai_review');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-purple-300 hover:bg-slate-800"
+                                >
+                                  <Sparkles className="h-3.5 w-3.5" /> Mark AI Review
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'human_review');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-amber-300 hover:bg-slate-800"
+                                >
+                                  <UserCheck className="h-3.5 w-3.5" /> Mark Human Review
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSectionBatchStatus(secName, 'not_started');
+                                    setOpenBatchSec(null);
+                                  }}
+                                  className="flex w-full items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-slate-400 hover:bg-slate-800 border-t border-slate-800 mt-0.5 pt-1"
+                                >
+                                  <RotateCcw className="h-3.5 w-3.5" /> Reset Section
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -724,17 +748,21 @@ export function ProductDrawer({
                                 <button
                                   type="button"
                                   onClick={() => handleToggleTaskDone(task)}
-                                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
-                                    task.status === 'done'
-                                      ? 'border-emerald-500 bg-emerald-500 text-slate-950'
-                                      : task.status === 'not_required'
-                                      ? 'border-zinc-700 bg-zinc-800 text-zinc-500'
-                                      : 'border-slate-600 bg-slate-800/60 hover:border-cyan-500'
-                                  }`}
+                                  className="flex items-center justify-center -m-1.5 p-1.5 shrink-0"
                                   title={task.status === 'done' ? 'Mark not done' : 'Mark done'}
                                 >
-                                  {task.status === 'done' && <Check className="h-3 w-3 stroke-[3]" />}
-                                  {task.status === 'not_required' && <span className="text-[9px]">✕</span>}
+                                  <div
+                                    className={`flex h-4 w-4 items-center justify-center rounded border transition-all ${
+                                      task.status === 'done'
+                                        ? 'border-emerald-500 bg-emerald-500 text-slate-950'
+                                        : task.status === 'not_required'
+                                        ? 'border-zinc-700 bg-zinc-800 text-zinc-500'
+                                        : 'border-slate-600 bg-slate-800/60 hover:border-cyan-500'
+                                    }`}
+                                  >
+                                    {task.status === 'done' && <Check className="h-3 w-3 stroke-[3]" />}
+                                    {task.status === 'not_required' && <span className="text-[9px]">✕</span>}
+                                  </div>
                                 </button>
                                 <span
                                   className={`text-xs leading-relaxed transition-colors truncate ${
