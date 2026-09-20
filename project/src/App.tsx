@@ -37,6 +37,11 @@ import { AddProductModal } from '@/components/AddProductModal';
 import { BulkActionBar } from '@/components/BulkActionBar';
 import { LoginGate } from '@/components/LoginGate';
 import { MasterPromptModal } from '@/components/MasterPromptModal';
+import { PrivacyPolicyModal } from '@/components/PrivacyPolicyModal';
+import { TermsModal } from '@/components/TermsModal';
+import { CookieConsent } from '@/components/CookieConsent';
+import { NotFoundView } from '@/components/NotFoundView';
+import { trackEvent } from '@/lib/analytics';
 
 type NavView = 'dashboard' | 'products';
 type DisplayMode = 'grid' | 'table' | 'kanban';
@@ -55,6 +60,8 @@ export default function App() {
   const [showAdd, setShowAdd] = useState(false);
   const [showMasterPrompt, setShowMasterPrompt] = useState(false);
   const [showTursoModal, setShowTursoModal] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
   const [tursoConfig, setTursoConfig] = useState(() => getTursoConfig());
   const [search, setSearch] = useState('');
   const [activeTags, setActiveTags] = useState<string[]>([]);
@@ -331,6 +338,25 @@ export default function App() {
               className="rounded-lg p-1.5 text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors"
             >
               <LogOut className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Legal & Compliance links */}
+          <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-slate-500">
+            <button
+              type="button"
+              onClick={() => setShowPrivacy(true)}
+              className="hover:text-slate-300 transition-colors"
+            >
+              Privacy Policy
+            </button>
+            <span>&bull;</span>
+            <button
+              type="button"
+              onClick={() => setShowTerms(true)}
+              className="hover:text-slate-300 transition-colors"
+            >
+              Terms & Conditions
             </button>
           </div>
         </div>
@@ -721,6 +747,19 @@ export default function App() {
           setTursoConfig(getTursoConfig());
           loadData();
         }}
+      />
+
+      {/* Legal Modals & Cookie Banner */}
+      <PrivacyPolicyModal
+        isOpen={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+      />
+      <TermsModal
+        isOpen={showTerms}
+        onClose={() => setShowTerms(false)}
+      />
+      <CookieConsent
+        onOpenPrivacy={() => setShowPrivacy(true)}
       />
     </div>
   );

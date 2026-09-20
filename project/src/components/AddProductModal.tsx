@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, AlertCircle } from 'lucide-react';
 import {
   type Product,
   TAG_OPTIONS,
@@ -7,7 +7,9 @@ import {
   STATUS_OPTIONS,
   STATUS_LABELS,
   saveProduct,
-} from '@/lib/supabase';
+} from '@/lib/turso';
+import { sanitizeText, isValidUrl } from '@/lib/sanitize';
+import { trackEvent } from '@/lib/analytics';
 
 export function AddProductModal({
   onClose,
@@ -22,19 +24,35 @@ export function AddProductModal({
   const [tag, setTag] = useState<string>('web-app');
   const [status, setStatus] = useState<string>('idea');
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSave() {
-    if (!name.trim()) return;
+    const cleanName = sanitizeText(name);
+    const cleanDesc = sanitizeText(description);
+    const cleanUrl = url.trim();
+
+    if (!cleanName) {
+      setError('Product name is required.');
+      return;
+    }
+
+    if (cleanUrl && !isValidUrl(cleanUrl)) {
+      setError('Please enter a valid URL starting with http:// or https://');
+      return;
+    }
+
+    setError(null);
     setSaving(true);
 
     const created = await saveProduct({
-      name: name.trim(),
-      description: description.trim() || null,
-      url: url.trim() || null,
+      name: cleanName,
+      description: cleanDesc || null,
+      url: cleanUrl || null,
       tag,
       status,
     });
 
+    trackEvent('product_created', { tag, status });
     setSaving(false);
     onCreated(created);
   }
@@ -52,6 +70,13 @@ export function AddProductModal({
             <X className="h-5 w-5" />
           </button>
         </div>
+
+        {error && (
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300">
+            <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
+            <span>{error}</span>
+          </div>
+        )}
 
         <div className="space-y-4">
           <div>

@@ -36,6 +36,7 @@ import {
   deleteTask as deleteTursoTask,
   saveProduct,
 } from '@/lib/turso';
+import { sanitizeText } from '@/lib/sanitize';
 import { CHECKLIST_SECTIONS } from '@/lib/masterChecklist';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
@@ -167,8 +168,9 @@ export function ProductDrawer({
   }
 
   async function addCustomTask() {
-    if (!newTask.trim()) return;
-    const taskTitle = newTask.trim();
+    const cleanTitle = sanitizeText(newTask);
+    if (!cleanTitle) return;
+    const taskTitle = cleanTitle;
     const newTaskObj: Task = {
       id: crypto.randomUUID(),
       product_id: guaranteedProduct.id,
@@ -202,21 +204,25 @@ export function ProductDrawer({
   }
 
   async function saveProductEdits() {
+    const cleanName = sanitizeText(editName) || guaranteedProduct.name;
+    const cleanDesc = sanitizeText(editDesc);
+    const cleanUrl = editUrl.trim();
+
     setSaving(true);
     await saveProduct({
       id: guaranteedProduct.id,
-      name: editName,
-      description: editDesc || null,
-      url: editUrl || null,
+      name: cleanName,
+      description: cleanDesc || null,
+      url: cleanUrl || null,
       tag: editTag,
       status: editStatus,
     });
     setSaving(false);
     const updated = {
       ...guaranteedProduct,
-      name: editName,
-      description: editDesc || null,
-      url: editUrl || null,
+      name: cleanName,
+      description: cleanDesc || null,
+      url: cleanUrl || null,
       tag: editTag,
       status: editStatus,
       tasks,

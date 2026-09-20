@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#020617"/>
+  <circle cx="600" cy="150" r="300" fill="#06B6D4" fill-opacity="0.1" filter="blur(100px)"/>
+  <circle cx="600" cy="450" r="300" fill="#3B82F6" fill-opacity="0.1" filter="blur(100px)"/>
+  
+  <rect x="530" y="140" width="140" height="140" rx="36" fill="url(#grad)" />
+  <path d="M570 190L600 170L630 190L600 210L570 190Z" stroke="white" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M570 210L600 230L630 210" stroke="white" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M570 230L600 250L630 230" stroke="white" stroke-width="6" stroke-linejoin="round"/>
+  
+  <text x="600" y="360" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" letter-spacing="-0.02em">Product Hub</text>
+  <text x="600" y="420" text-anchor="middle" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="500">96 Projects &bull; Master Product Build &amp; Launch OS</text>
+  
+  <rect x="420" y="470" width="360" height="48" rx="24" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <text x="600" y="501" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600">817-Task Master Checklist &bull; Turso Database</text>
+  
+  <defs>
+    <linearGradient id="grad" x1="530" y1="140" x2="670" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+</svg>

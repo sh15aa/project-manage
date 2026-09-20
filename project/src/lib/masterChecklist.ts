@@ -6546,6 +6546,326 @@ export const MASTER_CHECKLIST: MasterTaskDefinition[] = [
     "title": "Human review complete",
     "sort_order": 817,
     "status": "not_started"
+  },
+  {
+    "id": "master-818",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Secure your API keys (least privilege & rotation)",
+    "sort_order": 818,
+    "status": "not_started"
+  },
+  {
+    "id": "master-819",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Hide all .env files (never commit secrets to repo)",
+    "sort_order": 819,
+    "status": "not_started"
+  },
+  {
+    "id": "master-820",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Never hardcode secrets in source code",
+    "sort_order": 820,
+    "status": "not_started"
+  },
+  {
+    "id": "master-821",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Add authentication & secure session handling",
+    "sort_order": 821,
+    "status": "not_started"
+  },
+  {
+    "id": "master-822",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Verify permissions server-side (RBAC/authorization)",
+    "sort_order": 822,
+    "status": "not_started"
+  },
+  {
+    "id": "master-823",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Don't trust frontend user IDs (derive from session token)",
+    "sort_order": 823,
+    "status": "not_started"
+  },
+  {
+    "id": "master-824",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Isolate user and tenant data (row-level security)",
+    "sort_order": 824,
+    "status": "not_started"
+  },
+  {
+    "id": "master-825",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Lock down your database (firewall & restricted roles)",
+    "sort_order": 825,
+    "status": "not_started"
+  },
+  {
+    "id": "master-826",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Secure Firebase, Supabase, Turso, and object storage",
+    "sort_order": 826,
+    "status": "not_started"
+  },
+  {
+    "id": "master-827",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Protect admin and internal routes",
+    "sort_order": 827,
+    "status": "not_started"
+  },
+  {
+    "id": "master-828",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Disable production debug mode",
+    "sort_order": 828,
+    "status": "not_started"
+  },
+  {
+    "id": "master-829",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Hide detailed errors and stack traces from clients",
+    "sort_order": 829,
+    "status": "not_started"
+  },
+  {
+    "id": "master-830",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Validate inputs server-side",
+    "sort_order": 830,
+    "status": "not_started"
+  },
+  {
+    "id": "master-831",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Sanitize user content (XSS protection)",
+    "sort_order": 831,
+    "status": "not_started"
+  },
+  {
+    "id": "master-832",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Secure file uploads (MIME check, size limit, scan)",
+    "sort_order": 832,
+    "status": "not_started"
+  },
+  {
+    "id": "master-833",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Prevent SQL/NoSQL injection (parameterized queries)",
+    "sort_order": 833,
+    "status": "not_started"
+  },
+  {
+    "id": "master-834",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Rate-limit login, signup, and sensitive APIs",
+    "sort_order": 834,
+    "status": "not_started"
+  },
+  {
+    "id": "master-835",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Check Git history for secrets and leaked tokens",
+    "sort_order": 835,
+    "status": "not_started"
+  },
+  {
+    "id": "master-836",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Add security headers and restrict CORS",
+    "sort_order": 836,
+    "status": "not_started"
+  },
+  {
+    "id": "master-837",
+    "section": "39. 20-POINT SECURITY HARDENING",
+    "section_id": 39,
+    "title": "Test as an untrusted user & ask AI Agent for review",
+    "sort_order": 837,
+    "status": "not_started"
+  },
+  {
+    "id": "master-838",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a privacy policy page",
+    "sort_order": 838,
+    "status": "not_started"
+  },
+  {
+    "id": "master-839",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a terms and conditions page",
+    "sort_order": 839,
+    "status": "not_started"
+  },
+  {
+    "id": "master-840",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Get your secrets off the front end",
+    "sort_order": 840,
+    "status": "not_started"
+  },
+  {
+    "id": "master-841",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Force HTTPS & SSL certificate verification",
+    "sort_order": 841,
+    "status": "not_started"
+  },
+  {
+    "id": "master-842",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a cookie consent banner",
+    "sort_order": 842,
+    "status": "not_started"
+  },
+  {
+    "id": "master-843",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add meta titles and descriptions",
+    "sort_order": 843,
+    "status": "not_started"
+  },
+  {
+    "id": "master-844",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a social preview image (OpenGraph / Twitter)",
+    "sort_order": 844,
+    "status": "not_started"
+  },
+  {
+    "id": "master-845",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a favicon (SVG & ICO)",
+    "sort_order": 845,
+    "status": "not_started"
+  },
+  {
+    "id": "master-846",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Generate a sitemap and robots.txt",
+    "sort_order": 846,
+    "status": "not_started"
+  },
+  {
+    "id": "master-847",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add alt text to your images",
+    "sort_order": 847,
+    "status": "not_started"
+  },
+  {
+    "id": "master-848",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Compress your images and static assets",
+    "sort_order": 848,
+    "status": "not_started"
+  },
+  {
+    "id": "master-849",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Check your page load speed (Core Web Vitals)",
+    "sort_order": 849,
+    "status": "not_started"
+  },
+  {
+    "id": "master-850",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Fix your color contrast for WCAG AA compliance",
+    "sort_order": 850,
+    "status": "not_started"
+  },
+  {
+    "id": "master-851",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Make it mobile friendly and responsive",
+    "sort_order": 851,
+    "status": "not_started"
+  },
+  {
+    "id": "master-852",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add a custom 404 page",
+    "sort_order": 852,
+    "status": "not_started"
+  },
+  {
+    "id": "master-853",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Fix any broken links and test navigation",
+    "sort_order": 853,
+    "status": "not_started"
+  },
+  {
+    "id": "master-854",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add client and server form validation",
+    "sort_order": 854,
+    "status": "not_started"
+  },
+  {
+    "id": "master-855",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add spam and bot protection",
+    "sort_order": 855,
+    "status": "not_started"
+  },
+  {
+    "id": "master-856",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Set up privacy-friendly analytics",
+    "sort_order": 856,
+    "status": "not_started"
+  },
+  {
+    "id": "master-857",
+    "section": "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST",
+    "section_id": 40,
+    "title": "Add one clear call to action (CTA)",
+    "sort_order": 857,
+    "status": "not_started"
   }
 ];
 
@@ -6587,5 +6907,7 @@ export const CHECKLIST_SECTIONS: string[] = [
   "34. LAUNCH",
   "35. POST-LAUNCH",
   "36. AI AGENT REVIEW",
-  "38. FINAL SHIP GATE"
+  "38. FINAL SHIP GATE",
+  "39. 20-POINT SECURITY HARDENING",
+  "40. 20-POINT PRE-LAUNCH WEBSITE CHECKLIST"
 ];
