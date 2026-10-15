@@ -189,7 +189,7 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
                 </span>
               </div>
               <p className="text-[11px] text-slate-400">
-                {products.length} projects indexed &bull; {hasGeminiApiKey() ? 'Gemini 1.5 Flash' : 'Smart Local Engine'}
+                {products.length} projects indexed &bull; {hasGeminiApiKey() ? 'Gemini 2.5 Flash' : 'Smart Local Engine'}
               </p>
             </div>
           </div>
