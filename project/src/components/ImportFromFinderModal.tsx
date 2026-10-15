@@ -97,7 +97,9 @@ export function ImportFromFinderModal({
         });
         applyParsedData(extracted);
       } catch (err: any) {
-        setError(`Image extraction notice: ${err?.message || 'Could not analyze image'}`);
+        const rawMsg = err?.message || 'Could not analyze image';
+        const cleanMsg = rawMsg.replace(/^(?:Image extraction notice:\s*|Extraction notice:\s*)+/i, '');
+        setError(`Image extraction notice: ${cleanMsg}`);
       } finally {
         setExtractingImage(false);
       }

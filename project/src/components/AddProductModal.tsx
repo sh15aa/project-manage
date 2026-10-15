@@ -98,7 +98,9 @@ export function AddProductModal({
       setTab('text'); // Switch to form so user can review & save
     } catch (err: any) {
       console.error('Vision extraction error:', err);
-      setError(`Extraction notice: ${err?.message || 'Could not analyze image'}. Please enter details manually.`);
+      const rawMsg = err?.message || 'Could not analyze image';
+      const cleanMsg = rawMsg.replace(/^(?:Extraction notice:\s*)+/i, '');
+      setError(`Extraction notice: ${cleanMsg}`);
     } finally {
       setExtracting(false);
     }

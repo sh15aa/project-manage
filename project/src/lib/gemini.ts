@@ -97,6 +97,21 @@ async function fetchGeminiGenerateContent(
         return res;
       }
 
+      // If 400 Bad Request and body contains responseMimeType, retry without responseMimeType
+      if (res.status === 400 && body.generationConfig?.responseMimeType) {
+        const fallbackBody = {
+          ...body,
+          generationConfig: { ...body.generationConfig },
+        };
+        delete fallbackBody.generationConfig.responseMimeType;
+        const retryRes = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(fallbackBody),
+        });
+        if (retryRes.ok) return retryRes;
+      }
+
       // If model not found (404), try next model
       if (res.status === 404) {
         console.warn(`Model ${model} returned 404, attempting fallback model...`);
@@ -166,7 +181,9 @@ Extract the core product opportunity and return ONLY valid JSON matching this sc
     }
   ]
 }
-Return pure JSON with no markdown backticks and no extra commentary.`;
+IMPORTANT:
+- Keep vibeGuide to at most 3 concise steps.
+- Return pure JSON with no markdown backticks, no comments, and fully closed braces.`;
 
   try {
     const body = {
@@ -186,7 +203,8 @@ Return pure JSON with no markdown backticks and no extra commentary.`;
       generationConfig: {
         temperature: 0.2,
         topP: 0.9,
-        maxOutputTokens: 1200,
+        maxOutputTokens: 4096,
+        responseMimeType: 'application/json',
       },
     };
 
@@ -204,19 +222,7 @@ Return pure JSON with no markdown backticks and no extra commentary.`;
       throw new Error('Gemini returned an empty response for this image.');
     }
 
-    // Parse JSON from output
-    const cleanJson = candidateText
-      .replace(/```(?:json)?/gi, '')
-      .replace(/```/g, '')
-      .trim();
-
-    const start = cleanJson.indexOf('{');
-    const end = cleanJson.lastIndexOf('}');
-    if (start === -1 || end === -1 || end <= start) {
-      throw new Error('Could not parse structured JSON from Gemini vision output.');
-    }
-
-    const parsed = JSON.parse(cleanJson.slice(start, end + 1));
+    const parsed = parseIdeaJsonResiliently(candidateText);
 
     // Normalize tag to valid TAG_OPTIONS
     const validTags = ['app', 'web-app', 'tool', 'saas', 'made-for-fun', 'games'] as const;
@@ -251,6 +257,157 @@ Return pure JSON with no markdown backticks and no extra commentary.`;
     console.error('Image extraction failed:', err);
     throw err;
   }
+}
+
+/**
+ * Repairs truncated or malformed JSON emitted by LLMs when hitting token limits
+ * or omitting closing brackets.
+ */
+function repairTruncatedJson(str: string): string {
+  let inString = false;
+  let escape = false;
+  const stack: string[] = [];
+
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (ch === '\\') {
+      if (inString) escape = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (!inString) {
+      if (ch === '{' || ch === '[') {
+        stack.push(ch);
+      } else if (ch === '}' && stack[stack.length - 1] === '{') {
+        stack.pop();
+      } else if (ch === ']' && stack[stack.length - 1] === '[') {
+        stack.pop();
+      }
+    }
+  }
+
+  let repaired = str;
+  if (inString) {
+    repaired += '"';
+  }
+
+  // Strip trailing commas, colons, or incomplete key fragments before closing
+  repaired = repaired.replace(/,\s*$/, '');
+  repaired = repaired.replace(/:\s*$/, ': null');
+  repaired = repaired.replace(/"[^"]*"\s*:\s*$/, '');
+  repaired = repaired.replace(/,\s*$/, '');
+
+  // Close remaining open brackets in reverse order
+  while (stack.length > 0) {
+    const open = stack.pop();
+    if (open === '{') repaired += '}';
+    else if (open === '[') repaired += ']';
+  }
+
+  return repaired;
+}
+
+/**
+ * Resilient JSON parser for LLM vision outputs:
+ * 1. Direct parse attempt
+ * 2. Slice to outer balanced braces
+ * 3. Automatic bracket & quote repair for truncated responses
+ * 4. Regex fallback extraction so idea details are never lost
+ */
+function parseIdeaJsonResiliently(rawText: string): any {
+  if (!rawText || !rawText.trim()) {
+    throw new Error('Gemini returned an empty response for this image.');
+  }
+
+  let clean = rawText
+    .replace(/^```(?:json)?\s*/im, '')
+    .replace(/```\s*$/m, '')
+    .replace(/```/g, '')
+    .trim();
+
+  const firstBrace = clean.indexOf('{');
+  if (firstBrace !== -1) {
+    clean = clean.slice(firstBrace);
+  }
+
+  // 1. Direct parse attempt
+  try {
+    const direct = JSON.parse(clean);
+    if (direct && typeof direct === 'object') return direct;
+  } catch {}
+
+  // 2. Try slice to last }
+  const lastBrace = clean.lastIndexOf('}');
+  if (lastBrace !== -1) {
+    try {
+      const sliced = JSON.parse(clean.slice(0, lastBrace + 1));
+      if (sliced && typeof sliced === 'object') return sliced;
+    } catch {}
+  }
+
+  // 3. Try automatic repair on full clean string
+  try {
+    const repaired = repairTruncatedJson(clean);
+    const parsed = JSON.parse(repaired);
+    if (parsed && typeof parsed === 'object') return parsed;
+  } catch {}
+
+  // 3b. Try repair on slice up to last complete sub-object }
+  if (lastBrace !== -1) {
+    try {
+      const repaired = repairTruncatedJson(clean.slice(0, lastBrace + 1));
+      const parsed = JSON.parse(repaired);
+      if (parsed && typeof parsed === 'object') return parsed;
+    } catch {}
+  }
+
+  // 4. Regex fallback extraction for fields
+  const fallback: any = {};
+  const nameMatch = clean.match(/"name"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/i);
+  if (nameMatch) {
+    try {
+      fallback.name = JSON.parse(`"${nameMatch[1]}"`);
+    } catch {
+      fallback.name = nameMatch[1];
+    }
+  }
+
+  const descMatch = clean.match(/"description"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/i);
+  if (descMatch) {
+    try {
+      fallback.description = JSON.parse(`"${descMatch[1]}"`);
+    } catch {
+      fallback.description = descMatch[1];
+    }
+  }
+
+  const tagMatch = clean.match(/"tag"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/i);
+  if (tagMatch) fallback.tag = tagMatch[1];
+
+  const urlMatch = clean.match(/"url"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/i);
+  if (urlMatch) fallback.url = urlMatch[1];
+
+  const textMatch = clean.match(/"extractedText"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/i);
+  if (textMatch) {
+    try {
+      fallback.extractedText = JSON.parse(`"${textMatch[1]}"`);
+    } catch {
+      fallback.extractedText = textMatch[1];
+    }
+  }
+
+  if (fallback.name || fallback.description || fallback.extractedText) {
+    return fallback;
+  }
+
+  throw new Error('Could not parse structured JSON from Gemini vision output.');
 }
 
 export interface ChatMessage {
