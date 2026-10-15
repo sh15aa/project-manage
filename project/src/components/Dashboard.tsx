@@ -1,4 +1,4 @@
-import { Package, CheckCircle2, Clock, Layers, Rocket, Lightbulb, CheckSquare, Sparkles, UserCheck, AlertCircle, Ban } from 'lucide-react';
+import { Package, CheckCircle2, Clock, Layers, Rocket, Lightbulb, CheckSquare, Sparkles, UserCheck, AlertCircle, Ban, Compass, ExternalLink } from 'lucide-react';
 import type { ProductWithTasks, TaskStatus } from '@/lib/supabase';
 import {
   STATUS_LABELS,
@@ -94,6 +94,37 @@ export function Dashboard({ products }: { products: ProductWithTasks[] }) {
 
   return (
     <div className="space-y-6">
+      {/* Finder Startup & App Ideas Integration Banner */}
+      <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-900/80 to-slate-900/60 p-5 shadow-lg backdrop-blur-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-start gap-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 shadow-inner">
+              <Compass className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-bold text-white tracking-tight">Finder — Startup & App Ideas</h3>
+                <span className="rounded-full bg-emerald-400/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/30">
+                  Live Platform
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-slate-300 max-w-2xl leading-relaxed">
+                Discover validated ideas from TrustMRR, Reddit, Product Hunt & App Store with verified Stripe & Lemon Squeezy MRR, and turn them into actionable project launches.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://finder-d17.pages.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs h-10 px-4 transition-all shadow-sm hover:shadow-emerald-500/20 shrink-0"
+          >
+            <span>Explore on Finder</span>
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      </div>
+
       {/* Stat cards */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {stats.map((stat) => {
