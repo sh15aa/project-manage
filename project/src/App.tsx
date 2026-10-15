@@ -14,6 +14,8 @@ import {
   Database,
   Compass,
   ExternalLink,
+  Bot,
+  MessageSquare,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -45,6 +47,7 @@ import { TermsModal } from '@/components/TermsModal';
 import { CookieConsent } from '@/components/CookieConsent';
 import { NotFoundView } from '@/components/NotFoundView';
 import { ImportFromFinderModal, type FinderIdeaPayload } from '@/components/ImportFromFinderModal';
+import { ProjectAssistantDrawer } from '@/components/ProjectAssistantDrawer';
 import { trackEvent } from '@/lib/analytics';
 
 type NavView = 'dashboard' | 'products';
@@ -78,6 +81,7 @@ export default function App() {
   const [showTerms, setShowTerms] = useState(false);
   const [finderIdeaToImport, setFinderIdeaToImport] = useState<FinderIdeaPayload | null>(null);
   const [showFinderImportModal, setShowFinderImportModal] = useState(false);
+  const [showAssistant, setShowAssistant] = useState(false);
 
   // Detect incoming idea handoff from Finder via URL query parameters or preserved session
   useEffect(() => {
@@ -326,6 +330,17 @@ export default function App() {
           </button>
 
           <button
+            onClick={() => setShowAssistant(true)}
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition-colors group"
+          >
+            <Bot className="h-4 w-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+            <span>AI Assistant</span>
+            <span className="ml-auto rounded-md bg-cyan-500/20 px-1.5 py-0.5 text-[10px] font-bold text-cyan-300">
+              Chat
+            </span>
+          </button>
+
+          <button
             onClick={() => setShowMasterPrompt(true)}
             className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition-colors"
           >
@@ -533,6 +548,16 @@ export default function App() {
             <span className="text-[11px] font-medium hidden xs:inline">Finder</span>
             <ExternalLink className="h-2.5 w-2.5 opacity-70" />
           </a>
+
+          <button
+            type="button"
+            onClick={() => setShowAssistant(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-2 py-1.5 text-xs text-cyan-300 hover:bg-cyan-900/60 transition-colors"
+            title="Ask AI Assistant"
+          >
+            <Bot className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="text-[11px] font-bold">AI</span>
+          </button>
 
           <button
             type="button"
@@ -1022,6 +1047,38 @@ export default function App() {
       />
       <CookieConsent
         onOpenPrivacy={() => setShowPrivacy(true)}
+      />
+
+      {/* Floating AI Assistant Trigger Button */}
+      <button
+        onClick={() => setShowAssistant(true)}
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 px-4 py-3 text-xs font-bold text-white shadow-2xl shadow-cyan-500/30 transition-all hover:scale-105 hover:shadow-cyan-500/50 active:scale-95 border border-cyan-400/40 group"
+      >
+        <div className="relative">
+          <Bot className="h-4 w-4 text-cyan-200 group-hover:rotate-12 transition-transform" />
+          <span className="absolute -top-1 -right-1 flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-300" />
+          </span>
+        </div>
+        <span className="hidden sm:inline tracking-wide">Ask AI Assistant</span>
+        <span className="sm:hidden font-semibold">AI</span>
+      </button>
+
+      {/* AI Chatbot Assistant Drawer */}
+      <ProjectAssistantDrawer
+        isOpen={showAssistant}
+        onClose={() => setShowAssistant(false)}
+        products={products}
+        onApplyFilter={(filters) => {
+          setView('products');
+          if (filters.tags !== undefined) setActiveTags(filters.tags);
+          if (filters.statuses !== undefined) setActiveStatuses(filters.statuses);
+          if (filters.search !== undefined) setSearch(filters.search);
+        }}
+        onSelectProduct={(product) => {
+          setSelectedProduct(product);
+        }}
       />
     </div>
   );

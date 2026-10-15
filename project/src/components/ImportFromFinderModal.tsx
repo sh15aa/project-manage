@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { X, Sparkles, Compass, ExternalLink, Check, AlertCircle, ListOrdered, ArrowRight } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { X, Sparkles, Compass, ExternalLink, Check, AlertCircle, ListOrdered, ArrowRight, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 import {
   type ProductWithTasks,
   TAG_OPTIONS,
@@ -11,6 +11,7 @@ import {
 } from '@/lib/turso';
 import { sanitizeText, isValidUrl } from '@/lib/sanitize';
 import { trackEvent } from '@/lib/analytics';
+import { extractIdeaFromImage } from '@/lib/gemini';
 
 export interface FinderIdeaPayload {
   id?: string;
@@ -74,6 +75,35 @@ export function ImportFromFinderModal({
   const [showBlueprint, setShowBlueprint] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [extractingImage, setExtractingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  async function handleImageSelected(file: File) {
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file (PNG, JPG, WebP).');
+      return;
+    }
+    setError(null);
+    setExtractingImage(true);
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = e.target?.result as string;
+      try {
+        const extracted = await extractIdeaFromImage({
+          base64Data: base64,
+          mimeType: file.type,
+          fileName: file.name,
+        });
+        applyParsedData(extracted);
+      } catch (err: any) {
+        setError(`Image extraction notice: ${err?.message || 'Could not analyze image'}`);
+      } finally {
+        setExtractingImage(false);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
 
   // Handle parsing a pasted Finder link or JSON
   function handleParsePaste() {
@@ -233,23 +263,58 @@ export function ImportFromFinderModal({
           </button>
         </div>
 
-        {/* Paste link helper if no initial data */}
+        {/* Paste link or upload image helper if no initial data */}
         {!initialData?.name && (
-          <div className="mt-4 rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-            <p className="text-xs font-medium text-slate-300 mb-1.5">Paste Finder idea link or JSON</p>
-            <div className="flex gap-2">
+          <div className="mt-4 rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2.5">
+            <div>
+              <p className="text-xs font-medium text-slate-300 mb-1.5">Paste Finder idea link or JSON</p>
+              <div className="flex gap-2">
+                <input
+                  value={pasteInput}
+                  onChange={(e) => setPasteInput(e.target.value)}
+                  placeholder="https://finder-d17.pages.dev/hit/trustmrr/..."
+                  className="flex-1 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleParsePaste}
+                  className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shrink-0"
+                >
+                  Load Idea
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-1 border-t border-slate-800/60 text-[11px]">
+              <span className="text-slate-400">Or extract idea from screenshot / wireframe:</span>
               <input
-                value={pasteInput}
-                onChange={(e) => setPasteInput(e.target.value)}
-                placeholder="https://finder-d17.pages.dev/hit/trustmrr/..."
-                className="flex-1 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-500"
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/jpg"
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    handleImageSelected(e.target.files[0]);
+                  }
+                }}
               />
               <button
                 type="button"
-                onClick={handleParsePaste}
-                className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shrink-0"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={extractingImage}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-2.5 py-1 text-cyan-300 hover:bg-cyan-900/50 hover:text-white transition-colors"
               >
-                Load Idea
+                {extractingImage ? (
+                  <>
+                    <Loader2 className="h-3 w-3 animate-spin text-cyan-400" />
+                    <span>Extracting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="h-3 w-3 text-cyan-400" />
+                    <span>📷 Upload Image (Gemini AI)</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
