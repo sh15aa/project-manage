@@ -160,12 +160,12 @@ export const TAG_LABELS: Record<string, string> = {
 };
 
 export const TAG_COLORS: Record<string, string> = {
-  'app': 'bg-blue-500/15 text-blue-300 border-blue-500/30',
-  'web-app': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
-  'tool': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-  'saas': 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-  'made-for-fun': 'bg-pink-500/15 text-pink-300 border-pink-500/30',
-  'games': 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+  'app': 'bg-sky-500/[0.08] text-sky-300 border-sky-500/20',
+  'web-app': 'bg-teal-500/[0.08] text-teal-300 border-teal-500/20',
+  'tool': 'bg-amber-500/[0.08] text-amber-300 border-amber-500/20',
+  'saas': 'bg-emerald-500/[0.08] text-emerald-300 border-emerald-500/20',
+  'made-for-fun': 'bg-purple-500/[0.08] text-purple-300 border-purple-500/20',
+  'games': 'bg-rose-500/[0.08] text-rose-300 border-rose-500/20',
 };
 
 export const STATUS_LABELS: Record<string, string> = {
@@ -181,15 +181,15 @@ export const STATUS_LABELS: Record<string, string> = {
 };
 
 export const STATUS_COLORS: Record<string, string> = {
-  'idea': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-  'working': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
-  'done': 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-  'deployed': 'bg-violet-500/15 text-violet-300 border-violet-500/30',
-  'in-progress': 'bg-yellow-500/15 text-yellow-300 border-yellow-500/30',
-  'complete': 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-  'hosted': 'bg-purple-500/15 text-purple-300 border-purple-500/30',
-  'pending': 'bg-orange-500/15 text-orange-300 border-orange-500/30',
-  'archived': 'bg-slate-500/15 text-slate-400 border-slate-500/30',
+  'idea': 'bg-amber-400/[0.08] text-amber-300 border-amber-500/20',
+  'working': 'bg-sky-400/[0.08] text-sky-300 border-sky-500/20',
+  'done': 'bg-emerald-400/[0.08] text-emerald-300 border-emerald-500/20',
+  'deployed': 'bg-indigo-400/[0.08] text-indigo-300 border-indigo-500/20',
+  'in-progress': 'bg-yellow-400/[0.08] text-yellow-300 border-yellow-500/20',
+  'complete': 'bg-emerald-400/[0.08] text-emerald-300 border-emerald-500/20',
+  'hosted': 'bg-purple-400/[0.08] text-purple-300 border-purple-500/20',
+  'pending': 'bg-orange-400/[0.08] text-orange-300 border-orange-500/20',
+  'archived': 'bg-zinc-500/[0.08] text-zinc-400 border-zinc-700/40',
 };
 
 export const STATUS_DOT_COLORS: Record<string, string> = {

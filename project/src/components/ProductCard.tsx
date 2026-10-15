@@ -28,15 +28,15 @@ export function ProductCard({
   return (
     <div
       onClick={onClick}
-      className={`group relative flex flex-col justify-between rounded-xl border p-3.5 sm:p-4 transition-all duration-200 hover:shadow-xl hover:shadow-black/30 cursor-pointer active:scale-[0.98] ${
+      className={`group relative flex flex-col justify-between rounded-2xl border p-4 sm:p-5 transition-all duration-300 cursor-pointer active:scale-[0.99] ${
         selected
-          ? 'border-cyan-500 bg-slate-800/90 ring-1 ring-cyan-500/50'
-          : 'border-slate-800/80 bg-slate-900/60 hover:border-slate-700 hover:bg-slate-850'
+          ? 'border-sky-500/50 bg-sky-950/20 shadow-glow-cyan ring-1 ring-sky-500/30'
+          : 'border-white/[0.06] bg-[#0c0e14]/60 hover:border-white/[0.14] hover:bg-[#11141d]/80 hover:shadow-2xl hover:shadow-black/50 hover:-translate-y-0.5'
       }`}
     >
       <div>
-        <div className="mb-2.5 flex items-start justify-between gap-2">
-          <div className="flex items-center gap-2 flex-1 min-w-0">
+        <div className="mb-2.5 flex items-start justify-between gap-2.5">
+          <div className="flex items-center gap-2.5 flex-1 min-w-0">
             {onToggleSelect && (
               <button
                 type="button"
@@ -48,17 +48,17 @@ export function ProductCard({
                 title={selected ? 'Deselect project' : 'Select project'}
               >
                 <div
-                  className={`flex h-4 w-4 items-center justify-center rounded border transition-all ${
+                  className={`flex h-4 w-4 items-center justify-center rounded-md border transition-all duration-150 ${
                     selected
-                      ? 'border-cyan-500 bg-cyan-500 text-slate-950'
-                      : 'border-slate-700 bg-slate-800/80 hover:border-slate-500'
+                      ? 'border-sky-400 bg-sky-400 text-black shadow-sm'
+                      : 'border-white/20 bg-black/40 hover:border-white/40'
                   }`}
                 >
                   {selected && <Check className="h-3 w-3 stroke-[3]" />}
                 </div>
               </button>
             )}
-            <h3 className="font-semibold text-sm sm:text-base text-slate-100 transition-colors group-hover:text-cyan-300 truncate">
+            <h3 className="font-semibold text-sm sm:text-[15px] text-zinc-100 transition-colors group-hover:text-white tracking-tight truncate">
               {product.name}
             </h3>
           </div>
@@ -68,7 +68,7 @@ export function ProductCard({
               e.stopPropagation();
               onClick();
             }}
-            className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors shrink-0 -mr-1 -mt-0.5"
+            className="rounded-lg p-1 text-zinc-500 hover:bg-white/[0.06] hover:text-zinc-200 transition-colors shrink-0 -mr-1 -mt-0.5 opacity-60 group-hover:opacity-100"
             title="Open details"
           >
             <MoreVertical className="h-4 w-4" />
@@ -76,12 +76,12 @@ export function ProductCard({
         </div>
 
         {product.description && (
-          <p className="mb-3 line-clamp-2 text-xs text-slate-400 leading-relaxed">
+          <p className="mb-3 line-clamp-2 text-xs text-zinc-400 group-hover:text-zinc-300 leading-relaxed transition-colors">
             {product.description}
           </p>
         )}
 
-        <div className="mb-2 flex flex-wrap items-center gap-1.5 sm:gap-2">
+        <div className="mb-2.5 flex flex-wrap items-center gap-1.5">
           <TagBadge tag={product.tag} />
           <StatusBadge
             status={product.status}
@@ -90,9 +90,9 @@ export function ProductCard({
         </div>
       </div>
 
-      <div className="pt-1.5 border-t border-slate-800/50 mt-1">
+      <div className="pt-3 border-t border-white/[0.05] mt-2">
         {doneCount > 0 && totalCount > 0 && (
-          <div className="mb-2">
+          <div className="mb-2.5">
             <ProgressBar done={doneCount} total={totalCount} notRequired={notRequiredCount} />
           </div>
         )}
@@ -104,13 +104,13 @@ export function ProductCard({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[11px] font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors border border-transparent hover:border-white/[0.08]"
             >
-              <ExternalLink className="h-3 w-3 shrink-0" />
-              <span className="truncate max-w-[120px]">Live Preview</span>
+              <ExternalLink className="h-3 w-3 shrink-0 opacity-70" />
+              <span className="truncate max-w-[110px]">Preview</span>
             </a>
           ) : (
-            <span className="text-[11px] text-slate-600">No preview URL</span>
+            <span className="text-[11px] text-zinc-600 font-mono">unlinked</span>
           )}
 
           {onOpenPrompt && (
@@ -120,11 +120,11 @@ export function ProductCard({
                 e.stopPropagation();
                 onOpenPrompt(product);
               }}
-              className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[11px] font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[11px] font-medium text-zinc-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all shadow-sm"
               title="Open Build Guide & AI Prompts for this project"
             >
-              <Sparkles className="h-3 w-3 text-cyan-400" />
-              <span>Build Guide</span>
+              <Sparkles className="h-3 w-3 text-sky-400" />
+              <span>Guide</span>
             </button>
           )}
         </div>

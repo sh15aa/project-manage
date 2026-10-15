@@ -1,4 +1,4 @@
-import { ExternalLink, MoreHorizontal, Check, Sparkles } from 'lucide-react';
+import { ExternalLink, Check, Sparkles, MoreHorizontal } from 'lucide-react';
 import type { ProductWithTasks } from '@/lib/supabase';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
@@ -27,37 +27,37 @@ export function ProductTable({
   const someSelected = products.some((p) => selectedIds.has(p.id)) && !allSelected;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 shadow-md">
+    <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0c0e14]/60 shadow-xl backdrop-blur-md">
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm text-slate-300">
-          <thead className="border-b border-slate-800 bg-slate-800/40 text-xs uppercase text-slate-400">
+        <table className="w-full text-left text-sm text-zinc-300">
+          <thead className="border-b border-white/[0.06] bg-white/[0.02] text-[11px] uppercase tracking-wider font-semibold text-zinc-500">
             <tr>
-              <th className="w-10 px-4 py-3 text-center">
+              <th className="w-10 px-4 py-3.5 text-center">
                 <button
                   type="button"
                   onClick={onToggleSelectAll}
-                  className={`flex h-4 w-4 items-center justify-center rounded border transition-colors ${
+                  className={`flex h-4 w-4 items-center justify-center rounded-md border transition-colors ${
                     allSelected
-                      ? 'border-cyan-500 bg-cyan-500 text-slate-950'
+                      ? 'border-sky-400 bg-sky-400 text-black shadow-sm'
                       : someSelected
-                      ? 'border-cyan-500 bg-cyan-500/20 text-cyan-400'
-                      : 'border-slate-600 bg-slate-800 hover:border-slate-400'
+                      ? 'border-sky-400/60 bg-sky-400/20 text-sky-300'
+                      : 'border-white/20 bg-black/40 hover:border-white/40'
                   }`}
                   title={allSelected ? 'Deselect all' : 'Select all'}
                 >
                   {allSelected && <Check className="h-3 w-3 stroke-[3]" />}
-                  {someSelected && <div className="h-1.5 w-1.5 rounded-sm bg-cyan-400" />}
+                  {someSelected && <div className="h-1.5 w-1.5 rounded-sm bg-sky-400" />}
                 </button>
               </th>
-              <th className="px-4 py-3 font-semibold">Project</th>
-              <th className="px-4 py-3 font-semibold">Category</th>
-              <th className="px-4 py-3 font-semibold">Status (Change)</th>
-              <th className="px-4 py-3 font-semibold">Tasks</th>
-              <th className="px-4 py-3 font-semibold">Link</th>
-              <th className="w-12 px-4 py-3 text-right"></th>
+              <th className="px-4 py-3.5">Project</th>
+              <th className="px-4 py-3.5">Category</th>
+              <th className="px-4 py-3.5">Status</th>
+              <th className="px-4 py-3.5 w-44">Checklist Progress</th>
+              <th className="px-4 py-3.5">Link</th>
+              <th className="w-24 px-4 py-3.5 text-right"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/50">
+          <tbody className="divide-y divide-white/[0.04]">
             {products.map((product) => {
               const isSelected = selectedIds.has(product.id);
               const doneCount = product.tasks.filter((t) => t.status === 'done' || t.done).length;
@@ -68,8 +68,8 @@ export function ProductTable({
                 <tr
                   key={product.id}
                   onClick={() => onSelectProduct(product)}
-                  className={`group cursor-pointer transition-colors hover:bg-slate-800/40 ${
-                    isSelected ? 'bg-cyan-500/5' : ''
+                  className={`group cursor-pointer transition-colors hover:bg-white/[0.03] ${
+                    isSelected ? 'bg-sky-500/[0.04]' : ''
                   }`}
                 >
                   <td
@@ -79,10 +79,10 @@ export function ProductTable({
                     <button
                       type="button"
                       onClick={() => onToggleSelect(product.id)}
-                      className={`flex h-4 w-4 items-center justify-center rounded border transition-colors ${
+                      className={`flex h-4 w-4 items-center justify-center rounded-md border transition-colors ${
                         isSelected
-                          ? 'border-cyan-500 bg-cyan-500 text-slate-950'
-                          : 'border-slate-600 bg-slate-800 hover:border-slate-400'
+                          ? 'border-sky-400 bg-sky-400 text-black shadow-sm'
+                          : 'border-white/20 bg-black/40 hover:border-white/40'
                       }`}
                     >
                       {isSelected && <Check className="h-3 w-3 stroke-[3]" />}
@@ -90,93 +90,63 @@ export function ProductTable({
                   </td>
 
                   <td className="px-4 py-3">
-                    <div className="font-medium text-slate-100 group-hover:text-cyan-300 transition-colors">
+                    <div className="font-semibold text-zinc-100 group-hover:text-white transition-colors tracking-tight">
                       {product.name}
                     </div>
                     {product.description && (
-                      <p className="line-clamp-1 text-xs text-slate-500 max-w-md">
+                      <p className="line-clamp-1 text-xs text-zinc-400 max-w-md font-normal leading-relaxed">
                         {product.description}
                       </p>
                     )}
                   </td>
 
-                  <td className="px-4 py-3 whitespace-nowrap">
+                  <td className="px-4 py-3">
                     <TagBadge tag={product.tag} />
                   </td>
 
-                  <td
-                    className="px-4 py-3 whitespace-nowrap"
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                  <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                     <StatusBadge
                       status={product.status}
                       onChange={(newStatus) => onStatusChange(product.id, newStatus)}
                     />
                   </td>
 
-                  <td className="px-4 py-3 whitespace-nowrap">
+                  <td className="px-4 py-3">
                     {totalCount > 0 ? (
-                      <div className="w-28 space-y-1">
-                        <div className="flex items-center justify-between text-[11px] text-slate-400">
-                          <span>Progress</span>
-                          <span>{doneCount}/{Math.max(0, totalCount - notRequiredCount) || totalCount}</span>
-                        </div>
-                        <ProgressBar done={doneCount} total={totalCount} notRequired={notRequiredCount} showText={false} />
-                      </div>
+                      <ProgressBar done={doneCount} total={totalCount} notRequired={notRequiredCount} />
                     ) : (
-                      <span className="text-xs text-slate-600">—</span>
+                      <span className="text-[11px] font-mono text-zinc-600">—</span>
                     )}
                   </td>
 
-                  <td
-                    className="px-4 py-3 whitespace-nowrap text-xs"
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                  <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                     {product.url ? (
                       <a
                         href={product.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-cyan-400 hover:underline"
+                        className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors"
                       >
-                        <ExternalLink className="h-3 w-3" />
-                        <span className="max-w-[120px] truncate">
-                          {product.url.replace(/^https?:\/\//, '')}
-                        </span>
+                        <ExternalLink className="h-3 w-3 opacity-60" />
+                        <span className="max-w-[100px] truncate">Open</span>
                       </a>
                     ) : (
-                      <span className="text-slate-600">—</span>
+                      <span className="text-xs text-zinc-600 font-mono">—</span>
                     )}
                   </td>
 
-                  <td className="px-4 py-3 text-right whitespace-nowrap">
-                    <div className="flex items-center justify-end gap-1.5">
-                      {onOpenPrompt && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onOpenPrompt(product);
-                          }}
-                          className="inline-flex items-center gap-1 rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-xs font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
-                          title="Open Build Guide & AI Prompts"
-                        >
-                          <Sparkles className="h-3 w-3" />
-                          <span className="hidden sm:inline">Guide</span>
-                        </button>
-                      )}
+                  <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
+                    {onOpenPrompt && (
                       <button
                         type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectProduct(product);
-                        }}
-                        className="rounded p-1 text-slate-500 opacity-0 hover:bg-slate-700/50 hover:text-slate-300 group-hover:opacity-100"
-                        title="Open details"
+                        onClick={() => onOpenPrompt(product)}
+                        className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/[0.06] border border-transparent hover:border-white/[0.08] transition-all"
+                        title="Open Build Guide"
                       >
-                        <MoreHorizontal className="h-4 w-4" />
+                        <Sparkles className="h-3 w-3 text-sky-400" />
+                        <span>Guide</span>
                       </button>
-                    </div>
+                    )}
                   </td>
                 </tr>
               );

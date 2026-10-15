@@ -21,27 +21,27 @@ export function ProgressBar({
 
   const barColor =
     pct === 100
-      ? 'bg-emerald-400'
+      ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]'
       : pct >= 50
-      ? 'bg-cyan-400'
+      ? 'bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.4)]'
       : pct > 0
-      ? 'bg-yellow-400'
-      : 'bg-slate-600';
+      ? 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.3)]'
+      : 'bg-zinc-700';
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-700/50">
+    <div className="flex items-center gap-2.5">
+      <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/[0.06]">
         <div
           className={`h-full rounded-full transition-all duration-500 ease-out ${barColor}`}
           style={{ width: `${Math.min(100, pct)}%` }}
         />
       </div>
       {showText && (
-        <span className="text-xs font-medium tabular-nums text-slate-400">
+        <span className="text-[11px] font-mono tabular-nums text-zinc-500 shrink-0">
           {done}/{effectiveTotal || total}
           {notRequired > 0 && (
-            <span className="ml-1 text-[10px] text-slate-500">
-              ({notRequired} N/R)
+            <span className="ml-1 text-[10px] text-zinc-600">
+              ({notRequired})
             </span>
           )}
         </span>

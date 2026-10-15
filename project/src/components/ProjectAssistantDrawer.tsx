@@ -168,33 +168,33 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
       {/* Background click to dismiss */}
       <div className="flex-1" onClick={onClose} />
 
       {/* Main Drawer Container */}
-      <div className="relative flex h-full w-full max-w-lg flex-col border-l border-slate-800 bg-slate-950 shadow-2xl animate-in slide-in-from-right duration-300">
+      <div className="relative flex h-full w-full max-w-lg flex-col border-l border-white/[0.08] bg-[#090b10]/95 backdrop-blur-2xl shadow-2xl animate-in slide-in-from-right duration-300 font-sans">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 bg-slate-900/80 px-4 py-3.5 backdrop-blur-md">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25">
-              <Bot className="h-5 w-5 text-white" />
+        <div className="flex items-center justify-between border-b border-white/[0.06] bg-white/[0.02] px-5 py-4 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] text-white shadow-inner-light">
+              <Bot className="h-4 w-4 text-sky-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-bold text-white tracking-tight">Product Hub AI</h3>
-                <span className="flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/30">
+                <h3 className="text-sm font-semibold text-white tracking-tight">AI Assistant</h3>
+                <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono font-medium text-emerald-300 border border-emerald-500/20">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Live Sync
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">
-                {products.length} projects indexed &bull; {hasGeminiApiKey() ? 'Gemini 2.5 Flash' : 'Smart Local Engine'}
+              <p className="text-[11px] text-zinc-400 font-mono mt-0.5">
+                {products.length} projects &bull; {hasGeminiApiKey() ? 'Gemini 2.5 Flash' : 'Smart Engine'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => {
                 setApiKeyInput(getGeminiApiKey());
@@ -203,11 +203,11 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
               title="Configure Gemini API Key"
               className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors ${
                 hasGeminiApiKey()
-                  ? 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60'
-                  : 'border-slate-700 bg-slate-800/60 text-slate-400 hover:text-white'
+                  ? 'border-emerald-500/30 bg-emerald-950/20 text-emerald-300 hover:bg-emerald-900/40'
+                  : 'border-white/[0.08] bg-white/[0.02] text-zinc-400 hover:text-white'
               }`}
             >
-              <Key className="h-4 w-4" />
+              <Key className="h-3.5 w-3.5" />
             </button>
 
             <button
@@ -222,37 +222,37 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
                 ]);
               }}
               title="Reset conversation"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700 bg-slate-800/60 text-slate-400 hover:text-white transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-zinc-400 hover:text-white transition-colors"
             >
               <RotateCcw className="h-3.5 w-3.5" />
             </button>
 
             <button
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors ml-1"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 hover:bg-white/[0.06] hover:text-white transition-colors ml-0.5"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </div>
         </div>
 
         {/* API Key Modal Banner / Popover */}
         {showKeyModal && (
-          <div className="border-b border-cyan-500/30 bg-slate-900/95 p-4 shadow-xl">
+          <div className="border-b border-white/[0.08] bg-[#0c0e14]/95 p-4 shadow-xl">
             <div className="flex items-center justify-between pb-2">
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400">
-                <Key className="h-3.5 w-3.5" />
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-zinc-200">
+                <Key className="h-3.5 w-3.5 text-sky-400" />
                 <span>Google Gemini API Key</span>
               </div>
               <button
                 onClick={() => setShowKeyModal(false)}
-                className="text-slate-400 hover:text-white text-xs"
+                className="text-zinc-500 hover:text-white text-xs"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              Power deep AI reasoning, conversational queries, and multimodal image extraction. Completely free with Google AI Studio.
+            <p className="text-[11px] text-zinc-400 leading-relaxed">
+              Powers conversational workspace intelligence and multimodal image extraction with Gemini 2.5 Flash.
             </p>
             <form onSubmit={handleSaveKey} className="mt-3 space-y-2">
               <input
@@ -260,25 +260,25 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
                 value={apiKeyInput}
                 onChange={(e) => setApiKeyInput(e.target.value)}
                 placeholder="AIzaSy..."
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500 font-mono"
+                className="w-full rounded-xl border border-white/[0.08] bg-black/40 px-3 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-white/30 font-mono"
               />
               <div className="flex items-center justify-between pt-1">
                 <a
                   href="https://aistudio.google.com/app/apikey"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-[11px] text-zinc-400 hover:text-white underline underline-offset-2"
                 >
                   <span>Get Free Key at Google AI Studio</span>
                   <ExternalLink className="h-3 w-3" />
                 </a>
                 <button
                   type="submit"
-                  className="rounded-lg bg-cyan-600 hover:bg-cyan-500 px-3 py-1 text-xs font-semibold text-white transition-colors flex items-center gap-1"
+                  className="rounded-xl bg-white hover:bg-zinc-200 px-3.5 py-1.5 text-xs font-semibold text-black transition-colors flex items-center gap-1"
                 >
                   {keySavedMessage ? (
                     <>
-                      <Check className="h-3 w-3 text-white" />
+                      <Check className="h-3 w-3" />
                       <span>Saved!</span>
                     </>
                   ) : (
@@ -298,16 +298,16 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
               className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'assistant' && (
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mt-0.5">
-                  <Bot className="h-4 w-4" />
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] text-sky-400 border border-white/[0.08] mt-0.5">
+                  <Bot className="h-3.5 w-3.5" />
                 </div>
               )}
 
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-br-xs shadow-md'
-                    : 'border border-slate-800 bg-slate-900/90 text-slate-200 rounded-bl-xs shadow-md'
+                    ? 'bg-white/[0.08] text-white border border-white/[0.1] rounded-br-xs shadow-md'
+                    : 'border border-white/[0.06] bg-[#0f121a]/90 text-zinc-200 rounded-bl-xs shadow-lg'
                 }`}
               >
                 {/* Message Text with simple Markdown rendering */}
@@ -317,10 +317,10 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
 
                 {/* Filter Action Button */}
                 {msg.filterAction && (
-                  <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                  <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex flex-wrap items-center gap-2">
                     <button
                       onClick={() => handleFilterClick(msg.filterAction)}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 px-2.5 py-1 text-[11px] font-semibold text-cyan-300 transition-all hover:scale-[1.02]"
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] px-3 py-1.5 text-[11px] font-semibold text-zinc-200 transition-all"
                     >
                       <Filter className="h-3 w-3" />
                       <span>{msg.filterAction.label}</span>
@@ -331,9 +331,9 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
 
                 {/* Suggested Product Quick Chips */}
                 {msg.suggestedProductIds && msg.suggestedProductIds.length > 0 && (
-                  <div className="mt-3 pt-2.5 border-t border-slate-800/80">
-                    <p className="text-[10px] uppercase font-mono tracking-wider text-slate-400 mb-1.5">
-                      Quick View:
+                  <div className="mt-3 pt-2.5 border-t border-white/[0.06]">
+                    <p className="text-[10px] uppercase font-mono tracking-wider text-zinc-500 mb-1.5">
+                      Referenced Projects:
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {msg.suggestedProductIds.map((id) => {
@@ -343,10 +343,10 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
                           <button
                             key={id}
                             onClick={() => handleOpenProduct(id)}
-                            className="inline-flex items-center gap-1 rounded-md border border-slate-700/80 bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-300 hover:border-cyan-500/40 hover:text-white transition-colors"
+                            className="inline-flex items-center gap-1 rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 py-0.5 text-[11px] text-zinc-300 hover:border-white/25 hover:text-white transition-colors"
                           >
                             <span>{prod.name}</span>
-                            <span className="text-[9px] text-cyan-400">({prod.tag})</span>
+                            <span className="text-[9px] font-mono text-sky-400">({prod.tag})</span>
                           </button>
                         );
                       })}
@@ -356,8 +356,8 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
               </div>
 
               {msg.role === 'user' && (
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-slate-300 border border-slate-700 mt-0.5">
-                  <User className="h-4 w-4" />
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-zinc-300 border border-white/[0.08] mt-0.5">
+                  <User className="h-3.5 w-3.5" />
                 </div>
               )}
             </div>
@@ -365,15 +365,15 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
 
           {loading && (
             <div className="flex gap-3 justify-start">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                <Bot className="h-4 w-4" />
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] text-sky-400 border border-white/[0.08]">
+                <Bot className="h-3.5 w-3.5" />
               </div>
-              <div className="rounded-2xl rounded-bl-xs border border-slate-800 bg-slate-900/90 px-4 py-3 text-xs text-slate-400">
+              <div className="rounded-2xl rounded-bl-xs border border-white/[0.06] bg-[#0f121a]/90 px-4 py-3 text-xs text-zinc-400">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse delay-100" />
-                  <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse delay-200" />
-                  <span className="text-slate-400 font-mono text-[11px] ml-1">Analyzing workspace...</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse delay-100" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse delay-200" />
+                  <span className="text-zinc-400 font-mono text-[11px] ml-1">Thinking...</span>
                 </div>
               </div>
             </div>
@@ -383,13 +383,13 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
         </div>
 
         {/* Prompt Starters Chips */}
-        <div className="border-t border-slate-800/80 bg-slate-900/40 px-3 py-2">
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+        <div className="border-t border-white/[0.06] bg-white/[0.01] px-4 py-2.5">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             {DEFAULT_PROMPTS.map((p) => (
               <button
                 key={p.label}
                 onClick={() => handleSend(p.query)}
-                className="shrink-0 rounded-full border border-slate-800 bg-slate-900/90 hover:bg-slate-800/90 hover:border-slate-700 px-2.5 py-1 text-[11px] font-medium text-slate-300 transition-colors"
+                className="shrink-0 rounded-full border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/[0.14] px-3 py-1 text-[11px] font-medium text-zinc-300 transition-colors"
               >
                 {p.label}
               </button>
@@ -398,28 +398,28 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
         </div>
 
         {/* Input Form */}
-        <div className="border-t border-slate-800 bg-slate-900/90 p-3">
-          <div className="relative flex items-end rounded-xl border border-slate-700/80 bg-slate-950 px-3 py-2 focus-within:border-cyan-500 transition-colors">
+        <div className="border-t border-white/[0.06] bg-black/40 p-4">
+          <div className="relative flex items-end rounded-2xl border border-white/[0.08] bg-[#0c0e14] px-3.5 py-2.5 focus-within:border-white/25 transition-colors">
             <textarea
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               rows={1}
-              placeholder="Ask anything (e.g. 'give me app ideas', 'what's in progress?')..."
-              className="max-h-24 min-h-[1.75rem] flex-1 resize-none bg-transparent text-xs text-white placeholder-slate-500 outline-none"
+              placeholder="Ask about app ideas, working projects, stack recommendations..."
+              className="max-h-24 min-h-[1.75rem] flex-1 resize-none bg-transparent text-xs text-white placeholder-zinc-500 outline-none"
             />
             <button
               onClick={() => handleSend()}
               disabled={!input.trim() || loading}
-              className="ml-2 flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-600 text-white transition-colors hover:bg-cyan-500 disabled:opacity-40 shrink-0"
+              className="ml-2 flex h-7 w-7 items-center justify-center rounded-xl bg-white text-black transition-colors hover:bg-zinc-200 disabled:opacity-30 shrink-0 font-bold"
             >
               <Send className="h-3.5 w-3.5" />
             </button>
           </div>
-          <div className="mt-1.5 flex items-center justify-between px-1 text-[10px] text-slate-500">
-            <span>Press Enter to send &bull; Shift+Enter for new line</span>
-            <span>{products.length} Projects Loaded</span>
+          <div className="mt-2 flex items-center justify-between px-1 text-[10px] font-mono text-zinc-500">
+            <span>Enter to send &bull; Shift+Enter for newline</span>
+            <span>{products.length} Projects Indexed</span>
           </div>
         </div>
       </div>

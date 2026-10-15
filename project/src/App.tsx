@@ -288,65 +288,65 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#08090d] text-zinc-100 font-sans selection:bg-white/15 selection:text-white">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-30 hidden h-full w-64 flex-col border-r border-slate-800 bg-slate-900/60 p-4 md:flex">
-        <div className="mb-8 flex items-center gap-2.5 px-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
-            <Boxes className="h-5 w-5 text-white" />
+      <aside className="fixed left-0 top-0 z-30 hidden h-full w-64 flex-col border-r border-white/[0.06] bg-[#090b10]/80 p-4 md:flex backdrop-blur-2xl">
+        <div className="mb-7 flex items-center gap-3 px-2 pt-1">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] text-white shadow-inner-light">
+            <Boxes className="h-4 w-4 text-zinc-100" />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white tracking-wide">Product Hub</h1>
-            <p className="text-[11px] text-slate-400">95 Projects Manager</p>
+            <h1 className="text-sm font-semibold text-white tracking-tight">Product Hub</h1>
+            <p className="text-[11px] text-zinc-500 font-medium">Founder Launch OS</p>
           </div>
         </div>
 
         <nav className="space-y-1">
           <button
             onClick={() => setView('products')}
-            className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium transition-all ${
               view === 'products'
-                ? 'bg-cyan-500/15 text-cyan-300 shadow-sm'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+                ? 'bg-white/[0.08] text-white shadow-sm font-semibold'
+                : 'text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200'
             }`}
           >
-            <Boxes className="h-4 w-4" />
+            <Boxes className="h-4 w-4 opacity-80" />
             All Projects
-            <span className="ml-auto rounded-md bg-slate-800 px-2 py-0.5 text-xs font-semibold tabular-nums text-slate-300">
+            <span className="ml-auto rounded-full bg-white/[0.06] px-2 py-0.5 text-[11px] font-mono tabular-nums text-zinc-400">
               {products.length}
             </span>
           </button>
 
           <button
             onClick={() => setView('dashboard')}
-            className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium transition-all ${
               view === 'dashboard'
-                ? 'bg-cyan-500/15 text-cyan-300 shadow-sm'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+                ? 'bg-white/[0.08] text-white shadow-sm font-semibold'
+                : 'text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200'
             }`}
           >
-            <LayoutGrid className="h-4 w-4" />
+            <LayoutGrid className="h-4 w-4 opacity-80" />
             Dashboard
           </button>
 
           <button
             onClick={() => setShowAssistant(true)}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition-colors group"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200 transition-all group"
           >
-            <Bot className="h-4 w-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+            <Bot className="h-4 w-4 text-sky-400 group-hover:scale-110 transition-transform" />
             <span>AI Assistant</span>
-            <span className="ml-auto rounded-md bg-cyan-500/20 px-1.5 py-0.5 text-[10px] font-bold text-cyan-300">
-              Chat
+            <span className="ml-auto rounded-full bg-sky-500/10 px-2 py-0.5 text-[10px] font-semibold text-sky-300 border border-sky-500/20">
+              Gemini
             </span>
           </button>
 
           <button
             onClick={() => setShowMasterPrompt(true)}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition-colors"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200 transition-all"
           >
-            <Sparkles className="h-4 w-4 text-cyan-400" />
+            <Sparkles className="h-4 w-4 text-zinc-400" />
             Master Prompt
-            <span className="ml-auto rounded-md bg-cyan-500/20 px-1.5 py-0.5 text-[10px] font-bold text-cyan-300">
+            <span className="ml-auto rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-mono text-zinc-400">
               PDF
             </span>
           </button>
@@ -355,11 +355,11 @@ export default function App() {
             href="https://finder-d17.pages.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-emerald-300 transition-colors group"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-emerald-300 transition-all group"
           >
             <Compass className="h-4 w-4 text-emerald-400 group-hover:rotate-45 transition-transform" />
             <span>Finder (Ideas)</span>
-            <span className="ml-auto flex items-center gap-1 rounded-md bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-300">
+            <span className="ml-auto flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/20">
               <span>Live</span>
               <ExternalLink className="h-2.5 w-2.5" />
             </span>
@@ -367,11 +367,11 @@ export default function App() {
         </nav>
 
         {/* Quick Status Stats in Sidebar */}
-        <div className="my-6 border-t border-slate-800/80 pt-5">
-          <p className="px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2">
-            Status Overview
+        <div className="my-5 border-t border-white/[0.06] pt-4">
+          <p className="px-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            Status Pipeline
           </p>
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {[
               { key: 'idea', label: 'Idea' },
               { key: 'working', label: 'Working' },
@@ -384,13 +384,13 @@ export default function App() {
                   setView('products');
                   setActiveStatuses([st.key]);
                 }}
-                className="flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-xs text-slate-400 hover:bg-slate-800/40 hover:text-slate-200 transition-colors"
+                className="flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-xs text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200 transition-colors"
               >
                 <span className="flex items-center gap-2">
-                  <span className={`h-2 w-2 rounded-full ${STATUS_DOT_COLORS[st.key]}`} />
+                  <span className={`h-1.5 w-1.5 rounded-full ${STATUS_DOT_COLORS[st.key]}`} />
                   {st.label}
                 </span>
-                <span className="font-semibold tabular-nums text-slate-300">
+                <span className="font-mono text-[11px] tabular-nums text-zinc-400">
                   {statusCounts[st.key] ?? 0}
                 </span>
               </button>
@@ -399,44 +399,44 @@ export default function App() {
         </div>
 
         {/* Finder Quick Callout Card */}
-        <div className="mb-4 rounded-xl border border-emerald-500/30 bg-gradient-to-b from-emerald-950/40 to-slate-900/60 p-3 shadow-sm">
-          <div className="flex items-center justify-between mb-1">
+        <div className="mb-4 rounded-2xl border border-emerald-500/20 bg-emerald-950/15 p-3.5 shadow-sm">
+          <div className="flex items-center justify-between mb-1.5">
             <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
               <Compass className="h-3.5 w-3.5 text-emerald-400" />
               <span>Finder Ideas</span>
             </div>
-            <span className="rounded-full bg-emerald-500/20 px-1.5 py-0.2 text-[9px] font-semibold text-emerald-300">
+            <span className="rounded-full bg-emerald-500/10 px-1.5 py-0.2 text-[9px] font-semibold text-emerald-300 border border-emerald-500/20">
               VIBE ENGINE
             </span>
           </div>
-          <p className="text-[11px] leading-relaxed text-slate-400 mb-2">
-            Find validated startup & app ideas from TrustMRR, Reddit & Product Hunt.
+          <p className="text-[11px] leading-relaxed text-zinc-400 mb-2.5">
+            Validated ideas from Reddit, TrustMRR & Product Hunt ready to import.
           </p>
           <a
             href="https://finder-d17.pages.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-2.5 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-500/20 transition-all group"
+            className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-500/20 transition-all group"
           >
             <span>Open Finder</span>
             <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
           </a>
         </div>
 
-        <div className="mt-auto space-y-2.5">
+        <div className="mt-auto space-y-2">
           {/* Turso DB Status Button */}
           <button
             type="button"
             onClick={() => setShowTursoModal(true)}
-            className="flex w-full items-center justify-between rounded-xl border border-slate-800/80 bg-slate-950/60 px-3 py-2 text-xs hover:border-slate-700 transition-colors group"
+            className="flex w-full items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-xs hover:border-white/[0.12] transition-colors group"
             title="Configure Turso Database & Sync"
           >
             <div className="flex items-center gap-2">
-              <Database className="h-3.5 w-3.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-              <span className="text-slate-300 font-medium">Turso DB</span>
+              <Database className="h-3.5 w-3.5 text-zinc-400 group-hover:text-zinc-200 transition-colors" />
+              <span className="text-zinc-300 font-medium">Turso DB</span>
             </div>
             <span
-              className={`inline-flex items-center gap-1.5 text-[11px] font-medium ${
+              className={`inline-flex items-center gap-1.5 text-[11px] font-mono ${
                 tursoConfig.url ? 'text-emerald-400' : 'text-amber-400'
               }`}
             >
@@ -445,40 +445,39 @@ export default function App() {
                   tursoConfig.url ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
                 }`}
               />
-              {tursoConfig.url ? 'Connected' : 'Configure'}
+              {tursoConfig.url ? 'Connected' : 'Setup'}
             </span>
           </button>
 
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setShowAdd(true)}
-              className="flex items-center justify-center gap-1.5 rounded-xl bg-cyan-600 px-3 py-2 text-xs font-semibold text-white shadow-md shadow-cyan-600/20 transition-all hover:bg-cyan-500 active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 rounded-xl bg-white hover:bg-zinc-200 px-3 py-2 text-xs font-semibold text-black shadow-sm transition-all active:scale-[0.98]"
             >
               <Plus className="h-3.5 w-3.5" />
-              Add Project
+              New Project
             </button>
             <button
               onClick={() => {
                 setFinderIdeaToImport(null);
                 setShowFinderImportModal(true);
               }}
-              className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-950/40 px-2 py-2 text-xs font-semibold text-emerald-300 shadow-md transition-all hover:bg-emerald-900/50 hover:text-white active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] px-2 py-2 text-xs font-semibold text-zinc-200 transition-all hover:bg-white/[0.08] hover:text-white active:scale-[0.98]"
               title="Import Idea from Finder"
             >
               <Compass className="h-3.5 w-3.5 text-emerald-400" />
-              Import Idea
+              Import
             </button>
           </div>
 
           {/* User Session & Logout */}
-          <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-950/60 px-3 py-2">
+          <div className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-1.5">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-400">
-                <User className="h-3.5 w-3.5" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/[0.06] text-zinc-300">
+                <User className="h-3 w-3" />
               </div>
               <div className="text-left">
-                <p className="text-xs font-semibold text-slate-200">sh15a</p>
-                <p className="text-[10px] text-cyan-400">Authenticated</p>
+                <p className="text-xs font-medium text-zinc-200">sh15a</p>
               </div>
             </div>
             <button
@@ -492,83 +491,81 @@ export default function App() {
                 setIsAuthenticated(false);
               }}
               title="Lock Workspace / Log Out"
-              className="rounded-lg p-1.5 text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors"
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-red-500/10 hover:text-red-400 transition-colors"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-3.5 w-3.5" />
             </button>
           </div>
 
           {/* Legal & Compliance links */}
-          <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-slate-500">
+          <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-zinc-500">
             <button
               type="button"
               onClick={() => setShowPrivacy(true)}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-zinc-300 transition-colors"
             >
-              Privacy Policy
+              Privacy
             </button>
             <span>&bull;</span>
             <button
               type="button"
               onClick={() => setShowTerms(true)}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-zinc-300 transition-colors"
             >
-              Terms & Conditions
+              Terms
             </button>
           </div>
         </div>
       </aside>
 
       {/* Mobile top bar */}
-      <div className="fixed left-0 right-0 top-0 z-30 flex h-14 items-center justify-between border-b border-slate-800 bg-slate-900/95 px-3.5 backdrop-blur-md md:hidden">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 shadow-sm shadow-cyan-500/20">
-            <Boxes className="h-4 w-4 text-white" />
+      <div className="fixed left-0 right-0 top-0 z-30 flex h-14 items-center justify-between border-b border-white/[0.06] bg-[#090b10]/80 px-4 backdrop-blur-xl md:hidden">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] text-white">
+            <Boxes className="h-3.5 w-3.5" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-bold text-white tracking-tight">Product Hub</span>
-              <span className="rounded-md bg-cyan-500/20 px-1.5 py-0.2 text-[10px] font-bold text-cyan-300 tabular-nums">
+              <span className="text-sm font-semibold text-white tracking-tight">Product Hub</span>
+              <span className="rounded-full bg-white/[0.08] px-1.5 py-0.2 text-[10px] font-mono text-zinc-300 tabular-nums">
                 {products.length}
               </span>
             </div>
-            <p className="text-[10px] text-slate-400">Launch OS</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <a
             href="https://finder-d17.pages.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 rounded-lg border border-emerald-500/40 bg-emerald-950/40 px-2 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/70 transition-colors"
+            className="flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-950/20 px-2 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/40 transition-colors"
             title="Open Finder — Startup & App Ideas"
           >
             <Compass className="h-3.5 w-3.5 text-emerald-400" />
             <span className="text-[11px] font-medium hidden xs:inline">Finder</span>
-            <ExternalLink className="h-2.5 w-2.5 opacity-70" />
+            <ExternalLink className="h-2.5 w-2.5 opacity-60" />
           </a>
 
           <button
             type="button"
             onClick={() => setShowAssistant(true)}
-            className="flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-2 py-1.5 text-xs text-cyan-300 hover:bg-cyan-900/60 transition-colors"
+            className="flex items-center gap-1 rounded-lg border border-sky-500/30 bg-sky-950/20 px-2 py-1.5 text-xs text-sky-300 hover:bg-sky-900/40 transition-colors"
             title="Ask AI Assistant"
           >
-            <Bot className="h-3.5 w-3.5 text-cyan-400" />
-            <span className="text-[11px] font-bold">AI</span>
+            <Bot className="h-3.5 w-3.5 text-sky-400" />
+            <span className="text-[11px] font-semibold">AI</span>
           </button>
 
           <button
             type="button"
             onClick={() => setShowTursoModal(true)}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-800/80 px-2.5 py-1.5 text-xs text-slate-300 hover:border-cyan-500/50 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 py-1.5 text-xs text-zinc-300 hover:border-white/20 transition-colors"
             title="Turso Database Settings"
           >
-            <Database className="h-3.5 w-3.5 text-cyan-400" />
-            <span className="text-[11px] font-medium hidden xs:inline">DB</span>
+            <Database className="h-3.5 w-3.5 text-zinc-400" />
             <span
-              className={`h-2 w-2 rounded-full ${
+              className={`h-1.5 w-1.5 rounded-full ${
                 tursoConfig.url ? 'bg-emerald-400' : 'bg-amber-400'
               }`}
             />
@@ -585,7 +582,7 @@ export default function App() {
               setIsAuthenticated(false);
             }}
             title="Lock Workspace / Log Out"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-800/80 text-slate-400 hover:text-red-400 transition-colors"
+            className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-zinc-400 hover:text-red-400 transition-colors"
           >
             <LogOut className="h-3.5 w-3.5" />
           </button>
@@ -625,15 +622,15 @@ export default function App() {
           ) : (
             <>
               {/* Header & View Mode Switcher */}
-              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">All Projects</h2>
-                    <span className="rounded-md bg-cyan-500/20 px-2 py-0.5 text-xs font-bold text-cyan-300 tabular-nums">
+                    <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 text-xs font-mono tabular-nums text-zinc-300">
                       {filtered.length}
                     </span>
                   </div>
-                  <p className="mt-0.5 text-xs sm:text-sm text-slate-400">
+                  <p className="mt-1 text-xs sm:text-sm text-zinc-400">
                     Showing {filtered.length} of {products.length} projects &bull; Click any status badge to update
                   </p>
                 </div>
@@ -644,48 +641,48 @@ export default function App() {
                     href="https://finder-d17.pages.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-950/30 px-3 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/60 hover:border-emerald-500/60 transition-colors shadow-sm"
+                    className="flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-3 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/40 hover:border-emerald-500/50 transition-colors shadow-sm"
                     title="Open Finder — Startup & App Ideas"
                   >
                     <Compass className="h-3.5 w-3.5 text-emerald-400" />
                     <span className="hidden sm:inline">Finder</span>
                     <span className="hidden md:inline text-[10px] text-emerald-400/80 font-mono">Ideas</span>
-                    <ExternalLink className="h-3 w-3 opacity-70" />
+                    <ExternalLink className="h-2.5 w-2.5 opacity-70" />
                   </a>
 
                   <button
                     type="button"
                     onClick={() => setShowFinderImportModal(true)}
-                    className="flex items-center gap-1.5 rounded-xl border border-emerald-500/50 bg-emerald-950/50 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-900/60 hover:border-emerald-400 transition-all shadow-sm"
+                    className="flex items-center gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-zinc-200 hover:bg-white/[0.08] hover:text-white transition-all shadow-sm"
                     title="Import validated idea or vibe blueprint from Finder"
                   >
-                    <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+                    <Sparkles className="h-3.5 w-3.5 text-sky-400" />
                     <span>Import Idea</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setShowTursoModal(true)}
-                    className="flex items-center gap-1.5 rounded-xl border border-slate-700/80 bg-slate-900/60 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:border-cyan-500/50 hover:text-white transition-colors"
+                    className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-2.5 py-1.5 text-xs font-medium text-zinc-300 hover:border-white/20 hover:text-white transition-colors"
                     title="Turso Database Settings & Sync"
                   >
-                    <Database className="h-3.5 w-3.5 text-cyan-400" />
+                    <Database className="h-3.5 w-3.5 text-zinc-400" />
                     <span className="hidden sm:inline">Turso DB</span>
                     <span
-                      className={`h-2 w-2 rounded-full ${
+                      className={`h-1.5 w-1.5 rounded-full ${
                         tursoConfig.url ? 'bg-emerald-400' : 'bg-amber-400'
                       }`}
                     />
                   </button>
 
-                  <div className="flex items-center rounded-xl border border-slate-700/80 bg-slate-900/60 p-1">
+                  <div className="flex items-center rounded-xl border border-white/[0.08] bg-white/[0.03] p-1">
                     <button
                       type="button"
                       onClick={() => setDisplayMode('grid')}
                       className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
                         displayMode === 'grid'
-                          ? 'bg-cyan-500/20 text-cyan-300 shadow-sm'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-white/[0.1] text-white shadow-sm'
+                          : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                       title="Grid View"
                     >
@@ -697,8 +694,8 @@ export default function App() {
                       onClick={() => setDisplayMode('table')}
                       className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
                         displayMode === 'table'
-                          ? 'bg-cyan-500/20 text-cyan-300 shadow-sm'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-white/[0.1] text-white shadow-sm'
+                          : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                       title="Table View (compact list)"
                     >
@@ -710,8 +707,8 @@ export default function App() {
                       onClick={() => setDisplayMode('kanban')}
                       className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
                         displayMode === 'kanban'
-                          ? 'bg-cyan-500/20 text-cyan-300 shadow-sm'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-white/[0.1] text-white shadow-sm'
+                          : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                       title="Kanban Board View"
                     >
@@ -724,7 +721,7 @@ export default function App() {
 
               {/* Status Quick Filter Chips */}
               <div className="mb-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap touch-pan-x">
-                <span className="text-xs font-medium text-slate-400 mr-1 shrink-0">Status:</span>
+                <span className="text-xs font-medium text-zinc-500 mr-1 shrink-0">Filter:</span>
                 {[
                   { key: 'idea', label: 'Idea' },
                   { key: 'working', label: 'Working' },
@@ -733,21 +730,21 @@ export default function App() {
                 ].map((s) => {
                   const isActive = activeStatuses.includes(s.key);
                   const count = statusCounts[s.key] ?? 0;
-                  const dot = STATUS_DOT_COLORS[s.key] ?? 'bg-slate-400';
+                  const dot = STATUS_DOT_COLORS[s.key] ?? 'bg-zinc-400';
 
                   return (
                     <button
                       key={s.key}
                       onClick={() => toggleStatus(s.key)}
-                      className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium shrink-0 transition-all ${
+                      className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium shrink-0 transition-all ${
                         isActive
-                          ? 'border-cyan-500 bg-cyan-500/20 text-cyan-200 shadow-sm'
-                          : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                          ? 'border-white/20 bg-white/[0.1] text-white shadow-sm'
+                          : 'border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:border-white/[0.12] hover:text-zinc-200'
                       }`}
                     >
                       <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
                       {s.label}
-                      <span className="ml-0.5 rounded px-1 py-0.2 text-[10px] bg-slate-800/80 tabular-nums">
+                      <span className="ml-0.5 rounded-full px-1.5 py-0.2 text-[10px] font-mono bg-white/[0.06] tabular-nums text-zinc-400">
                         {count}
                       </span>
                     </button>
@@ -757,7 +754,7 @@ export default function App() {
                 {activeStatuses.length > 0 && (
                   <button
                     onClick={() => setActiveStatuses([])}
-                    className="ml-1 text-xs text-slate-400 hover:text-cyan-300 shrink-0"
+                    className="ml-1 text-xs text-zinc-500 hover:text-zinc-300 shrink-0"
                   >
                     Reset
                   </button>
@@ -765,21 +762,21 @@ export default function App() {
               </div>
 
               {/* Search + Filters */}
-              <div className="mb-5 space-y-3">
+              <div className="mb-6 space-y-3">
                 <div className="flex gap-2">
                   <div className="relative flex-1">
-                    <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+                    <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
                     <input
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      placeholder="Search projects by name or description..."
-                      className="w-full rounded-xl border border-slate-700/80 bg-slate-800/50 py-2.5 pl-10 pr-9 text-base sm:text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 transition-colors"
+                      placeholder="Search projects by name, tags, description..."
+                      className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] focus:bg-white/[0.05] focus:border-white/25 py-2.5 pl-10 pr-9 text-base sm:text-sm text-white placeholder-zinc-500 outline-none transition-colors"
                     />
                     {search && (
                       <button
                         type="button"
                         onClick={() => setSearch('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-200 transition-colors"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-zinc-500 hover:text-zinc-300 transition-colors"
                         title="Clear search"
                       >
                         <X className="h-4 w-4" />
@@ -790,14 +787,14 @@ export default function App() {
                     onClick={() => setShowFilters((v) => !v)}
                     className={`flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-medium transition-colors ${
                       showFilters || hasFilters
-                        ? 'border-cyan-500/50 bg-cyan-500/10 text-cyan-300'
-                        : 'border-slate-700/80 bg-slate-800/50 text-slate-300 hover:bg-slate-800'
+                        ? 'border-white/25 bg-white/[0.08] text-white'
+                        : 'border-white/[0.08] bg-white/[0.02] text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-200'
                     }`}
                   >
                     <SlidersHorizontal className="h-4 w-4" />
                     <span className="hidden sm:inline">Filters</span>
                     {hasFilters && (
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-500 text-xs text-white">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-mono font-bold text-black">
                         {activeTags.length + activeStatuses.length}
                       </span>
                     )}
@@ -805,27 +802,27 @@ export default function App() {
                 </div>
 
                 {showFilters && (
-                  <div className="space-y-3 rounded-2xl border border-slate-700/50 bg-slate-900/70 p-4 backdrop-blur-sm">
+                  <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#0c0e14]/95 p-5 backdrop-blur-xl shadow-2xl">
                     {hasFilters && (
                       <button
                         onClick={clearFilters}
-                        className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-200"
+                        className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white"
                       >
                         <X className="h-3 w-3" />
                         Clear all filters
                       </button>
                     )}
                     <div>
-                      <p className="mb-2 text-xs font-medium text-slate-400">Categories / Tags</p>
+                      <p className="mb-2 text-xs font-medium text-zinc-400">Categories / Tags</p>
                       <div className="flex flex-wrap gap-2">
                         {TAG_OPTIONS.map((tag) => (
                           <button
                             key={tag}
                             onClick={() => toggleTag(tag)}
-                            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+                            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                               activeTags.includes(tag)
-                                ? 'border-cyan-500 bg-cyan-500/15 text-cyan-300'
-                                : 'border-slate-700 bg-slate-800/50 text-slate-400 hover:border-slate-600 hover:text-slate-200'
+                                ? 'border-white/20 bg-white/[0.1] text-white'
+                                : 'border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:border-white/[0.12] hover:text-zinc-200'
                             }`}
                           >
                             {TAG_LABELS[tag]}
@@ -834,16 +831,16 @@ export default function App() {
                       </div>
                     </div>
                     <div>
-                      <p className="mb-2 text-xs font-medium text-slate-400">All Statuses</p>
+                      <p className="mb-2 text-xs font-medium text-zinc-400">All Statuses</p>
                       <div className="flex flex-wrap gap-2">
                         {STATUS_OPTIONS.map((status) => (
                           <button
                             key={status}
                             onClick={() => toggleStatus(status)}
-                            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+                            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                               activeStatuses.includes(status)
-                                ? 'border-cyan-500 bg-cyan-500/15 text-cyan-300'
-                                : 'border-slate-700 bg-slate-800/50 text-slate-400 hover:border-slate-600 hover:text-slate-200'
+                                ? 'border-white/20 bg-white/[0.1] text-white'
+                                : 'border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:border-white/[0.12] hover:text-zinc-200'
                             }`}
                           >
                             {STATUS_LABELS[status] ?? status}
@@ -911,7 +908,7 @@ export default function App() {
       </main>
 
       {/* Mobile Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-slate-800 bg-slate-950/95 px-2 py-1.5 backdrop-blur-lg md:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-white/[0.06] bg-[#090b10]/90 px-2 py-2 backdrop-blur-2xl md:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
         <button
           type="button"
           onClick={() => {
@@ -920,11 +917,11 @@ export default function App() {
           }}
           className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
             view === 'products' && displayMode !== 'kanban'
-              ? 'text-cyan-400'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'text-white font-semibold'
+              : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          <Boxes className="h-5 w-5" />
+          <Boxes className="h-4 w-4" />
           <span className="text-[10px]">Projects</span>
         </button>
 
@@ -936,11 +933,11 @@ export default function App() {
           }}
           className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
             view === 'products' && displayMode === 'kanban'
-              ? 'text-cyan-400'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'text-white font-semibold'
+              : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          <KanbanIcon className="h-5 w-5" />
+          <KanbanIcon className="h-4 w-4" />
           <span className="text-[10px]">Kanban</span>
         </button>
 
@@ -948,10 +945,10 @@ export default function App() {
         <button
           type="button"
           onClick={() => setShowAdd(true)}
-          className="flex h-11 w-11 -mt-4 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border-4 border-slate-950 active:scale-95 transition-transform"
+          className="flex h-10 w-10 -mt-5 items-center justify-center rounded-full bg-white text-black shadow-xl border-4 border-[#090b10] active:scale-95 transition-transform"
           title="Add New Project"
         >
-          <Plus className="h-5 w-5" />
+          <Plus className="h-4 w-4 stroke-[2.5]" />
         </button>
 
         <button
@@ -959,20 +956,20 @@ export default function App() {
           onClick={() => setView('dashboard')}
           className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium transition-colors ${
             view === 'dashboard'
-              ? 'text-cyan-400'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'text-white font-semibold'
+              : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          <LayoutGrid className="h-5 w-5" />
+          <LayoutGrid className="h-4 w-4" />
           <span className="text-[10px]">Dashboard</span>
         </button>
 
         <button
           type="button"
           onClick={() => setShowMasterPrompt(true)}
-          className="flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium text-slate-400 hover:text-cyan-300 transition-colors"
+          className="flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium text-zinc-500 hover:text-zinc-200 transition-colors"
         >
-          <Sparkles className="h-5 w-5 text-cyan-400" />
+          <Sparkles className="h-4 w-4 text-zinc-400" />
           <span className="text-[10px]">Prompt</span>
         </button>
       </nav>
@@ -1052,17 +1049,17 @@ export default function App() {
       {/* Floating AI Assistant Trigger Button */}
       <button
         onClick={() => setShowAssistant(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 px-4 py-3 text-xs font-bold text-white shadow-2xl shadow-cyan-500/30 transition-all hover:scale-105 hover:shadow-cyan-500/50 active:scale-95 border border-cyan-400/40 group"
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full border border-white/[0.12] bg-[#0d1017]/90 hover:bg-[#141924] px-4 py-2.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl transition-all hover:scale-105 active:scale-95 group shadow-black/50"
       >
         <div className="relative">
-          <Bot className="h-4 w-4 text-cyan-200 group-hover:rotate-12 transition-transform" />
-          <span className="absolute -top-1 -right-1 flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-300" />
+          <Bot className="h-4 w-4 text-sky-400 group-hover:rotate-12 transition-transform" />
+          <span className="absolute -top-0.5 -right-0.5 flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
           </span>
         </div>
-        <span className="hidden sm:inline tracking-wide">Ask AI Assistant</span>
-        <span className="sm:hidden font-semibold">AI</span>
+        <span className="hidden sm:inline tracking-tight font-medium">Assistant</span>
+        <span className="sm:hidden font-medium">AI</span>
       </button>
 
       {/* AI Chatbot Assistant Drawer */}

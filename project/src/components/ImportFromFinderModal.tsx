@@ -237,56 +237,56 @@ export function ImportFromFinderModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl rounded-2xl border border-emerald-500/40 bg-slate-900 p-6 shadow-2xl shadow-emerald-950/40 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-xl rounded-2xl border border-white/[0.08] bg-[#0c0d12]/95 backdrop-blur-2xl p-6 shadow-2xl shadow-black/90 my-8">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
-              <Compass className="h-5 w-5" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <Compass className="h-4 w-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-white tracking-tight">Push to Project Manager</h3>
-                <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/30">
+                <h3 className="font-display text-base font-bold text-white tracking-tight">Push to Project Manager</h3>
+                <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400 border border-emerald-500/20">
                   Finder Sync
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Turn this validated startup idea into an active tracked project</p>
+              <p className="text-xs text-white/40">Turn this validated startup idea into an active tracked project</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+            className="rounded-lg p-1.5 text-white/40 hover:bg-white/[0.06] hover:text-white transition-colors"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Paste link or upload image helper if no initial data */}
         {!initialData?.name && (
-          <div className="mt-4 rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2.5">
+          <div className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 space-y-2.5">
             <div>
-              <p className="text-xs font-medium text-slate-300 mb-1.5">Paste Finder idea link or JSON</p>
+              <p className="text-xs font-medium text-white/60 mb-1.5">Paste Finder idea link or JSON</p>
               <div className="flex gap-2">
                 <input
                   value={pasteInput}
                   onChange={(e) => setPasteInput(e.target.value)}
                   placeholder="https://finder-d17.pages.dev/hit/trustmrr/..."
-                  className="flex-1 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-500"
+                  className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white placeholder-white/20 outline-none focus:border-white/20"
                 />
                 <button
                   type="button"
                   onClick={handleParsePaste}
-                  className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shrink-0"
+                  className="rounded-xl bg-white text-black px-3.5 py-1.5 text-xs font-semibold hover:bg-white/90 transition-colors shrink-0"
                 >
                   Load Idea
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-1 border-t border-slate-800/60 text-[11px]">
-              <span className="text-slate-400">Or extract idea from screenshot / wireframe:</span>
+            <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-[11px]">
+              <span className="text-white/40">Or extract idea from screenshot / wireframe:</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -302,16 +302,16 @@ export function ImportFromFinderModal({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={extractingImage}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-950/40 px-2.5 py-1 text-cyan-300 hover:bg-cyan-900/50 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] px-2.5 py-1 text-emerald-300 hover:bg-emerald-500/10 transition-colors"
               >
                 {extractingImage ? (
                   <>
-                    <Loader2 className="h-3 w-3 animate-spin text-cyan-400" />
+                    <Loader2 className="h-3 w-3 animate-spin text-emerald-400" />
                     <span>Extracting...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles className="h-3 w-3 text-cyan-400" />
+                    <Sparkles className="h-3 w-3 text-emerald-400" />
                     <span>📷 Upload Image (Gemini AI)</span>
                   </>
                 )}
@@ -321,8 +321,8 @@ export function ImportFromFinderModal({
         )}
 
         {error && (
-          <div className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-300">
-            <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
+          <div className="mt-4 flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/[0.06] p-3 text-xs text-rose-300">
+            <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
             <span>{error}</span>
           </div>
         )}
@@ -330,25 +330,25 @@ export function ImportFromFinderModal({
         {/* Form fields */}
         <div className="mt-5 space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">
-              Project Name <span className="text-red-400">*</span>
+            <label className="mb-1.5 block text-xs font-medium text-white/50">
+              Project Name <span className="text-rose-400">*</span>
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. ToonThis Rival"
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2 text-sm text-white placeholder-slate-500 outline-none focus:border-emerald-500 transition-colors"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-xs text-white placeholder-white/20 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Category Tag</label>
+              <label className="mb-1.5 block text-xs font-medium text-white/50">Category Tag</label>
               <select
                 value={tag}
                 onChange={(e) => setTag(e.target.value)}
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs text-white outline-none focus:border-emerald-500"
+                className="w-full rounded-xl border border-white/[0.08] bg-[#12131a] px-3.5 py-2 text-xs text-white outline-none focus:border-white/20 transition-all"
               >
                 {TAG_OPTIONS.map((t) => (
                   <option key={t} value={t}>
@@ -359,11 +359,11 @@ export function ImportFromFinderModal({
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Initial Status</label>
+              <label className="mb-1.5 block text-xs font-medium text-white/50">Initial Status</label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs text-white outline-none focus:border-emerald-500"
+                className="w-full rounded-xl border border-white/[0.08] bg-[#12131a] px-3.5 py-2 text-xs text-white outline-none focus:border-white/20 transition-all"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s} value={s}>
@@ -375,25 +375,25 @@ export function ImportFromFinderModal({
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">Opportunity Thesis / Description</label>
+            <label className="mb-1.5 block text-xs font-medium text-white/50">Opportunity Thesis / Description</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
               placeholder="Key market flank, negative review insights, or why build now..."
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-500 transition-colors"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-xs text-white placeholder-white/20 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
             />
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="text-xs font-medium text-slate-300">Source Link / Inspiration</label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs font-medium text-white/50">Source Link / Inspiration</label>
               {data.sourceUrl && (
                 <a
                   href={data.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] text-emerald-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-[11px] text-emerald-400 hover:text-emerald-300"
                 >
                   <span>View on Finder</span>
                   <ExternalLink className="h-3 w-3" />
@@ -405,26 +405,26 @@ export function ImportFromFinderModal({
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://..."
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-500 transition-colors"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-xs text-white placeholder-white/20 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
             />
           </div>
 
           {/* Vibe guide steps callout if available */}
           {data.vibeGuide && data.vibeGuide.length > 0 && (
-            <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-3.5">
+            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] p-3.5">
               <label className="flex items-start gap-2.5 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={includeVibeTasks}
                   onChange={(e) => setIncludeVibeTasks(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-700 bg-slate-800 text-emerald-500 focus:ring-emerald-500"
+                  className="mt-0.5 h-4 w-4 rounded border-white/20 bg-black/40 text-emerald-500 focus:ring-emerald-500/40"
                 />
                 <div>
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-300">
                     <ListOrdered className="h-3.5 w-3.5 text-emerald-400" />
                     <span>Include {data.vibeGuide.length} Sequenced Vibe Tasks</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-white/40 mt-0.5">
                     Adds prompts and implementation tasks directly to your project's launch checklist.
                   </p>
                 </div>
@@ -444,7 +444,7 @@ export function ImportFromFinderModal({
                 <ArrowRight className={`h-3 w-3 transition-transform ${showBlueprint ? 'rotate-90' : ''}`} />
               </button>
               {showBlueprint && (
-                <div className="mt-2 max-h-40 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-3 text-[11px] text-slate-300 font-mono whitespace-pre-wrap">
+                <div className="mt-2 max-h-40 overflow-y-auto rounded-xl border border-white/[0.08] bg-black/40 p-3 text-[11px] text-white/70 font-mono whitespace-pre-wrap">
                   {data.blueprint}
                 </div>
               )}
@@ -453,11 +453,11 @@ export function ImportFromFinderModal({
         </div>
 
         {/* Footer actions */}
-        <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-white/[0.06]">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl px-4 py-2 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+            className="rounded-xl px-4 py-2 text-xs font-medium text-white/50 hover:text-white transition-colors"
           >
             Cancel
           </button>
@@ -465,13 +465,13 @@ export function ImportFromFinderModal({
             type="button"
             onClick={handleSave}
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2 text-xs font-semibold text-white shadow-lg shadow-emerald-950/40 hover:bg-emerald-500 active:scale-95 disabled:opacity-50 transition-all"
+            className="inline-flex items-center gap-2 rounded-xl bg-white text-black px-5 py-2 text-xs font-semibold hover:bg-white/90 active:scale-95 disabled:opacity-40 transition-all"
           >
             {saving ? (
               <span>Saving...</span>
             ) : (
               <>
-                <Sparkles className="h-4 w-4" />
+                <Sparkles className="h-3.5 w-3.5" />
                 <span>Add to My Projects</span>
               </>
             )}

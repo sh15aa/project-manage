@@ -286,21 +286,21 @@ export function ProductDrawer({
   if (!product || !guaranteedProduct) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 animate-in fade-in duration-150 font-sans">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity"
         onClick={onClose}
       />
 
       {/* Main Dialog / Modal Container */}
-      <div className="relative z-10 flex h-full w-full sm:max-h-[92vh] sm:max-w-5xl flex-col rounded-none sm:rounded-2xl border-0 sm:border border-slate-700/80 bg-slate-900 shadow-2xl overflow-hidden">
+      <div className="relative z-10 flex h-full w-full sm:max-h-[92vh] sm:max-w-5xl flex-col rounded-none sm:rounded-3xl border-0 sm:border border-white/[0.08] bg-[#0c0e14] shadow-2xl overflow-hidden">
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900/95 px-3.5 py-3 sm:px-5 sm:py-4 backdrop-blur-md">
-          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 pr-2 sm:pr-4">
+        <div className="flex items-center justify-between border-b border-white/[0.06] bg-white/[0.02] px-4 py-3.5 sm:px-6 sm:py-4 backdrop-blur-md">
+          <div className="flex items-center gap-2.5 sm:gap-3 flex-1 min-w-0 pr-2 sm:pr-4">
             <button
               onClick={onClose}
-              className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors shrink-0"
+              className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-2.5 py-1.5 text-xs font-medium text-zinc-300 hover:bg-white/[0.08] hover:text-white transition-colors shrink-0"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               <span className="hidden xs:inline">Back</span>
@@ -311,10 +311,10 @@ export function ProductDrawer({
                 <input
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full rounded-lg border border-slate-600 bg-slate-800 px-2.5 py-1 text-base font-bold text-white outline-none focus:border-cyan-500"
+                  className="w-full rounded-xl border border-white/20 bg-white/[0.04] px-3 py-1.5 text-base font-bold text-white outline-none focus:border-white/40"
                 />
               ) : (
-                <h2 className="text-sm sm:text-lg font-bold text-white tracking-tight truncate">
+                <h2 className="text-sm sm:text-base font-semibold text-white tracking-tight truncate">
                   {guaranteedProduct.name}
                 </h2>
               )}
@@ -330,15 +330,14 @@ export function ProductDrawer({
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setShowMasterPrompt(true)}
-              className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1.5 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-zinc-200 hover:bg-white/[0.08] hover:text-white transition-colors shadow-sm"
               title="View & Copy Master Launch Prompt for this project"
             >
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">Master Prompt</span>
-              <span className="sm:hidden">Prompt</span>
+              <Sparkles className="h-3.5 w-3.5 text-sky-400" />
+              <span className="hidden sm:inline">Prompt</span>
             </button>
 
             {guaranteedProduct.url && (
@@ -346,19 +345,19 @@ export function ProductDrawer({
                 href={guaranteedProduct.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/60 px-2.5 py-1.5 text-xs font-medium text-cyan-400 hover:bg-slate-800 hover:text-cyan-300 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-300 hover:bg-white/[0.08] hover:text-white transition-colors"
                 title="Open Live Preview"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
-                <span className="hidden xs:inline">Live Link</span>
+                <span className="hidden xs:inline">Preview</span>
               </a>
             )}
             <button
               onClick={onClose}
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+              className="rounded-xl p-2 text-zinc-400 hover:bg-white/[0.06] hover:text-white transition-colors"
               title="Close"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -377,32 +376,32 @@ export function ProductDrawer({
 
           {/* Description & Edit Form */}
           {editing ? (
-            <div className="space-y-4 rounded-xl border border-slate-700/60 bg-slate-800/40 p-4">
+            <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
+                <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-400">Description</label>
                 <textarea
                   value={editDesc}
                   onChange={(e) => setEditDesc(e.target.value)}
                   rows={2}
-                  className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white outline-none focus:border-cyan-500"
+                  className="w-full rounded-xl border border-white/[0.1] bg-white/[0.02] px-3.5 py-2 text-sm text-white outline-none focus:border-white/30"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-400">URL</label>
+                <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-400">URL</label>
                 <input
                   value={editUrl}
                   onChange={(e) => setEditUrl(e.target.value)}
                   placeholder="https://..."
-                  className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white outline-none focus:border-cyan-500"
+                  className="w-full rounded-xl border border-white/[0.1] bg-white/[0.02] px-3.5 py-2 text-sm text-white outline-none focus:border-white/30"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-400">Category</label>
+                  <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-400">Category</label>
                   <select
                     value={editTag}
                     onChange={(e) => setEditTag(e.target.value)}
-                    className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white outline-none focus:border-cyan-500"
+                    className="w-full rounded-xl border border-white/[0.1] bg-[#0c0e14] px-3.5 py-2 text-sm text-white outline-none focus:border-white/30"
                   >
                     {TAG_OPTIONS.map((t) => (
                       <option key={t} value={t}>{TAG_LABELS[t]}</option>
@@ -410,11 +409,11 @@ export function ProductDrawer({
                   </select>
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-400">Status</label>
+                  <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-400">Status</label>
                   <select
                     value={editStatus}
                     onChange={(e) => setEditStatus(e.target.value)}
-                    className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white outline-none focus:border-cyan-500"
+                    className="w-full rounded-xl border border-white/[0.1] bg-[#0c0e14] px-3.5 py-2 text-sm text-white outline-none focus:border-white/30"
                   >
                     {STATUS_OPTIONS.map((s) => (
                       <option key={s} value={s}>{STATUS_LABELS[s] ?? s}</option>
@@ -426,22 +425,22 @@ export function ProductDrawer({
                 <button
                   onClick={saveProductEdits}
                   disabled={saving}
-                  className="rounded-lg bg-cyan-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-cyan-500 disabled:opacity-50"
+                  className="rounded-xl bg-white hover:bg-zinc-200 px-4 py-2 text-xs font-semibold text-black transition-colors disabled:opacity-50"
                 >
                   {saving ? 'Saving...' : 'Save Changes'}
                 </button>
                 <button
                   onClick={() => setEditing(false)}
-                  className="rounded-lg border border-slate-600 px-4 py-2 text-xs font-medium text-slate-300 transition-colors hover:bg-slate-800"
+                  className="rounded-xl border border-white/[0.1] px-4 py-2 text-xs font-medium text-zinc-300 transition-colors hover:bg-white/[0.06]"
                 >
                   Cancel
                 </button>
               </div>
             </div>
           ) : (
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-800/30 p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
               <div className="flex-1">
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-sm text-zinc-300 leading-relaxed font-normal">
                   {guaranteedProduct.description || 'No description provided.'}
                 </p>
                 {guaranteedProduct.url && (
@@ -449,16 +448,16 @@ export function ProductDrawer({
                     href={guaranteedProduct.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300"
+                    className="mt-2.5 inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white underline underline-offset-2 transition-colors"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
-                    {guaranteedProduct.url}
+                    <span>{guaranteedProduct.url}</span>
                   </a>
                 )}
               </div>
               <button
                 onClick={() => setEditing(true)}
-                className="shrink-0 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+                className="shrink-0 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-zinc-300 hover:bg-white/[0.08] hover:text-white transition-colors self-start sm:self-auto"
               >
                 Edit details
               </button>
@@ -466,29 +465,29 @@ export function ProductDrawer({
           )}
 
           {/* Drawer Tab Switcher: Checklist vs Build Guide */}
-          <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+          <div className="flex items-center gap-2 border-b border-white/[0.06] pb-3.5">
             <button
               type="button"
               onClick={() => setDrawerTab('checklist')}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-medium transition-all ${
                 drawerTab === 'checklist'
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                  ? 'bg-white/[0.1] text-white shadow-sm border border-white/[0.15] font-semibold'
+                  : 'border border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04]'
               }`}
             >
-              <Layers className="h-4 w-4" />
+              <Layers className="h-3.5 w-3.5" />
               <span>Master Checklist ({totalTasks})</span>
             </button>
             <button
               type="button"
               onClick={() => setDrawerTab('guide')}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-medium transition-all ${
                 drawerTab === 'guide'
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20'
+                  ? 'bg-white/[0.1] text-white shadow-sm border border-white/[0.15] font-semibold'
+                  : 'border border-white/[0.06] bg-white/[0.02] text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04]'
               }`}
             >
-              <Sparkles className="h-4 w-4 text-cyan-400" />
+              <Sparkles className="h-3.5 w-3.5 text-sky-400" />
               <span>Build Guide & AI Prompts</span>
             </button>
           </div>
