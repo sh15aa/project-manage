@@ -31,6 +31,16 @@ export interface FinderIdeaPayload {
   }>;
 }
 
+function normalizeTag(tag?: string): string {
+  const t = (tag || '').toLowerCase();
+  if (t === 'app' || t === 'mobile' || t.includes('ios') || t.includes('android')) return 'app';
+  if (t === 'games' || t.includes('game')) return 'games';
+  if (t === 'saas' || t.includes('b2b') || t.includes('crm') || t.includes('subscription') || t.includes('ecommerce')) return 'saas';
+  if (t === 'tool' || t.includes('util') || t.includes('dev') || t.includes('ai') || t.includes('extension')) return 'tool';
+  if (t === 'made-for-fun' || t.includes('fun')) return 'made-for-fun';
+  return 'web-app';
+}
+
 export function ImportFromFinderModal({
   initialData,
   onClose,
@@ -58,7 +68,7 @@ export function ImportFromFinderModal({
   const [name, setName] = useState(data.name || '');
   const [description, setDescription] = useState(data.description || '');
   const [url, setUrl] = useState(data.url || data.sourceUrl || '');
-  const [tag, setTag] = useState<string>(data.tag || 'web-app');
+  const [tag, setTag] = useState<string>(() => normalizeTag(data.tag));
   const [status, setStatus] = useState<string>(data.status || 'idea');
   const [includeVibeTasks, setIncludeVibeTasks] = useState(true);
   const [showBlueprint, setShowBlueprint] = useState(false);
@@ -87,9 +97,17 @@ export function ImportFromFinderModal({
       const parsedUrl = new URL(raw);
       const importParam = parsedUrl.searchParams.get('import_idea');
       if (importParam) {
-        const parsed = JSON.parse(decodeURIComponent(importParam));
-        applyParsedData(parsed);
-        return;
+        try {
+          applyParsedData(JSON.parse(importParam));
+          return;
+        } catch {
+          try {
+            applyParsedData(JSON.parse(decodeURIComponent(importParam)));
+            return;
+          } catch {
+            // continue
+          }
+        }
       }
 
       // Check URL path like /hit/trustmrr/zachis-stealth-comp
@@ -123,9 +141,9 @@ export function ImportFromFinderModal({
     if (parsed.name) setName(parsed.name);
     if (parsed.description) setDescription(parsed.description);
     if (parsed.url || parsed.sourceUrl) setUrl(parsed.url || parsed.sourceUrl || '');
-    if (parsed.tag && TAG_OPTIONS.includes(parsed.tag)) setTag(parsed.tag);
-    if (parsed.status && STATUS_OPTIONS.includes(parsed.status)) setStatus(parsed.status);
-    setData((prev) => ({ ...prev, ...parsed }));
+    if (parsed.tag) setTag(normalizeTag(parsed.tag));
+    if (parsed.status && (STATUS_OPTIONS as readonly string[]).includes(parsed.status)) setStatus(parsed.status);
+    setData((prev) => ({ ...prev, ...parsed, tag: parsed.tag ? normalizeTag(parsed.tag) : prev.tag }));
   }
 
   async function handleSave() {

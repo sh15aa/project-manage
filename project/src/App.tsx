@@ -52,7 +52,10 @@ type DisplayMode = 'grid' | 'table' | 'kanban';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return sessionStorage.getItem('producthub_auth') === 'true';
+    return (
+      localStorage.getItem('producthub_auth') === 'true' ||
+      sessionStorage.getItem('producthub_auth') === 'true'
+    );
   });
   // Synchronous initialization guarantees all 96 projects are rendered immediately with zero delay
   const [products, setProducts] = useState<ProductWithTasks[]>(() => getInitialProducts());
@@ -76,7 +79,7 @@ export default function App() {
   const [finderIdeaToImport, setFinderIdeaToImport] = useState<FinderIdeaPayload | null>(null);
   const [showFinderImportModal, setShowFinderImportModal] = useState(false);
 
-  // Detect incoming idea handoff from Finder via URL query parameters
+  // Detect incoming idea handoff from Finder via URL query parameters or preserved session
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -84,15 +87,24 @@ export default function App() {
       const action = params.get('action');
       const name = params.get('name');
 
+      let ideaPayload: FinderIdeaPayload | null = null;
+
       if (importIdeaParam) {
-        const decoded = JSON.parse(decodeURIComponent(importIdeaParam));
-        setFinderIdeaToImport(decoded);
-        setShowFinderImportModal(true);
-        window.history.replaceState({}, document.title, window.location.pathname);
-      } else if (action === 'import-idea' && name) {
-        setFinderIdeaToImport({
+        try {
+          ideaPayload = JSON.parse(importIdeaParam);
+        } catch {
+          try {
+            ideaPayload = JSON.parse(decodeURIComponent(importIdeaParam));
+          } catch (e) {
+            console.warn('Could not parse import_idea payload as JSON:', e);
+          }
+        }
+      }
+
+      if (!ideaPayload && (action === 'import-idea' || name)) {
+        ideaPayload = {
           id: params.get('id') || undefined,
-          name,
+          name: name || 'Finder Idea',
           description: params.get('description') || params.get('desc') || '',
           url: params.get('url') || '',
           tag: params.get('tag') || 'web-app',
@@ -100,9 +112,29 @@ export default function App() {
           source: params.get('source') || 'Finder',
           sourceUrl: params.get('sourceUrl') || params.get('source_url') || '',
           blueprint: params.get('blueprint') || undefined,
-        });
+        };
+      }
+
+      // Check session storage if not in URL (e.g. preserved during login gate)
+      if (!ideaPayload) {
+        const cached = sessionStorage.getItem('pending_finder_import');
+        if (cached) {
+          try {
+            ideaPayload = JSON.parse(cached);
+          } catch {
+            sessionStorage.removeItem('pending_finder_import');
+          }
+        }
+      }
+
+      if (ideaPayload && ideaPayload.name) {
+        setFinderIdeaToImport(ideaPayload);
         setShowFinderImportModal(true);
-        window.history.replaceState({}, document.title, window.location.pathname);
+        sessionStorage.setItem('pending_finder_import', JSON.stringify(ideaPayload));
+        // Clean up URL query string cleanly without losing idea in memory
+        if (window.location.search) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       }
     } catch (e) {
       console.error('Failed to parse incoming Finder idea:', e);
@@ -240,6 +272,7 @@ export default function App() {
     setSelectedProduct(imported);
     setShowFinderImportModal(false);
     setFinderIdeaToImport(null);
+    sessionStorage.removeItem('pending_finder_import');
   }
 
   const hasFilters = activeTags.length > 0 || activeStatuses.length > 0 || search.length > 0;
@@ -436,8 +469,11 @@ export default function App() {
             <button
               type="button"
               onClick={() => {
+                localStorage.removeItem('producthub_auth');
+                localStorage.removeItem('producthub_user');
                 sessionStorage.removeItem('producthub_auth');
                 sessionStorage.removeItem('producthub_user');
+                sessionStorage.removeItem('pending_finder_import');
                 setIsAuthenticated(false);
               }}
               title="Lock Workspace / Log Out"
@@ -516,8 +552,11 @@ export default function App() {
           <button
             type="button"
             onClick={() => {
+              localStorage.removeItem('producthub_auth');
+              localStorage.removeItem('producthub_user');
               sessionStorage.removeItem('producthub_auth');
               sessionStorage.removeItem('producthub_user');
+              sessionStorage.removeItem('pending_finder_import');
               setIsAuthenticated(false);
             }}
             title="Lock Workspace / Log Out"
@@ -944,6 +983,7 @@ export default function App() {
           onClose={() => {
             setShowFinderImportModal(false);
             setFinderIdeaToImport(null);
+            sessionStorage.removeItem('pending_finder_import');
           }}
           onImported={handleFinderIdeaImported}
         />

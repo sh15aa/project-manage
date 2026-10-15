@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, Eye, EyeOff, Boxes, ArrowRight, AlertCircle, Shield } from 'lucide-react';
+import { Lock, Eye, EyeOff, Boxes, ArrowRight, AlertCircle, Shield, Sparkles } from 'lucide-react';
 
 interface LoginGateProps {
   onSuccess: () => void;
@@ -12,6 +12,18 @@ export const LoginGate: React.FC<LoginGateProps> = ({ onSuccess }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Check if an idea from Finder is pending import
+  const pendingIdea = (() => {
+    try {
+      const stored = sessionStorage.getItem('pending_finder_import');
+      if (stored) return JSON.parse(stored);
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name');
+      if (name) return { name, tag: params.get('tag') };
+    } catch {}
+    return null;
+  })();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -19,6 +31,8 @@ export const LoginGate: React.FC<LoginGateProps> = ({ onSuccess }) => {
     // Required credentials: username: sh15a, password: sndSND1!
     if (username.trim() === 'sh15a' && password === 'sndSND1!') {
       setLoading(true);
+      localStorage.setItem('producthub_auth', 'true');
+      localStorage.setItem('producthub_user', 'sh15a');
       sessionStorage.setItem('producthub_auth', 'true');
       sessionStorage.setItem('producthub_user', 'sh15a');
       onSuccess();
@@ -47,6 +61,22 @@ export const LoginGate: React.FC<LoginGateProps> = ({ onSuccess }) => {
             Protected Workspace
           </div>
         </div>
+
+        {/* Incoming idea notification banner */}
+        {pendingIdea?.name && (
+          <div className="mt-5 rounded-xl border border-emerald-500/40 bg-emerald-950/40 p-3.5 text-left shadow-lg shadow-emerald-950/30 animate-in fade-in">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+              <Sparkles className="h-3.5 w-3.5 shrink-0" />
+              <span>Incoming Idea from Finder</span>
+            </div>
+            <p className="mt-1 text-sm font-bold text-white truncate">
+              {pendingIdea.name}
+            </p>
+            <p className="mt-0.5 text-[11px] text-slate-300 leading-relaxed">
+              Unlock your workspace below to review and import this idea into your 95 projects pipeline.
+            </p>
+          </div>
+        )}
 
         {/* Error alert */}
         {error && (
