@@ -161,3 +161,5 @@ export function generateProductPrompt(productName: string, productDescription?: 
     .replace('[PASTE MY PRODUCT IDEA HERE]', ideaDescription);
 }
 
+export * from './projectBlueprint';
+

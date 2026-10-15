@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ChevronRight, ChevronLeft, ExternalLink } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ExternalLink, Sparkles } from 'lucide-react';
 import type { ProductWithTasks } from '@/lib/supabase';
 import {
   STATUS_LABELS,
@@ -12,6 +12,7 @@ interface ProductKanbanProps {
   products: ProductWithTasks[];
   onSelectProduct: (product: ProductWithTasks) => void;
   onStatusChange: (productId: string, newStatus: string) => void;
+  onOpenPrompt?: (product: ProductWithTasks) => void;
 }
 
 const KANBAN_COLUMNS = [
@@ -157,11 +158,28 @@ export function ProductKanban({
                         />
                       </div>
 
-                      {totalTasks > 0 && (
-                        <div className="mb-2 text-[11px] text-slate-500">
-                          {doneTasks}/{effectiveTasks || totalTasks} tasks done
-                        </div>
-                      )}
+                      <div className="mb-2 flex items-center justify-between gap-1">
+                        {totalTasks > 0 ? (
+                          <span className="text-[11px] text-slate-500">
+                            {doneTasks}/{effectiveTasks || totalTasks} tasks done
+                          </span>
+                        ) : <span />}
+
+                        {onOpenPrompt && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onOpenPrompt(product);
+                            }}
+                            className="inline-flex items-center gap-1 rounded border border-cyan-500/30 bg-cyan-500/10 px-1.5 py-0.5 text-[10px] font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
+                            title="Build Guide & AI Prompts"
+                          >
+                            <Sparkles className="h-2.5 w-2.5" />
+                            <span>Guide</span>
+                          </button>
+                        )}
+                      </div>
 
                       {/* Card Footer: Quick Move Buttons */}
                       <div

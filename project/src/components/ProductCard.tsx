@@ -1,4 +1,4 @@
-import { ExternalLink, MoreVertical, Check } from 'lucide-react';
+import { ExternalLink, MoreVertical, Check, Sparkles } from 'lucide-react';
 import type { ProductWithTasks } from '@/lib/supabase';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
@@ -8,6 +8,7 @@ interface ProductCardProps {
   product: ProductWithTasks;
   onClick: () => void;
   onStatusChange?: (newStatus: string) => void;
+  onOpenPrompt?: (product: ProductWithTasks) => void;
   selected?: boolean;
   onToggleSelect?: () => void;
 }
@@ -16,6 +17,7 @@ export function ProductCard({
   product,
   onClick,
   onStatusChange,
+  onOpenPrompt,
   selected = false,
   onToggleSelect,
 }: ProductCardProps) {
@@ -95,20 +97,37 @@ export function ProductCard({
           </div>
         )}
 
-        {product.url ? (
-          <a
-            href={product.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[11px] font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
-          >
-            <ExternalLink className="h-3 w-3 shrink-0" />
-            <span className="truncate max-w-[180px]">Live Preview</span>
-          </a>
-        ) : (
-          <span className="text-[11px] text-slate-600">No preview URL</span>
-        )}
+        <div className="flex items-center justify-between gap-2">
+          {product.url ? (
+            <a
+              href={product.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[11px] font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
+            >
+              <ExternalLink className="h-3 w-3 shrink-0" />
+              <span className="truncate max-w-[120px]">Live Preview</span>
+            </a>
+          ) : (
+            <span className="text-[11px] text-slate-600">No preview URL</span>
+          )}
+
+          {onOpenPrompt && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenPrompt(product);
+              }}
+              className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[11px] font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors shadow-sm"
+              title="Open Build Guide & AI Prompts for this project"
+            >
+              <Sparkles className="h-3 w-3 text-cyan-400" />
+              <span>Build Guide</span>
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

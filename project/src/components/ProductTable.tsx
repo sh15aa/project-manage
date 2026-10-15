@@ -1,4 +1,4 @@
-import { ExternalLink, MoreHorizontal, Check } from 'lucide-react';
+import { ExternalLink, MoreHorizontal, Check, Sparkles } from 'lucide-react';
 import type { ProductWithTasks } from '@/lib/supabase';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
@@ -8,6 +8,7 @@ interface ProductTableProps {
   products: ProductWithTasks[];
   onSelectProduct: (product: ProductWithTasks) => void;
   onStatusChange: (productId: string, newStatus: string) => void;
+  onOpenPrompt?: (product: ProductWithTasks) => void;
   selectedIds: Set<string>;
   onToggleSelect: (id: string) => void;
   onToggleSelectAll: () => void;
@@ -17,6 +18,7 @@ export function ProductTable({
   products,
   onSelectProduct,
   onStatusChange,
+  onOpenPrompt,
   selectedIds,
   onToggleSelect,
   onToggleSelectAll,
@@ -147,18 +149,34 @@ export function ProductTable({
                     )}
                   </td>
 
-                  <td className="px-4 py-3 text-right">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onSelectProduct(product);
-                      }}
-                      className="rounded p-1 text-slate-500 opacity-0 hover:bg-slate-700/50 hover:text-slate-300 group-hover:opacity-100"
-                      title="Open details"
-                    >
-                      <MoreHorizontal className="h-4 w-4" />
-                    </button>
+                  <td className="px-4 py-3 text-right whitespace-nowrap">
+                    <div className="flex items-center justify-end gap-1.5">
+                      {onOpenPrompt && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenPrompt(product);
+                          }}
+                          className="inline-flex items-center gap-1 rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-xs font-medium text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-colors"
+                          title="Open Build Guide & AI Prompts"
+                        >
+                          <Sparkles className="h-3 w-3" />
+                          <span className="hidden sm:inline">Guide</span>
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectProduct(product);
+                        }}
+                        className="rounded p-1 text-slate-500 opacity-0 hover:bg-slate-700/50 hover:text-slate-300 group-hover:opacity-100"
+                        title="Open details"
+                      >
+                        <MoreHorizontal className="h-4 w-4" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               );

@@ -59,6 +59,13 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<ProductWithTasks | null>(null);
   const [showAdd, setShowAdd] = useState(false);
   const [showMasterPrompt, setShowMasterPrompt] = useState(false);
+  const [masterPromptProductId, setMasterPromptProductId] = useState<string | null>(null);
+
+  const handleOpenPrompt = useCallback((product: ProductWithTasks) => {
+    setMasterPromptProductId(product.id);
+    setShowMasterPrompt(true);
+  }, []);
+
   const [showTursoModal, setShowTursoModal] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -671,6 +678,7 @@ export default function App() {
                   products={filtered}
                   onSelectProduct={(p) => setSelectedProduct(p)}
                   onStatusChange={handleStatusChange}
+                  onOpenPrompt={handleOpenPrompt}
                   selectedIds={selectedIds}
                   onToggleSelect={handleToggleSelect}
                   onToggleSelectAll={handleToggleSelectAll}
@@ -680,6 +688,7 @@ export default function App() {
                   products={filtered}
                   onSelectProduct={(p) => setSelectedProduct(p)}
                   onStatusChange={handleStatusChange}
+                  onOpenPrompt={handleOpenPrompt}
                 />
               ) : (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -691,6 +700,7 @@ export default function App() {
                       onStatusChange={(newStatus) =>
                         handleStatusChange(product.id, newStatus)
                       }
+                      onOpenPrompt={handleOpenPrompt}
                       selected={selectedIds.has(product.id)}
                       onToggleSelect={() => handleToggleSelect(product.id)}
                     />
@@ -796,8 +806,12 @@ export default function App() {
       {/* Master Prompt Modal */}
       <MasterPromptModal
         isOpen={showMasterPrompt}
-        onClose={() => setShowMasterPrompt(false)}
+        onClose={() => {
+          setShowMasterPrompt(false);
+          setMasterPromptProductId(null);
+        }}
         products={products}
+        initialProductId={masterPromptProductId}
       />
 
       {/* Turso Database Config Modal */}

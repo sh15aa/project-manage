@@ -8,7 +8,6 @@ import {
   ChevronDown,
   ChevronRight,
   Search,
-  CheckCheck,
   Ban,
   Sparkles,
   UserCheck,
@@ -16,6 +15,11 @@ import {
   RotateCcw,
   Layers,
   ArrowLeft,
+  Terminal,
+  Cpu,
+  CheckCircle2,
+  Copy,
+  Download,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -38,6 +42,10 @@ import {
 } from '@/lib/turso';
 import { sanitizeText } from '@/lib/sanitize';
 import { CHECKLIST_SECTIONS } from '@/lib/masterChecklist';
+import {
+  generateProjectBlueprint,
+  downloadBlueprintMarkdown,
+} from '@/lib/masterPrompt';
 import { TagBadge } from './TagBadge';
 import { StatusBadge } from './StatusBadge';
 import { TaskStatusBadge } from './TaskStatusBadge';
@@ -55,21 +63,46 @@ export function ProductDrawer({
   onClose,
   onUpdate,
 }: ProductDrawerProps) {
-  if (!product) return null;
-
   // Always guarantee the product has all 817 master tasks populated immediately
-  const guaranteedProduct = useMemo(() => ensureProductTasks(product), [product]);
+  const guaranteedProduct = useMemo(
+    () => (product ? ensureProductTasks(product) : null),
+    [product]
+  );
 
-  const [tasks, setTasks] = useState<Task[]>(() => guaranteedProduct.tasks);
+  const [tasks, setTasks] = useState<Task[]>(() => guaranteedProduct?.tasks ?? []);
   const [newTask, setNewTask] = useState('');
   const [editing, setEditing] = useState(false);
-  const [editName, setEditName] = useState(guaranteedProduct.name);
-  const [editDesc, setEditDesc] = useState(guaranteedProduct.description ?? '');
-  const [editUrl, setEditUrl] = useState(guaranteedProduct.url ?? '');
-  const [editTag, setEditTag] = useState(guaranteedProduct.tag);
-  const [editStatus, setEditStatus] = useState(guaranteedProduct.status);
+  const [editName, setEditName] = useState(guaranteedProduct?.name ?? '');
+  const [editDesc, setEditDesc] = useState(guaranteedProduct?.description ?? '');
+  const [editUrl, setEditUrl] = useState(guaranteedProduct?.url ?? '');
+  const [editTag, setEditTag] = useState(guaranteedProduct?.tag ?? 'web-app');
+  const [editStatus, setEditStatus] = useState(guaranteedProduct?.status ?? 'idea');
   const [saving, setSaving] = useState(false);
   const [showMasterPrompt, setShowMasterPrompt] = useState(false);
+  const [drawerTab, setDrawerTab] = useState<'checklist' | 'guide'>('checklist');
+  const [copiedPromptId, setCopiedPromptId] = useState<number | null>(null);
+  const [copiedFullPrompt, setCopiedFullPrompt] = useState(false);
+
+  // Compute rich blueprint for this project
+  const blueprint = useMemo(
+    () =>
+      guaranteedProduct
+        ? generateProjectBlueprint(guaranteedProduct)
+        : generateProjectBlueprint({ name: '', tag: 'web-app' }),
+    [guaranteedProduct]
+  );
+
+  const handleCopyVibePrompt = async (phaseNum: number, content: string) => {
+    await navigator.clipboard.writeText(content);
+    setCopiedPromptId(phaseNum);
+    setTimeout(() => setCopiedPromptId(null), 2000);
+  };
+
+  const handleCopyAllBlueprint = async () => {
+    await navigator.clipboard.writeText(blueprint.fullMasterPrompt);
+    setCopiedFullPrompt(true);
+    setTimeout(() => setCopiedFullPrompt(false), 2000);
+  };
 
   // Task filtering & searching state
   const [taskSearch, setTaskSearch] = useState('');
@@ -82,6 +115,7 @@ export function ProductDrawer({
 
   // Sync state whenever selected product changes
   useEffect(() => {
+    if (!product) return;
     const fresh = ensureProductTasks(product);
     setTasks(fresh.tasks);
     setEditName(fresh.name);
@@ -92,7 +126,7 @@ export function ProductDrawer({
     setEditing(false);
     setNewTask('');
     setExpandedSections(new Set(CHECKLIST_SECTIONS.slice(0, 5)));
-  }, [product?.id]);
+  }, [product]);
 
   // Task metrics
   const totalTasks = tasks.length;
@@ -248,6 +282,8 @@ export function ProductDrawer({
   function collapseAllSections() {
     setExpandedSections(new Set());
   }
+
+  if (!product || !guaranteedProduct) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 animate-in fade-in duration-150">
@@ -429,24 +465,54 @@ export function ProductDrawer({
             </div>
           )}
 
-          {/* Master Checklist Progress & State Distribution */}
-          <div className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-4 sm:p-5 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 className="text-base font-bold text-white">
-                  Master Launch Checklist
-                </h3>
-                <p className="text-xs text-slate-400">
-                  {doneTasks} completed of {effectiveTotal} required ({totalTasks} total tasks across 38 sections)
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-400 font-medium">Completion:</span>
-                <span className="text-xl font-extrabold tabular-nums text-emerald-400">
-                  {effectiveTotal > 0 ? Math.round((doneTasks / effectiveTotal) * 100) : 0}%
-                </span>
-              </div>
-            </div>
+          {/* Drawer Tab Switcher: Checklist vs Build Guide */}
+          <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+            <button
+              type="button"
+              onClick={() => setDrawerTab('checklist')}
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+                drawerTab === 'checklist'
+                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                  : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+              }`}
+            >
+              <Layers className="h-4 w-4" />
+              <span>Master Checklist ({totalTasks})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setDrawerTab('guide')}
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
+                drawerTab === 'guide'
+                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                  : 'border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20'
+              }`}
+            >
+              <Sparkles className="h-4 w-4 text-cyan-400" />
+              <span>Build Guide & AI Prompts</span>
+            </button>
+          </div>
+
+          {drawerTab === 'checklist' ? (
+            <>
+              {/* Master Checklist Progress & State Distribution */}
+              <div className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-4 sm:p-5 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h3 className="text-base font-bold text-white">
+                      Master Launch Checklist
+                    </h3>
+                    <p className="text-xs text-slate-400">
+                      {doneTasks} completed of {effectiveTotal} required ({totalTasks} total tasks across 38 sections)
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-slate-400 font-medium">Completion:</span>
+                    <span className="text-xl font-extrabold tabular-nums text-emerald-400">
+                      {effectiveTotal > 0 ? Math.round((doneTasks / effectiveTotal) * 100) : 0}%
+                    </span>
+                  </div>
+                </div>
 
             <ProgressBar
               done={doneTasks}
@@ -805,8 +871,229 @@ export function ProductDrawer({
               )}
             </div>
           </div>
+        </>
+      ) : (
+        <div className="space-y-6 animate-in fade-in duration-150">
+          {/* Top Banner & Fast Actions */}
+          <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="rounded bg-cyan-500/20 border border-cyan-500/40 px-2 py-0.5 text-[11px] font-bold text-cyan-300">
+                  {blueprint.productType}
+                </span>
+                <span className="text-xs text-slate-400">&bull;</span>
+                <span className="text-xs text-slate-300 font-medium">
+                  27 Phased Master Blueprint
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-white">
+                AI Build Guide for {blueprint.productName}
+              </h3>
+              <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+                Use these 6 self-contained prompts with Claude, Cursor, Antigravity, Bolt, or ChatGPT to take this product from idea to production launch.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => downloadBlueprintMarkdown(blueprint)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-500/20 px-3 py-1.5 text-xs font-semibold text-cyan-200 hover:bg-cyan-500/30 transition-colors"
+                title="Download complete guide as Markdown file"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download Blueprint (.md)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleCopyAllBlueprint}
+                className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold shadow-md transition-all ${
+                  copiedFullPrompt
+                    ? 'bg-emerald-600 text-white'
+                    : 'border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white'
+                }`}
+                title="Copy entire 27-phase master prompt"
+              >
+                {copiedFullPrompt ? (
+                  <>
+                    <Check className="h-3.5 w-3.5" />
+                    <span>Copied Prompt!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3.5 w-3.5 text-slate-400" />
+                    <span>Copy Master Prompt</span>
+                  </>
+                )}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowMasterPrompt(true)}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:from-cyan-500 hover:to-blue-500 transition-all shadow-sm"
+                title="Open full interactive studio with 27 phases"
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Open Full Studio</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Strategy & Recommended Stack */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
+              <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+                <Terminal className="h-3.5 w-3.5 text-cyan-400" />
+                Product Strategy & Core Problem
+              </h4>
+              <div className="space-y-2 text-xs">
+                <div>
+                  <span className="text-slate-400 font-medium">Problem:</span>
+                  <p className="text-slate-200 leading-relaxed">{blueprint.problemSolved}</p>
+                </div>
+                <div>
+                  <span className="text-slate-400 font-medium">Target Users:</span>
+                  <p className="text-slate-200 leading-relaxed">{blueprint.targetUsers}</p>
+                </div>
+                <div>
+                  <span className="text-slate-400 font-medium">Core Value Prop:</span>
+                  <p className="text-cyan-300 font-medium leading-relaxed">{blueprint.coreValueProp}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-3">
+              <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+                <Cpu className="h-3.5 w-3.5 text-cyan-400" />
+                Recommended Tech Stack
+              </h4>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="rounded border border-slate-800 bg-slate-950 p-2">
+                  <span className="text-[10px] text-slate-500 uppercase block">Frontend</span>
+                  <span className="font-semibold text-cyan-300">{blueprint.recommendedTechStack.frontend}</span>
+                </div>
+                <div className="rounded border border-slate-800 bg-slate-950 p-2">
+                  <span className="text-[10px] text-slate-500 uppercase block">Backend</span>
+                  <span className="font-semibold text-slate-200">{blueprint.recommendedTechStack.backend}</span>
+                </div>
+                <div className="rounded border border-slate-800 bg-slate-950 p-2">
+                  <span className="text-[10px] text-slate-500 uppercase block">Database</span>
+                  <span className="font-semibold text-slate-200">{blueprint.recommendedTechStack.database}</span>
+                </div>
+                <div className="rounded border border-slate-800 bg-slate-950 p-2">
+                  <span className="text-[10px] text-slate-500 uppercase block">Auth</span>
+                  <span className="font-semibold text-slate-200">{blueprint.recommendedTechStack.auth}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 6 Phased Vibe-Coding Prompts */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Terminal className="h-4 w-4 text-cyan-400" />
+                <h4 className="text-sm font-bold text-white">
+                  Sequential Implementation Prompts (Phases 1 — 6)
+                </h4>
+              </div>
+              <span className="text-xs text-slate-400">
+                Click copy on each phase to send to your AI coder
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {blueprint.vibeCodingPrompts.map((vp) => {
+                const isCopied = copiedPromptId === vp.phase;
+                return (
+                  <div
+                    key={vp.phase}
+                    className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3 transition-colors hover:border-slate-700"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
+                      <div className="flex items-center gap-2.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-cyan-500/20 text-cyan-400 font-bold text-xs">
+                          {vp.phase}
+                        </span>
+                        <div>
+                          <h5 className="text-sm font-bold text-white">
+                            Phase {vp.phase}: {vp.title}
+                          </h5>
+                          <span className="text-[11px] text-slate-400">
+                            AI Role: <strong className="text-slate-300">{vp.role}</strong>
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => handleCopyVibePrompt(vp.phase, vp.prompt)}
+                        className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+                          isCopied
+                            ? 'bg-emerald-600 text-white'
+                            : 'border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-white'
+                        }`}
+                      >
+                        {isCopied ? (
+                          <>
+                            <Check className="h-3.5 w-3.5" />
+                            <span>Copied Phase {vp.phase}!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="h-3.5 w-3.5" />
+                            <span>Copy Phase {vp.phase} Prompt</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    <p className="text-xs text-slate-300">
+                      {vp.summary}
+                    </p>
+
+                    <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                      <span className="text-slate-500 text-[11px] font-semibold">Target Files:</span>
+                      {vp.filesToCreateOrModify.map((f) => (
+                        <code key={f} className="rounded bg-slate-900 border border-slate-800 px-1.5 py-0.5 text-[10px] text-cyan-300 font-mono">
+                          {f}
+                        </code>
+                      ))}
+                    </div>
+
+                    <div className="rounded-lg border border-slate-800/80 bg-slate-900/50 p-2.5 space-y-1">
+                      <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
+                        Definition of Done:
+                      </span>
+                      <ul className="space-y-1">
+                        {vp.definitionOfDone.map((d, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
+                            <CheckCircle2 className="h-3 w-3 text-emerald-400 shrink-0 mt-0.5" />
+                            <span>{d}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <details className="group">
+                      <summary className="text-[11px] font-medium text-slate-400 hover:text-cyan-400 cursor-pointer list-none flex items-center gap-1 select-none">
+                        <ChevronRight className="h-3 w-3 group-open:rotate-90 transition-transform" />
+                        <span>Preview Prompt Content</span>
+                      </summary>
+                      <div className="mt-2 rounded-lg border border-slate-800 bg-slate-900/80 p-3 font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto">
+                        {vp.prompt}
+                      </div>
+                    </details>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+    </div>
+  </div>
 
       {/* Master Prompt Modal for this specific project */}
       <MasterPromptModal
