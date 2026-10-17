@@ -1053,7 +1053,7 @@ export default function App() {
       {/* Floating AI Assistant Trigger Button */}
       <button
         onClick={() => setShowAssistant(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full border border-white/[0.12] bg-[#0d1017]/90 hover:bg-[#141924] px-4 py-2.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl transition-all hover:scale-105 active:scale-95 group shadow-black/50"
+        className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom))] md:bottom-6 right-4 md:right-6 z-40 flex items-center gap-2.5 rounded-full border border-white/[0.12] bg-[#0d1017]/90 hover:bg-[#141924] px-4 py-2.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl transition-all hover:scale-105 active:scale-95 group shadow-black/50"
       >
         <div className="relative">
           <Bot className="h-4 w-4 text-sky-400 group-hover:rotate-12 transition-transform" />
