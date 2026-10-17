@@ -363,7 +363,7 @@ export default function App() {
             <Globe className="h-4 w-4 text-sky-400 group-hover:rotate-45 transition-transform" />
             <span>All Links</span>
             <span className="ml-auto flex items-center gap-1 rounded-full bg-sky-500/10 px-2 py-0.5 text-[10px] font-semibold text-sky-300 border border-sky-500/20">
-              <span>5 Hubs</span>
+              <span>6 Hubs</span>
               <ExternalLink className="h-2.5 w-2.5" />
             </span>
           </button>
@@ -409,11 +409,11 @@ export default function App() {
               <span>Ecosystem Hubs</span>
             </div>
             <span className="rounded-full bg-sky-500/10 px-1.5 py-0.2 text-[9px] font-semibold text-sky-300 border border-sky-500/20">
-              5 HUBS
+              6 HUBS
             </span>
           </div>
           <p className="text-[11px] leading-relaxed text-zinc-400 mb-2.5">
-            Finder, Bot Factory, AI Agents, Mobile Modules & Reusable Library.
+            Finder, Bot Factory, AI Agents, Mobile Modules, Library & Mentor OS.
           </p>
           <button
             type="button"
@@ -642,11 +642,11 @@ export default function App() {
                     type="button"
                     onClick={() => setShowAllLinks(true)}
                     className="flex items-center gap-1.5 rounded-xl border border-sky-500/30 bg-sky-950/20 px-3 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-950/40 hover:border-sky-500/50 transition-colors shadow-sm"
-                    title="Open All Links (Finder, Bots, Agents, Mobile, Library)"
+                    title="Open All Links (Finder, Bots, Agents, Mobile, Library, Mentor OS)"
                   >
                     <Globe className="h-3.5 w-3.5 text-sky-400" />
                     <span>All Links</span>
-                    <span className="hidden md:inline text-[10px] text-sky-400/80 font-mono">5 Hubs</span>
+                    <span className="hidden md:inline text-[10px] text-sky-400/80 font-mono">6 Hubs</span>
                     <ExternalLink className="h-2.5 w-2.5 opacity-70" />
                   </button>
 

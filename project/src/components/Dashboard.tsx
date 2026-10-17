@@ -112,11 +112,11 @@ export function Dashboard({
               <div className="flex items-center gap-2">
                 <h3 className="text-base font-semibold text-white tracking-tight">Ecosystem Hubs & Reusable Factories</h3>
                 <span className="rounded-full bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-300 border border-sky-500/20">
-                  5 Hubs
+                  6 Hubs
                 </span>
               </div>
               <p className="mt-1 text-xs text-zinc-400 max-w-2xl leading-relaxed">
-                Connect your product pipeline to Finder (Validated Ideas), Enterprise Bot Factory, AI Agent Runtime, Mobile Product Factory (163 Modules) & Reusable Code Library (33 Modules).
+                Connect your product pipeline to Finder (Validated Ideas), Enterprise Bot Factory, AI Agent Runtime, Mobile Product Factory (163 Modules), Reusable Code Library (33 Modules) & AI Mentor OS.
               </p>
             </div>
           </div>

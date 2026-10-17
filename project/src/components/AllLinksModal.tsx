@@ -11,6 +11,7 @@ import {
   Library,
   Globe,
   Search,
+  Swords,
 } from 'lucide-react';
 
 export interface EcosystemLink {
@@ -93,6 +94,19 @@ export const ECOSYSTEM_LINKS: EcosystemLink[] = [
     highlights: ['33 Enterprise Modules', 'Auth & Payments', 'Cloudflare Edge Ready'],
     icon: Library,
   },
+  {
+    id: 'mentor-api',
+    name: 'AI Mentor Operating System',
+    category: 'Adversarial Founder Mentorship & OS',
+    url: 'https://mentor-api.foundershivanand.workers.dev/',
+    badge: 'MENTOR OS',
+    badgeClass: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
+    iconBg: 'bg-rose-500/10 border-rose-500/20',
+    iconColor: 'text-rose-400',
+    description: 'Adversarial Socratic mentor for founders: zero empty praise, extreme accountability, bottleneck analysis, training debt tracking & flaw remediation.',
+    highlights: ['Adversarial Socratic', 'Excuse Audit', 'Bottleneck Remediation'],
+    icon: Swords,
+  },
 ];
 
 interface AllLinksModalProps {
@@ -153,7 +167,7 @@ export const AllLinksModal: React.FC<AllLinksModalProps> = ({ isOpen, onClose })
                 </span>
               </div>
               <p className="text-xs text-zinc-400 mt-0.5">
-                Instant access to all 5 companion tools, idea engines & reusable factories
+                Instant access to all {ECOSYSTEM_LINKS.length} companion tools, idea engines & reusable factories
               </p>
             </div>
           </div>

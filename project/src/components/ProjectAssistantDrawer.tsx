@@ -202,7 +202,7 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
             <button
               type="button"
               onClick={() => setShowAllLinks(true)}
-              title="Open All Links (5 Ecosystem Hubs)"
+              title="Open All Links (6 Ecosystem Hubs)"
               className="flex h-8 items-center gap-1.5 rounded-lg border border-sky-500/30 bg-sky-950/20 px-2 text-xs font-medium text-sky-300 hover:bg-sky-900/40 transition-colors"
             >
               <Globe className="h-3.5 w-3.5 text-sky-400" />

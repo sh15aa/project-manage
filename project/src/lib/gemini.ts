@@ -564,7 +564,8 @@ function runEmbeddedAssistant(params: {
     q.includes('factories') ||
     q.includes('reusable') ||
     q.includes('library') ||
-    q.includes('module')
+    q.includes('module') ||
+    q.includes('mentor')
   ) {
     return {
       text: `🌐 **Personal Product Factory — All Ecosystem Links & Hubs:**\n\n` +
@@ -578,6 +579,8 @@ function runEmbeddedAssistant(params: {
         `163 production-grade mobile app components, offline-first sync engines & cross-platform layouts.\n\n` +
         `**5. [Reusable Code Library](https://reusable-library.foundershivanand.workers.dev/)** [33 CORE MODULES]\n` +
         `33 enterprise modules: Session Auth & RBAC, Stripe/LemonSqueezy Payments, R2 Storage & Webhooks.\n\n` +
+        `**6. [AI Mentor Operating System](https://mentor-api.foundershivanand.workers.dev/)** [MENTOR OS]\n` +
+        `Adversarial Socratic mentor for founders: zero empty praise, extreme accountability, bottleneck audits & flaw remediation.\n\n` +
         `💡 *Tip: Click the **All Links** button in the top navigation or sidebar to view the interactive popup!*`,
     };
   }
@@ -751,6 +754,7 @@ Rules:
    - AI Agents: https://agentsreusable.pages.dev/
    - Mobile Factory (163 Modules): https://appreusable.pages.dev/
    - Reusable Code Library (33 Modules): https://reusable-library.foundershivanand.workers.dev/
+   - AI Mentor OS: https://mentor-api.foundershivanand.workers.dev/
 5. If your answer recommends filtering the dashboard, append a directive at the very end on its own line:
    ACTION_FILTER:{"tags":["app"],"statuses":["idea"],"label":"Filter Dashboard to App Ideas"}
 6. Keep responses concise, structured with bullet points and bold headers, and action-oriented.`;
