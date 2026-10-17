@@ -14,7 +14,9 @@ import {
   Cpu,
   CheckCircle2,
   FileText,
-  Workflow
+  Workflow,
+  Library,
+  ExternalLink,
 } from 'lucide-react';
 import {
   MASTER_PROMPT_SECTIONS,
@@ -162,6 +164,20 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
               <span className="hidden xs:inline">Download Blueprint (.md)</span>
               <span className="xs:hidden">.md</span>
             </button>
+
+            {/* Reusable Code Library */}
+            <a
+              href="https://reusable-library.foundershivanand.workers.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/15 px-2.5 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-500/25 hover:text-white transition-colors"
+              title="Open Reusable Code Library (33 enterprise modules for AI agents)"
+            >
+              <Library className="h-3.5 w-3.5 text-indigo-400" />
+              <span className="hidden sm:inline">Reusable Library</span>
+              <span className="sm:hidden">Library</span>
+              <ExternalLink className="h-2.5 w-2.5 opacity-60" />
+            </a>
 
             {/* Download PDF button */}
             <a

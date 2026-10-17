@@ -555,6 +555,27 @@ function runEmbeddedAssistant(params: {
     };
   }
 
+  // 3b. "reusable library" / "modules" / "code library" / "reusable"
+  if (
+    q.includes('reusable') ||
+    q.includes('library') ||
+    q.includes('module') ||
+    q.includes('code library') ||
+    q.includes('component library')
+  ) {
+    return {
+      text: `📦 **Personal Product Factory — Reusable Code Library**\n\n` +
+        `Your workspace includes a centralized library of **33 enterprise-grade, battle-tested code modules** ready for autonomous AI coding agents to discover, pull, and integrate:\n\n` +
+        `• 🔐 **Auth & RBAC**: Session management, OAuth (Google/GitHub), MFA, RBAC middleware\n` +
+        `• 💳 **Billing & Payments**: Stripe/LemonSqueezy multi-provider, recurring subscriptions, usage invoices\n` +
+        `• 🗄️ **Storage & R2**: Provider-agnostic storage (S3, Cloudflare R2, Local) with pre-signed URLs\n` +
+        `• 🛡️ **Security & Rate Limiting**: Token-bucket limiters, DDoS protection, sanitization, posture monitor\n` +
+        `• ⚡ **Audit & Webhooks**: Cryptographic audit trails, actor attribution, HMAC-signed webhook dispatcher\n` +
+        `• 🌐 **Edge Database**: libSQL & Turso distributed edge storage, migration runner & connection pool\n\n` +
+        `👉 **[Open Reusable Code Library (33 Modules)](https://reusable-library.foundershivanand.workers.dev/)**`,
+    };
+  }
+
   // 4. "developer tools" / "tool"
   if (q.includes('tool') || q.includes('developer') || q.includes('dev tool') || q.includes('utility')) {
     const tools = products.filter((p) => p.tag === 'tool');
@@ -718,9 +739,10 @@ Rules:
 1. Always reference real projects from the database above when relevant. Format project mentions as markdown links: [Project Name](#view-ID) so the user can click them directly.
 2. If the user asks for "app ideas", list projects tagged as 'app' with status 'idea' and explain why they are great to build.
 3. If the user asks for "ideas in progress" or "working", list projects with status 'working' and show their progress.
-4. If your answer recommends filtering the dashboard, append a directive at the very end on its own line:
+4. When relevant (e.g. user asks about architecture, pre-built code, backend modules, auth, payments, database, or boilerplates), mention the Reusable Code Library (33 battle-tested enterprise modules): https://reusable-library.foundershivanand.workers.dev/
+5. If your answer recommends filtering the dashboard, append a directive at the very end on its own line:
    ACTION_FILTER:{"tags":["app"],"statuses":["idea"],"label":"Filter Dashboard to App Ideas"}
-5. Keep responses concise, structured with bullet points and bold headers, and action-oriented.`;
+6. Keep responses concise, structured with bullet points and bold headers, and action-oriented.`;
 
   // Build multi-turn contents
   const contents: any[] = [];

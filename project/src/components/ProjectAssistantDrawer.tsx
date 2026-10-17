@@ -15,6 +15,7 @@ import {
   Check,
   AlertCircle,
   Zap,
+  Library,
 } from 'lucide-react';
 import type { ProductWithTasks } from '@/lib/turso';
 import {
@@ -36,9 +37,9 @@ interface ProjectAssistantDrawerProps {
 const DEFAULT_PROMPTS = [
   { label: '📱 Give me app ideas', query: 'give me app ideas' },
   { label: '⚡ Ideas in progress', query: 'give me ideas that are in progress' },
+  { label: '📦 Reusable code library', query: 'show reusable code library and modules' },
   { label: '🛠️ Developer tools', query: 'show developer tools' },
   { label: '💼 SaaS opportunities', query: 'show saas ideas' },
-  { label: '📊 Workspace stats', query: 'show workspace stats and progress' },
   { label: '🎯 What should I build next?', query: 'what should I build next?' },
 ];
 
@@ -195,6 +196,18 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
+            <a
+              href="https://reusable-library.foundershivanand.workers.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open Reusable Code Library (33 Modules)"
+              className="flex h-8 items-center gap-1.5 rounded-lg border border-indigo-500/30 bg-indigo-950/20 px-2 text-xs font-medium text-indigo-300 hover:bg-indigo-900/40 transition-colors"
+            >
+              <Library className="h-3.5 w-3.5 text-indigo-400" />
+              <span className="hidden xs:inline text-[11px]">Library</span>
+              <ExternalLink className="h-2.5 w-2.5 opacity-60" />
+            </a>
+
             <button
               onClick={() => {
                 setApiKeyInput(getGeminiApiKey());

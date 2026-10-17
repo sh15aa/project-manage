@@ -1,4 +1,4 @@
-import { Package, CheckCircle2, Clock, Layers, Rocket, CheckSquare, Compass, ExternalLink } from 'lucide-react';
+import { Package, CheckCircle2, Clock, Layers, Rocket, CheckSquare, Compass, ExternalLink, Library } from 'lucide-react';
 import type { ProductWithTasks, TaskStatus } from '@/lib/supabase';
 import {
   STATUS_LABELS,
@@ -91,9 +91,10 @@ export function Dashboard({ products }: { products: ProductWithTasks[] }) {
 
   return (
     <div className="space-y-6">
-      {/* Finder Startup & App Ideas Integration Banner */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-r from-emerald-950/20 via-[#0c0e14]/70 to-[#0c0e14]/60 p-6 shadow-xl backdrop-blur-md">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+      {/* Ecosystem Hub — Finder Ideas & Reusable Code Library */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Finder Startup & App Ideas Integration Banner */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-emerald-950/20 via-[#0c0e14]/70 to-[#0c0e14]/60 p-5 sm:p-6 shadow-xl backdrop-blur-md flex flex-col justify-between">
           <div className="flex items-start gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/[0.08] border border-emerald-500/20 text-emerald-400">
               <Compass className="h-6 w-6" />
@@ -105,20 +106,53 @@ export function Dashboard({ products }: { products: ProductWithTasks[] }) {
                   Live
                 </span>
               </div>
-              <p className="mt-1 text-xs text-zinc-400 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
                 Discover market-validated startup opportunities from TrustMRR, Reddit, Product Hunt & App Store, then push them directly into your Project Manage launch pipeline.
               </p>
             </div>
           </div>
-          <a
-            href="https://finder-d17.pages.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/[0.1] font-medium text-xs h-10 px-4 transition-all shadow-sm shrink-0 active:scale-[0.98]"
-          >
-            <span>Open Finder</span>
-            <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-          </a>
+          <div className="mt-5 flex items-center justify-end">
+            <a
+              href="https://finder-d17.pages.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/[0.1] font-medium text-xs h-9 px-4 transition-all shadow-sm shrink-0 active:scale-[0.98]"
+            >
+              <span>Open Finder</span>
+              <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+            </a>
+          </div>
+        </div>
+
+        {/* Reusable Code Library Integration Banner */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-indigo-950/25 via-[#0c0e14]/70 to-[#0c0e14]/60 p-5 sm:p-6 shadow-xl backdrop-blur-md flex flex-col justify-between">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-500/[0.08] border border-indigo-500/20 text-indigo-400">
+              <Library className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-semibold text-white tracking-tight">Reusable Code Library</h3>
+                <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[10px] font-medium text-indigo-300 border border-indigo-500/20">
+                  33 Modules
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
+                33 battle-tested enterprise modules (Auth, Payments, R2 Storage, Rate Limiting, Audit & Webhooks) ready for autonomous AI coding agents to pull and integrate.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 flex items-center justify-end">
+            <a
+              href="https://reusable-library.foundershivanand.workers.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-200 border border-indigo-500/30 font-medium text-xs h-9 px-4 transition-all shadow-sm shrink-0 active:scale-[0.98]"
+            >
+              <span>Open Library</span>
+              <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+            </a>
+          </div>
         </div>
       </div>
 

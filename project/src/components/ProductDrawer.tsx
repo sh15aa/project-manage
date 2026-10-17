@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   Copy,
   Download,
+  Library,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -894,6 +895,18 @@ export function ProductDrawer({
             </div>
 
             <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <a
+                href="https://reusable-library.foundershivanand.workers.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/20 px-3 py-1.5 text-xs font-semibold text-indigo-200 hover:bg-indigo-500/30 transition-colors shadow-sm"
+                title="Browse 33 enterprise modules (Auth, Payments, Storage, Audit, etc.)"
+              >
+                <Library className="h-3.5 w-3.5 text-indigo-400" />
+                <span>Reusable Code Library</span>
+                <ExternalLink className="h-3 w-3 opacity-70" />
+              </a>
+
               <button
                 type="button"
                 onClick={() => downloadBlueprintMarkdown(blueprint)}
@@ -983,6 +996,20 @@ export function ProductDrawer({
                 <div className="rounded border border-slate-800 bg-slate-950 p-2">
                   <span className="text-[10px] text-slate-500 uppercase block">Auth</span>
                   <span className="font-semibold text-slate-200">{blueprint.recommendedTechStack.auth}</span>
+                </div>
+                <div className="col-span-2 rounded border border-indigo-500/20 bg-indigo-950/20 p-2 flex items-center justify-between">
+                  <span className="text-[11px] text-indigo-300">
+                    💡 Pull pre-built Auth, Billing, R2 & DB modules
+                  </span>
+                  <a
+                    href="https://reusable-library.foundershivanand.workers.dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-400 hover:text-indigo-200 transition-colors"
+                  >
+                    <span>Code Library (33)</span>
+                    <ExternalLink className="h-2.5 w-2.5" />
+                  </a>
                 </div>
               </div>
             </div>
