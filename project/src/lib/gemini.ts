@@ -555,24 +555,30 @@ function runEmbeddedAssistant(params: {
     };
   }
 
-  // 3b. "reusable library" / "modules" / "code library" / "reusable"
+  // 3b. "all links" / "ecosystem" / "reusable" / "factories"
   if (
+    q.includes('all links') ||
+    q.includes('links') ||
+    q.includes('ecosystem') ||
+    q.includes('hubs') ||
+    q.includes('factories') ||
     q.includes('reusable') ||
     q.includes('library') ||
-    q.includes('module') ||
-    q.includes('code library') ||
-    q.includes('component library')
+    q.includes('module')
   ) {
     return {
-      text: `📦 **Personal Product Factory — Reusable Code Library**\n\n` +
-        `Your workspace includes a centralized library of **33 enterprise-grade, battle-tested code modules** ready for autonomous AI coding agents to discover, pull, and integrate:\n\n` +
-        `• 🔐 **Auth & RBAC**: Session management, OAuth (Google/GitHub), MFA, RBAC middleware\n` +
-        `• 💳 **Billing & Payments**: Stripe/LemonSqueezy multi-provider, recurring subscriptions, usage invoices\n` +
-        `• 🗄️ **Storage & R2**: Provider-agnostic storage (S3, Cloudflare R2, Local) with pre-signed URLs\n` +
-        `• 🛡️ **Security & Rate Limiting**: Token-bucket limiters, DDoS protection, sanitization, posture monitor\n` +
-        `• ⚡ **Audit & Webhooks**: Cryptographic audit trails, actor attribution, HMAC-signed webhook dispatcher\n` +
-        `• 🌐 **Edge Database**: libSQL & Turso distributed edge storage, migration runner & connection pool\n\n` +
-        `👉 **[Open Reusable Code Library (33 Modules)](https://reusable-library.foundershivanand.workers.dev/)**`,
+      text: `🌐 **Personal Product Factory — All Ecosystem Links & Hubs:**\n\n` +
+        `**1. [Finder — Startup & App Ideas](https://finder-d17.pages.dev/)** [IDEAS]\n` +
+        `Market-validated startup opportunities from Reddit, TrustMRR, Product Hunt & App Store.\n\n` +
+        `**2. [Enterprise Bot Product Factory](https://botserusable.pages.dev/)** [BOTS]\n` +
+        `Enterprise bot architecture & reusable code library for chat bots, automation workflows & listeners.\n\n` +
+        `**3. [AI Agent Product Factory](https://agentsreusable.pages.dev/)** [AGENTS]\n` +
+        `Production-ready AI agent architectures, memory persistence & multi-agent coordination systems.\n\n` +
+        `**4. [Mobile Product Factory](https://appreusable.pages.dev/)** [163 MOBILE MODULES]\n` +
+        `163 production-grade mobile app components, offline-first sync engines & cross-platform layouts.\n\n` +
+        `**5. [Reusable Code Library](https://reusable-library.foundershivanand.workers.dev/)** [33 CORE MODULES]\n` +
+        `33 enterprise modules: Session Auth & RBAC, Stripe/LemonSqueezy Payments, R2 Storage & Webhooks.\n\n` +
+        `💡 *Tip: Click the **All Links** button in the top navigation or sidebar to view the interactive popup!*`,
     };
   }
 
@@ -739,7 +745,12 @@ Rules:
 1. Always reference real projects from the database above when relevant. Format project mentions as markdown links: [Project Name](#view-ID) so the user can click them directly.
 2. If the user asks for "app ideas", list projects tagged as 'app' with status 'idea' and explain why they are great to build.
 3. If the user asks for "ideas in progress" or "working", list projects with status 'working' and show their progress.
-4. When relevant (e.g. user asks about architecture, pre-built code, backend modules, auth, payments, database, or boilerplates), mention the Reusable Code Library (33 battle-tested enterprise modules): https://reusable-library.foundershivanand.workers.dev/
+4. When relevant (e.g. user asks about tools, architecture, reusable code, bots, agents, mobile modules), reference the Ecosystem Hubs:
+   - Finder (Ideas): https://finder-d17.pages.dev/
+   - Bot Factory: https://botserusable.pages.dev/
+   - AI Agents: https://agentsreusable.pages.dev/
+   - Mobile Factory (163 Modules): https://appreusable.pages.dev/
+   - Reusable Code Library (33 Modules): https://reusable-library.foundershivanand.workers.dev/
 5. If your answer recommends filtering the dashboard, append a directive at the very end on its own line:
    ACTION_FILTER:{"tags":["app"],"statuses":["idea"],"label":"Filter Dashboard to App Ideas"}
 6. Keep responses concise, structured with bullet points and bold headers, and action-oriented.`;

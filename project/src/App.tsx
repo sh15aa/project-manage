@@ -17,6 +17,7 @@ import {
   Bot,
   MessageSquare,
   Library,
+  Globe,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -48,6 +49,7 @@ import { TermsModal } from '@/components/TermsModal';
 import { CookieConsent } from '@/components/CookieConsent';
 import { NotFoundView } from '@/components/NotFoundView';
 import { ImportFromFinderModal, type FinderIdeaPayload } from '@/components/ImportFromFinderModal';
+import { AllLinksModal } from '@/components/AllLinksModal';
 import { ProjectAssistantDrawer } from '@/components/ProjectAssistantDrawer';
 import { trackEvent } from '@/lib/analytics';
 
@@ -83,6 +85,7 @@ export default function App() {
   const [finderIdeaToImport, setFinderIdeaToImport] = useState<FinderIdeaPayload | null>(null);
   const [showFinderImportModal, setShowFinderImportModal] = useState(false);
   const [showAssistant, setShowAssistant] = useState(false);
+  const [showAllLinks, setShowAllLinks] = useState(false);
 
   // Detect incoming idea handoff from Finder via URL query parameters or preserved session
   useEffect(() => {
@@ -352,33 +355,18 @@ export default function App() {
             </span>
           </button>
 
-          <a
-            href="https://finder-d17.pages.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-emerald-300 transition-all group"
+          <button
+            type="button"
+            onClick={() => setShowAllLinks(true)}
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-sky-300 transition-all group"
           >
-            <Compass className="h-4 w-4 text-emerald-400 group-hover:rotate-45 transition-transform" />
-            <span>Finder (Ideas)</span>
-            <span className="ml-auto flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/20">
-              <span>Live</span>
+            <Globe className="h-4 w-4 text-sky-400 group-hover:rotate-45 transition-transform" />
+            <span>All Links</span>
+            <span className="ml-auto flex items-center gap-1 rounded-full bg-sky-500/10 px-2 py-0.5 text-[10px] font-semibold text-sky-300 border border-sky-500/20">
+              <span>5 Hubs</span>
               <ExternalLink className="h-2.5 w-2.5" />
             </span>
-          </a>
-
-          <a
-            href="https://reusable-library.foundershivanand.workers.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium text-zinc-400 hover:bg-white/[0.04] hover:text-indigo-300 transition-all group"
-          >
-            <Library className="h-4 w-4 text-indigo-400 group-hover:scale-110 transition-transform" />
-            <span>Reusable Library</span>
-            <span className="ml-auto flex items-center gap-1 rounded-full bg-indigo-500/10 px-2 py-0.5 text-[10px] font-semibold text-indigo-300 border border-indigo-500/20">
-              <span>33 Modules</span>
-              <ExternalLink className="h-2.5 w-2.5" />
-            </span>
-          </a>
+          </button>
         </nav>
 
         {/* Quick Status Stats in Sidebar */}
@@ -413,54 +401,29 @@ export default function App() {
           </div>
         </div>
 
-        {/* Finder Quick Callout Card */}
-        <div className="mb-3 rounded-2xl border border-emerald-500/20 bg-emerald-950/15 p-3 shadow-sm">
+        {/* All Links Ecosystem Quick Card */}
+        <div className="mb-4 rounded-2xl border border-sky-500/20 bg-sky-950/15 p-3.5 shadow-sm">
           <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
-              <Compass className="h-3.5 w-3.5 text-emerald-400" />
-              <span>Finder Ideas</span>
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-sky-300">
+              <Globe className="h-3.5 w-3.5 text-sky-400" />
+              <span>Ecosystem Hubs</span>
             </div>
-            <span className="rounded-full bg-emerald-500/10 px-1.5 py-0.2 text-[9px] font-semibold text-emerald-300 border border-emerald-500/20">
-              VIBE ENGINE
+            <span className="rounded-full bg-sky-500/10 px-1.5 py-0.2 text-[9px] font-semibold text-sky-300 border border-sky-500/20">
+              5 HUBS
             </span>
           </div>
-          <p className="text-[11px] leading-relaxed text-zinc-400 mb-2">
-            Validated ideas from Reddit, TrustMRR & Product Hunt ready to import.
+          <p className="text-[11px] leading-relaxed text-zinc-400 mb-2.5">
+            Finder, Bot Factory, AI Agents, Mobile Modules & Reusable Library.
           </p>
-          <a
-            href="https://finder-d17.pages.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-500/20 transition-all group"
+          <button
+            type="button"
+            onClick={() => setShowAllLinks(true)}
+            className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-sky-500/30 bg-sky-500/10 px-2.5 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-500/20 transition-all group"
           >
-            <span>Open Finder</span>
+            <Globe className="h-3 w-3" />
+            <span>All Links</span>
             <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-          </a>
-        </div>
-
-        {/* Reusable Library Quick Callout Card */}
-        <div className="mb-4 rounded-2xl border border-indigo-500/20 bg-indigo-950/15 p-3 shadow-sm">
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-indigo-300">
-              <Library className="h-3.5 w-3.5 text-indigo-400" />
-              <span>Reusable Library</span>
-            </div>
-            <span className="rounded-full bg-indigo-500/10 px-1.5 py-0.2 text-[9px] font-semibold text-indigo-300 border border-indigo-500/20">
-              33 MODULES
-            </span>
-          </div>
-          <p className="text-[11px] leading-relaxed text-zinc-400 mb-2">
-            Enterprise code modules (Auth, Billing, Storage, Audit) for AI agents.
-          </p>
-          <a
-            href="https://reusable-library.foundershivanand.workers.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-500/20 transition-all group"
-          >
-            <span>Open Library</span>
-            <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          </button>
         </div>
 
         <div className="mt-auto space-y-2">
@@ -575,29 +538,15 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://finder-d17.pages.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-950/20 px-2 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/40 transition-colors"
-            title="Open Finder — Startup & App Ideas"
+          <button
+            type="button"
+            onClick={() => setShowAllLinks(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-sky-500/30 bg-sky-950/20 px-2.5 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-900/40 transition-colors"
+            title="Open All Links & Ecosystem Hubs"
           >
-            <Compass className="h-3.5 w-3.5 text-emerald-400" />
-            <span className="text-[11px] font-medium hidden xs:inline">Finder</span>
-            <ExternalLink className="h-2.5 w-2.5 opacity-60" />
-          </a>
-
-          <a
-            href="https://reusable-library.foundershivanand.workers.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 rounded-lg border border-indigo-500/30 bg-indigo-950/20 px-2 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-950/40 transition-colors"
-            title="Open Reusable Code Library (33 Modules)"
-          >
-            <Library className="h-3.5 w-3.5 text-indigo-400" />
-            <span className="text-[11px] font-medium hidden xs:inline">Library</span>
-            <ExternalLink className="h-2.5 w-2.5 opacity-60" />
-          </a>
+            <Globe className="h-3.5 w-3.5 text-sky-400" />
+            <span className="text-[11px] font-semibold">All Links</span>
+          </button>
 
           <button
             type="button"
@@ -669,7 +618,7 @@ export default function App() {
                   Overview of all {products.length} projects and development lifecycle
                 </p>
               </div>
-              <Dashboard products={products} />
+              <Dashboard products={products} onOpenAllLinks={() => setShowAllLinks(true)} />
             </>
           ) : (
             <>
@@ -689,31 +638,17 @@ export default function App() {
 
                 {/* View switcher & Quick Action */}
                 <div className="flex items-center gap-2 self-end sm:self-auto">
-                  <a
-                    href="https://finder-d17.pages.dev/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-3 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-950/40 hover:border-emerald-500/50 transition-colors shadow-sm"
-                    title="Open Finder — Startup & App Ideas"
+                  <button
+                    type="button"
+                    onClick={() => setShowAllLinks(true)}
+                    className="flex items-center gap-1.5 rounded-xl border border-sky-500/30 bg-sky-950/20 px-3 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-950/40 hover:border-sky-500/50 transition-colors shadow-sm"
+                    title="Open All Links (Finder, Bots, Agents, Mobile, Library)"
                   >
-                    <Compass className="h-3.5 w-3.5 text-emerald-400" />
-                    <span className="hidden sm:inline">Finder</span>
-                    <span className="hidden md:inline text-[10px] text-emerald-400/80 font-mono">Ideas</span>
+                    <Globe className="h-3.5 w-3.5 text-sky-400" />
+                    <span>All Links</span>
+                    <span className="hidden md:inline text-[10px] text-sky-400/80 font-mono">5 Hubs</span>
                     <ExternalLink className="h-2.5 w-2.5 opacity-70" />
-                  </a>
-
-                  <a
-                    href="https://reusable-library.foundershivanand.workers.dev/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 rounded-xl border border-indigo-500/30 bg-indigo-950/20 px-3 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-950/40 hover:border-indigo-500/50 transition-colors shadow-sm"
-                    title="Open Reusable Code Library — 33 Battle-tested Modules"
-                  >
-                    <Library className="h-3.5 w-3.5 text-indigo-400" />
-                    <span className="hidden sm:inline">Code Library</span>
-                    <span className="hidden md:inline text-[10px] text-indigo-400/80 font-mono">33 Modules</span>
-                    <ExternalLink className="h-2.5 w-2.5 opacity-70" />
-                  </a>
+                  </button>
 
                   <button
                     type="button"
@@ -1109,6 +1044,10 @@ export default function App() {
       />
       <CookieConsent
         onOpenPrivacy={() => setShowPrivacy(true)}
+      />
+      <AllLinksModal
+        isOpen={showAllLinks}
+        onClose={() => setShowAllLinks(false)}
       />
 
       {/* Floating AI Assistant Trigger Button */}

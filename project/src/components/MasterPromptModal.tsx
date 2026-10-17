@@ -17,7 +17,9 @@ import {
   Workflow,
   Library,
   ExternalLink,
+  Globe,
 } from 'lucide-react';
+import { AllLinksModal } from './AllLinksModal';
 import {
   MASTER_PROMPT_SECTIONS,
   generateProductPrompt,
@@ -48,6 +50,7 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
   const [copiedPromptId, setCopiedPromptId] = useState<number | null>(null);
   const [copiedSection, setCopiedSection] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showAllLinks, setShowAllLinks] = useState(false);
 
   // Sync selected product if initialProductId changes
   React.useEffect(() => {
@@ -165,19 +168,17 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
               <span className="xs:hidden">.md</span>
             </button>
 
-            {/* Reusable Code Library */}
-            <a
-              href="https://reusable-library.foundershivanand.workers.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/15 px-2.5 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-500/25 hover:text-white transition-colors"
-              title="Open Reusable Code Library (33 enterprise modules for AI agents)"
+            {/* All Links */}
+            <button
+              type="button"
+              onClick={() => setShowAllLinks(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-sky-500/40 bg-sky-500/15 px-2.5 py-1.5 text-xs font-medium text-sky-300 hover:bg-sky-500/25 hover:text-white transition-colors"
+              title="Open All Links (Finder, Bots, Agents, Mobile, Library)"
             >
-              <Library className="h-3.5 w-3.5 text-indigo-400" />
-              <span className="hidden sm:inline">Reusable Library</span>
-              <span className="sm:hidden">Library</span>
-              <ExternalLink className="h-2.5 w-2.5 opacity-60" />
-            </a>
+              <Globe className="h-3.5 w-3.5 text-sky-400" />
+              <span>All Links</span>
+              <span className="rounded-full bg-sky-500/20 px-1.5 py-0.2 text-[9px] font-mono text-sky-200">5</span>
+            </button>
 
             {/* Download PDF button */}
             <a
@@ -630,6 +631,11 @@ export const MasterPromptModal: React.FC<MasterPromptModalProps> = ({
           </div>
         )}
       </div>
+
+      <AllLinksModal
+        isOpen={showAllLinks}
+        onClose={() => setShowAllLinks(false)}
+      />
     </div>
   );
 };

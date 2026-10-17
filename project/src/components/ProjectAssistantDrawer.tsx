@@ -16,7 +16,9 @@ import {
   AlertCircle,
   Zap,
   Library,
+  Globe,
 } from 'lucide-react';
+import { AllLinksModal } from './AllLinksModal';
 import type { ProductWithTasks } from '@/lib/turso';
 import {
   type ChatMessage,
@@ -37,7 +39,7 @@ interface ProjectAssistantDrawerProps {
 const DEFAULT_PROMPTS = [
   { label: '📱 Give me app ideas', query: 'give me app ideas' },
   { label: '⚡ Ideas in progress', query: 'give me ideas that are in progress' },
-  { label: '📦 Reusable code library', query: 'show reusable code library and modules' },
+  { label: '🌐 All ecosystem links', query: 'show all links' },
   { label: '🛠️ Developer tools', query: 'show developer tools' },
   { label: '💼 SaaS opportunities', query: 'show saas ideas' },
   { label: '🎯 What should I build next?', query: 'what should I build next?' },
@@ -64,6 +66,7 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
   const [showKeyModal, setShowKeyModal] = useState(false);
   const [apiKeyInput, setApiKeyInput] = useState('');
   const [keySavedMessage, setKeySavedMessage] = useState(false);
+  const [showAllLinks, setShowAllLinks] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -196,17 +199,15 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <a
-              href="https://reusable-library.foundershivanand.workers.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open Reusable Code Library (33 Modules)"
-              className="flex h-8 items-center gap-1.5 rounded-lg border border-indigo-500/30 bg-indigo-950/20 px-2 text-xs font-medium text-indigo-300 hover:bg-indigo-900/40 transition-colors"
+            <button
+              type="button"
+              onClick={() => setShowAllLinks(true)}
+              title="Open All Links (5 Ecosystem Hubs)"
+              className="flex h-8 items-center gap-1.5 rounded-lg border border-sky-500/30 bg-sky-950/20 px-2 text-xs font-medium text-sky-300 hover:bg-sky-900/40 transition-colors"
             >
-              <Library className="h-3.5 w-3.5 text-indigo-400" />
-              <span className="hidden xs:inline text-[11px]">Library</span>
-              <ExternalLink className="h-2.5 w-2.5 opacity-60" />
-            </a>
+              <Globe className="h-3.5 w-3.5 text-sky-400" />
+              <span className="hidden xs:inline text-[11px]">All Links</span>
+            </button>
 
             <button
               onClick={() => {
@@ -436,6 +437,11 @@ export const ProjectAssistantDrawer: React.FC<ProjectAssistantDrawerProps> = ({
           </div>
         </div>
       </div>
+
+      <AllLinksModal
+        isOpen={showAllLinks}
+        onClose={() => setShowAllLinks(false)}
+      />
     </div>
   );
 };

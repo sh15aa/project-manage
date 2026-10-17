@@ -21,6 +21,7 @@ import {
   Copy,
   Download,
   Library,
+  Globe,
 } from 'lucide-react';
 import {
   type ProductWithTasks,
@@ -52,6 +53,7 @@ import { StatusBadge } from './StatusBadge';
 import { TaskStatusBadge } from './TaskStatusBadge';
 import { ProgressBar } from './ProgressBar';
 import { MasterPromptModal } from './MasterPromptModal';
+import { AllLinksModal } from './AllLinksModal';
 
 interface ProductDrawerProps {
   product: ProductWithTasks | null;
@@ -83,6 +85,7 @@ export function ProductDrawer({
   const [drawerTab, setDrawerTab] = useState<'checklist' | 'guide'>('checklist');
   const [copiedPromptId, setCopiedPromptId] = useState<number | null>(null);
   const [copiedFullPrompt, setCopiedFullPrompt] = useState(false);
+  const [showAllLinks, setShowAllLinks] = useState(false);
 
   // Compute rich blueprint for this project
   const blueprint = useMemo(
@@ -895,17 +898,15 @@ export function ProductDrawer({
             </div>
 
             <div className="flex flex-wrap items-center gap-2 shrink-0">
-              <a
-                href="https://reusable-library.foundershivanand.workers.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/20 px-3 py-1.5 text-xs font-semibold text-indigo-200 hover:bg-indigo-500/30 transition-colors shadow-sm"
-                title="Browse 33 enterprise modules (Auth, Payments, Storage, Audit, etc.)"
+              <button
+                type="button"
+                onClick={() => setShowAllLinks(true)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-sky-500/40 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-200 hover:bg-sky-500/25 transition-colors shadow-sm"
+                title="Open All Links (Finder, Bots, Agents, Mobile, Library)"
               >
-                <Library className="h-3.5 w-3.5 text-indigo-400" />
-                <span>Reusable Code Library</span>
-                <ExternalLink className="h-3 w-3 opacity-70" />
-              </a>
+                <Globe className="h-3.5 w-3.5 text-sky-400" />
+                <span>All Links</span>
+              </button>
 
               <button
                 type="button"
@@ -997,19 +998,18 @@ export function ProductDrawer({
                   <span className="text-[10px] text-slate-500 uppercase block">Auth</span>
                   <span className="font-semibold text-slate-200">{blueprint.recommendedTechStack.auth}</span>
                 </div>
-                <div className="col-span-2 rounded border border-indigo-500/20 bg-indigo-950/20 p-2 flex items-center justify-between">
-                  <span className="text-[11px] text-indigo-300">
-                    💡 Pull pre-built Auth, Billing, R2 & DB modules
+                <div className="col-span-2 rounded border border-sky-500/20 bg-sky-950/20 p-2 flex items-center justify-between">
+                  <span className="text-[11px] text-sky-300">
+                    💡 Pull pre-built modules from Bot, Agent, Mobile & Code Factories
                   </span>
-                  <a
-                    href="https://reusable-library.foundershivanand.workers.dev/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-400 hover:text-indigo-200 transition-colors"
+                  <button
+                    type="button"
+                    onClick={() => setShowAllLinks(true)}
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-400 hover:text-sky-200 transition-colors"
                   >
-                    <span>Code Library (33)</span>
-                    <ExternalLink className="h-2.5 w-2.5" />
-                  </a>
+                    <Globe className="h-3 w-3" />
+                    <span>All Links (5)</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1127,6 +1127,11 @@ export function ProductDrawer({
         onClose={() => setShowMasterPrompt(false)}
         products={[guaranteedProduct]}
         initialProductId={guaranteedProduct.id}
+      />
+
+      <AllLinksModal
+        isOpen={showAllLinks}
+        onClose={() => setShowAllLinks(false)}
       />
     </div>
   );
