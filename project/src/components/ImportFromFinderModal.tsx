@@ -11,7 +11,7 @@ import {
 } from '@/lib/turso';
 import { sanitizeText, isValidUrl } from '@/lib/sanitize';
 import { trackEvent } from '@/lib/analytics';
-import { extractIdeaFromImage } from '@/lib/gemini';
+import { extractIdeaFromImage, compressAndPrepareImage } from '@/lib/gemini';
 
 export interface FinderIdeaPayload {
   id?: string;
@@ -86,25 +86,21 @@ export function ImportFromFinderModal({
     setError(null);
     setExtractingImage(true);
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const base64 = e.target?.result as string;
-      try {
-        const extracted = await extractIdeaFromImage({
-          base64Data: base64,
-          mimeType: file.type,
-          fileName: file.name,
-        });
-        applyParsedData(extracted);
-      } catch (err: any) {
-        const rawMsg = err?.message || 'Could not analyze image';
-        const cleanMsg = rawMsg.replace(/^(?:Image extraction notice:\s*|Extraction notice:\s*)+/i, '');
-        setError(`Image extraction notice: ${cleanMsg}`);
-      } finally {
-        setExtractingImage(false);
-      }
-    };
-    reader.readAsDataURL(file);
+    try {
+      const prepared = await compressAndPrepareImage(file);
+      const extracted = await extractIdeaFromImage({
+        base64Data: prepared.base64Data,
+        mimeType: prepared.mimeType,
+        fileName: file.name,
+      });
+      applyParsedData(extracted);
+    } catch (err: any) {
+      const rawMsg = err?.message || 'Could not analyze image';
+      const cleanMsg = rawMsg.replace(/^(?:Image extraction notice:\s*|Extraction notice:\s*)+/i, '');
+      setError(`Image extraction notice: ${cleanMsg}`);
+    } finally {
+      setExtractingImage(false);
+    }
   }
 
   // Handle parsing a pasted Finder link or JSON

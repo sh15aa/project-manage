@@ -175,13 +175,15 @@ export function ProductDrawer({
   }, [sections, taskSearch, selectedTaskStatus]);
 
   async function handleQuickStatusChange(newStatus: string) {
+    if (!guaranteedProduct) return;
     setEditStatus(newStatus);
-    const updated = { ...guaranteedProduct, status: newStatus, tasks };
+    const updated: ProductWithTasks = { ...guaranteedProduct, status: newStatus, tasks };
     onUpdate(updated);
     await updateProductStatus(guaranteedProduct.id, newStatus);
   }
 
   async function handleTaskStateChange(task: Task, newStatus: TaskStatus) {
+    if (!guaranteedProduct) return;
     const updatedTasks = tasks.map((t) =>
       t.id === task.id ? { ...t, status: newStatus, done: newStatus === 'done' } : t
     );
@@ -196,6 +198,7 @@ export function ProductDrawer({
   }
 
   async function handleSectionBatchStatus(section: string, newStatus: TaskStatus) {
+    if (!guaranteedProduct) return;
     const updatedTasks = await bulkUpdateSectionTasksStatus(
       guaranteedProduct.id,
       section,
@@ -207,6 +210,7 @@ export function ProductDrawer({
   }
 
   async function addCustomTask() {
+    if (!guaranteedProduct) return;
     const cleanTitle = sanitizeText(newTask);
     if (!cleanTitle) return;
     const taskTitle = cleanTitle;
@@ -236,6 +240,7 @@ export function ProductDrawer({
   }
 
   async function deleteTask(taskId: string) {
+    if (!guaranteedProduct) return;
     const updated = tasks.filter((t) => t.id !== taskId);
     setTasks(updated);
     onUpdate({ ...guaranteedProduct, tasks: updated });
@@ -243,6 +248,7 @@ export function ProductDrawer({
   }
 
   async function saveProductEdits() {
+    if (!guaranteedProduct) return;
     const cleanName = sanitizeText(editName) || guaranteedProduct.name;
     const cleanDesc = sanitizeText(editDesc);
     const cleanUrl = editUrl.trim();
@@ -257,7 +263,7 @@ export function ProductDrawer({
       status: editStatus,
     });
     setSaving(false);
-    const updated = {
+    const updated: ProductWithTasks = {
       ...guaranteedProduct,
       name: cleanName,
       description: cleanDesc || null,

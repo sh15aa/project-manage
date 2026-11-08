@@ -33,6 +33,7 @@ import {
   getInitialProducts,
   getTursoConfig,
   saveProduct,
+  createMasterTasksForProduct,
 } from '@/lib/turso';
 import { TursoConfigModal } from '@/components/TursoConfigModal';
 import { Dashboard } from '@/components/Dashboard';
@@ -270,8 +271,20 @@ export default function App() {
   }
 
   function handleProductCreated(newProduct: Product) {
-    const newProductWithTasks: ProductWithTasks = { ...newProduct, tasks: [] };
-    setProducts((prev) => [...prev, newProductWithTasks]);
+    const newProductWithTasks: ProductWithTasks = {
+      ...newProduct,
+      tasks: (newProduct as any).tasks || createMasterTasksForProduct(newProduct.id),
+    };
+    setProducts((prev) => [newProductWithTasks, ...prev]);
+    setShowAdd(false);
+  }
+
+  function handleProductsBatchCreated(newProducts: Product[]) {
+    const withTasks: ProductWithTasks[] = newProducts.map((p) => ({
+      ...p,
+      tasks: (p as any).tasks || createMasterTasksForProduct(p.id),
+    }));
+    setProducts((prev) => [...withTasks, ...prev]);
     setShowAdd(false);
   }
 
@@ -995,6 +1008,7 @@ export default function App() {
         <AddProductModal
           onClose={() => setShowAdd(false)}
           onCreated={handleProductCreated}
+          onBatchCreated={handleProductsBatchCreated}
         />
       )}
 
